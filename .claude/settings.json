@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null -w \"serve: %{http_code}\\\\n\" http://127.0.0.1:8000/)",
+      "Bash(curl -s http://127.0.0.1:4040/api/tunnels)",
+      "Bash(cat /tmp/claude-502/depiderme-serve.log 2>&1 *)",
+      "Read(//private/tmp/claude-502/**)",
+      "Bash(curl -sv -o /dev/null -w \"serve: %{http_code}\\\\n\" http://127.0.0.1:8000/)",
+      "Bash(curl -s -o /dev/null -w \"public: %{http_code}\\\\n\" https://6806-154-81-234-65.ngrok-free.app/)",
+      "Bash(curl -s -o /dev/null -w \"tunnel: %{http_code}\\\\n\" https://6806-154-81-234-65.ngrok-free.app/)",
+      "Bash(kill 2729 2682)",
+      "Bash(curl -s -o /dev/null -w \"public: %{http_code}\\\\n\" https://6a1b-103-73-102-53.ngrok-free.app/)",
+      "Bash(git -C /Users/aacomputers.pk/Downloads/depiderme-client-main status --short)",
+      "Bash(ls -la /usr/local/bin/npm /usr/local/bin/node 2>&1 *)",
+      "Read(//usr/local/bin/**)",
+      "Bash(cat ~/.zshrc 2>/dev/null | grep -i -E \"node|nvm|path\" *)",
+      "Read(//Users/aacomputers.pk/**)",
+      "Read(//Users/aacomputers.pk/.nvm/**)",
+      "Bash(zsh -lc 'which node npm php ngrok; node -v; npm -v')",
+      "Bash(zsh -lc 'npm run build')",
+      "Bash(zsh -lc 'npx --yes playwright screenshot --channel chrome --viewport-size=1728,2200 --full-page --wait-for-timeout=1500 \"http://127.0.0.1:8000/\" home-full.png')",
+      "Bash(PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 zsh -lc 'npm init -y >/dev/null 2>&1; npm install playwright@1.63.0 2>&1 | tail -15')",
+      "Bash(zsh -lc 'node footer-shot.mjs')",
+      "Bash(awk 'NR<=2449 && /@media/{line=NR; rule=$0} END{print line\": \"rule}' /Users/aacomputers.pk/Downloads/depiderme-client-main/resources/css/components/late-responsive.css)",
+      "Bash(awk 'NR<=5751 && /@media/{line=NR; rule=$0} END{print line\": \"rule}' /Users/aacomputers.pk/Downloads/depiderme-client-main/resources/css/components/late-responsive.css)",
+      "Bash(zsh -lc 'node inspect-footer2.mjs')",
+      "Bash(zsh -lc 'node wide-footer4.mjs')",
+      "Bash(zsh -lc 'node diag-footer.mjs')",
+      "Bash(zsh -lc 'node wide-footer3.mjs')"
+    ]
+  }
+}

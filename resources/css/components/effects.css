@@ -1,0 +1,345 @@
+.booking-gradient {
+  background: linear-gradient(
+    180deg,
+    #12081f 0%,
+    #271841 18%,
+    #5b2b82 52%,
+    #8877c2 78%,
+    #e1c7f9 100%
+  );
+}
+
+.booking-gradient-about {
+  isolation: isolate;
+  background: linear-gradient(
+    180deg,
+    #000000 0%,
+    #12081f 28%,
+    #271841 52%,
+    #5b2b82 78%,
+    #8877c2 100%
+  );
+}
+
+.booking-gradient.live-gradient::before,
+.booking-gradient-about.live-gradient::before {
+  position: absolute;
+  z-index: 0;
+  inset: -14%;
+  content: "";
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 34% 40% at var(--live-gradient-x, 50%) var(--live-gradient-y, 50%),
+      rgb(225 199 249 / 0.7) 0%,
+      rgb(180 111 235 / 0.46) 42%,
+      transparent 74%
+    ),
+    radial-gradient(
+      ellipse 30% 36% at calc(100% - var(--live-gradient-x, 50%)) calc(108% - var(--live-gradient-y, 50%)),
+      rgb(136 119 194 / 0.58) 0%,
+      rgb(91 43 130 / 0.38) 46%,
+      transparent 76%
+    );
+  filter: blur(50px) saturate(1.22);
+  opacity: 0.86;
+  mix-blend-mode: screen;
+  transform: scale(1.04);
+  transform-origin: center;
+  animation: retina-purple-shine-drift var(--retina-purple-highlight-duration, 18s)
+    ease-in-out infinite alternate;
+  will-change: transform, background-image, filter;
+}
+
+.booking-gradient.live-gradient::before {
+  opacity: 0.68;
+}
+
+.booking-gradient > .booking-section__inner,
+.booking-gradient-about > .booking-section__inner {
+  z-index: 1;
+}
+
+@keyframes retina-purple-blob-drift {
+  0%,
+  100% {
+    transform: translate3d(-3%, -4%, 0) scale(1) rotate(-2deg);
+  }
+
+  38% {
+    transform: translate3d(5%, 3%, 0) scale(1.08, 0.96) rotate(3deg);
+  }
+
+  68% {
+    transform: translate3d(-1%, 7%, 0) scale(0.98, 1.1) rotate(-1deg);
+  }
+}
+
+@keyframes retina-purple-shine-drift {
+  0%,
+  100% {
+    transform: translate3d(7%, -10%, 0) scale(0.94) rotate(6deg);
+    opacity: 0.68;
+  }
+
+  50% {
+    transform: translate3d(-8%, 8%, 0) scale(1.12) rotate(-4deg);
+    opacity: 1;
+  }
+}
+
+.retina-purple-field {
+  --retina-purple-duration: 22s;
+  --retina-purple-highlight-duration: 18s;
+  --retina-purple-opacity: 0.72;
+  --retina-purple-highlight-opacity: 0.54;
+  --retina-purple-blur: 44px;
+  isolation: isolate;
+}
+
+.retina-purple-field::after {
+  position: absolute;
+  z-index: 0;
+  inset: -24%;
+  content: "";
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 46% 38% at 26% 18%,
+      rgb(255 255 255 / 0.72) 0%,
+      rgb(225 199 249 / 0.42) 24%,
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 48% 42% at 74% 34%,
+      rgb(218 169 250 / 0.68) 0%,
+      rgb(136 119 194 / 0.34) 46%,
+      transparent 76%
+    ),
+    radial-gradient(
+      ellipse 54% 52% at 45% 86%,
+      rgb(91 43 130 / 0.5) 0%,
+      rgb(180 111 235 / 0.22) 52%,
+      transparent 78%
+    );
+  filter: blur(var(--retina-purple-blur)) saturate(1.26) contrast(1.04);
+  mix-blend-mode: screen;
+  opacity: var(--retina-purple-opacity);
+  transform-origin: 50% 45%;
+  animation: retina-purple-blob-drift var(--retina-purple-duration)
+    cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+  transition:
+    filter 0.28s ease,
+    opacity 0.28s ease;
+  will-change: transform, filter, opacity;
+}
+
+.retina-purple-field::before {
+  animation-duration: var(--retina-purple-highlight-duration, inherit);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .retina-purple-field:hover {
+    --retina-purple-duration: 12s;
+    --retina-purple-highlight-duration: 10s;
+    --retina-purple-opacity: 0.94;
+    --retina-purple-blur: 34px;
+  }
+
+  .retina-purple-field:hover::after {
+    filter: blur(var(--retina-purple-blur)) saturate(1.42) contrast(1.08);
+  }
+}
+
+/* Shared scroll + pointer motion for the site's purple/pink gradient system. */
+.live-gradient {
+  --live-gradient-x: 50%;
+  --live-gradient-y: 50%;
+  --live-gradient-size-x: 135%;
+  --live-gradient-size-y: 135%;
+  background-position: var(--live-gradient-x) var(--live-gradient-y);
+  background-size: var(--live-gradient-size-x) var(--live-gradient-size-y);
+  background-repeat: no-repeat;
+  filter: saturate(var(--live-gradient-saturate, 1.04))
+    contrast(var(--live-gradient-contrast, 1.02));
+  transition: filter 0.25s ease;
+  will-change: background-position, background-size;
+}
+
+.live-gradient--compact {
+  --live-gradient-size-x: 220%;
+  --live-gradient-size-y: 220%;
+}
+
+.live-gradient--text {
+  --live-gradient-size-x: 260%;
+  --live-gradient-size-y: 100%;
+}
+
+.live-gradient--pseudo::before {
+  background-position: var(--live-gradient-x, 50%) var(--live-gradient-y, 50%);
+  background-size: var(--live-gradient-size-x, 135%) var(--live-gradient-size-y, 135%);
+  background-repeat: no-repeat;
+  will-change: background-position, background-size;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pricing-hero.live-gradient:hover {
+    --live-gradient-saturate: 1.04;
+    --live-gradient-contrast: 1.02;
+  }
+
+  .pricing-hero.retina-purple-field:hover::after {
+    filter: blur(var(--retina-purple-blur)) saturate(1.2) contrast(1.02);
+  }
+
+  .live-gradient:hover {
+    --live-gradient-saturate: 1.18;
+    --live-gradient-contrast: 1.06;
+  }
+
+  .live-gradient--pseudo:hover::before,
+  .booking-gradient.live-gradient:hover::before,
+  .booking-gradient-about.live-gradient:hover::before,
+  .footer-gradient.live-gradient:hover::before {
+    opacity: 0.96;
+    filter: blur(44px) saturate(1.34);
+  }
+
+  .booking-gradient.live-gradient:has(.booking-map:hover),
+  .booking-gradient-about.live-gradient:has(.booking-map:hover) {
+    --live-gradient-saturate: 1.04;
+    --live-gradient-contrast: 1.02;
+    --retina-purple-highlight-duration: 18s;
+  }
+
+  .booking-gradient.live-gradient:has(.booking-map:hover)::before {
+    opacity: 0.68;
+    filter: blur(50px) saturate(1.22);
+  }
+
+  .booking-gradient-about.live-gradient:has(.booking-map:hover)::before {
+    opacity: 0.86;
+    filter: blur(50px) saturate(1.22);
+  }
+
+  .booking-section.retina-purple-field:hover {
+    --retina-purple-duration: 22s;
+    --retina-purple-highlight-duration: 18s;
+    --retina-purple-opacity: 0.72;
+    --retina-purple-blur: 44px;
+  }
+
+  .booking-section.retina-purple-field:hover::after {
+    filter: blur(var(--retina-purple-blur)) saturate(1.26) contrast(1.04);
+  }
+
+  .booking-section.booking-gradient.live-gradient:hover,
+  .booking-section.booking-gradient-about.live-gradient:hover {
+    --live-gradient-saturate: 1.04;
+    --live-gradient-contrast: 1.02;
+  }
+
+  .booking-section.booking-gradient.live-gradient:hover::before {
+    opacity: 0.68;
+    filter: blur(50px) saturate(1.22);
+  }
+
+  .booking-section.booking-gradient-about.live-gradient:hover::before {
+    opacity: 0.86;
+    filter: blur(50px) saturate(1.22);
+  }
+}
+
+.clinics-section__glow-field {
+  --live-gradient-shift-x: 0px;
+  --live-gradient-shift-y: 0px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-gradient,
+  .live-gradient--pseudo::before {
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    will-change: auto;
+  }
+
+  .live-gradient--vector {
+    --live-gradient-shift-x: 0px;
+    --live-gradient-shift-y: 0px;
+  }
+
+  .booking-gradient.live-gradient::before,
+  .booking-gradient-about.live-gradient::before,
+  .footer-gradient.live-gradient::before,
+  .retina-purple-field::after {
+    animation: none;
+    filter: blur(54px);
+    will-change: auto;
+  }
+}
+
+[data-section-rise] + .booking-section {
+  margin-top: -1px;
+}
+
+.pricing-gender-toggle[aria-pressed="true"] {
+  background:
+    linear-gradient(90deg, #8877c2 0%, #5b2b82 100%),
+    #5b2b82;
+}
+
+.technology-booking-flow {
+  overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse 64% 40% at 64% 76%,
+      rgba(225, 199, 249, 0.84) 0%,
+      rgba(180, 111, 235, 0.5) 35%,
+      rgba(91, 43, 130, 0.18) 57%,
+      transparent 76%
+    ),
+    radial-gradient(
+      ellipse 44% 34% at 35% 72%,
+      rgba(136, 119, 194, 0.56) 0%,
+      rgba(91, 43, 130, 0.26) 46%,
+      transparent 78%
+    ),
+    linear-gradient(
+      180deg,
+      #000010 0%,
+      #000010 43%,
+      #0a0612 52%,
+      #1b0f2f 61%,
+      #5b2b82 79%,
+      #e1c7f9 100%
+    );
+}
+
+.technology-booking-flow > .relative:not(.technology-faq-section):not(.booking-section--technology) {
+  background: transparent;
+}
+
+.technology-booking-flow .retina-purple-field::after,
+.technology-booking-flow [data-live-gradient]::before {
+  display: none;
+}
+
+.technology-booking-flow .booking-gradient-about {
+  background: transparent;
+}
+
+.technology-booking-flow .booking-section--technology {
+  transform: none;
+  background: linear-gradient(
+    180deg,
+    #000010 0%,
+    #090414 12%,
+    #271841 30%,
+    #5b2b82 48%,
+    #8877c2 62%,
+    #e1c7f9 78%,
+    #e1c7f9 100%
+  );
+}
+

@@ -1,0 +1,77 @@
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../views/**/*.blade.php';
+
+@theme {
+  --font-sans:
+    "Wix Madefor Display", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-body:
+    "Wix Madefor Text", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --breakpoint-lg: 62rem;
+  --site-max-width: 1711px;
+  --animate-about-hero-card-float: about-hero-card-float 5s ease-in-out infinite;
+  --animate-about-hero-card-float-desktop: about-hero-card-float-desktop 5s
+    ease-in-out infinite;
+  --animate-laserderme-hero-marquee: laserderme-hero-marquee 70s linear infinite;
+
+  @keyframes laserderme-hero-marquee {
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @keyframes laserderme-hero-product-motion {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotateY(-10deg) rotateZ(-1.5deg)
+        scale(1);
+    }
+
+    22% {
+      transform: translate3d(1.4%, -2.2%, 26px) rotateY(16deg) rotateZ(2.2deg)
+        scale(1.018);
+    }
+
+    48% {
+      transform: translate3d(-1.2%, -3.8%, 10px) rotateY(-19deg)
+        rotateZ(-2.6deg) scale(0.992);
+    }
+
+    72% {
+      transform: translate3d(1.6%, -1.4%, 30px) rotateY(18deg) rotateZ(2deg)
+        scale(1.014);
+    }
+
+    88% {
+      transform: translate3d(-0.4%, -3%, 14px) rotateY(2deg) rotateZ(-0.8deg)
+        scale(1.006);
+    }
+  }
+
+  @keyframes about-hero-card-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(var(--about-card-float-y, -10px));
+    }
+  }
+
+  @keyframes about-hero-card-float-desktop {
+    0%,
+    100% {
+      transform: translate(-50%, -50%) translateY(0);
+    }
+
+    50% {
+      transform: translate(-50%, -50%)
+        translateY(var(--about-card-float-y, -10px));
+    }
+  }
+}
+

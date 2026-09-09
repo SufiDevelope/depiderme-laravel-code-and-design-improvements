@@ -1,0 +1,843 @@
+.scroll-laser-beam {
+  --scroll-laser-scale: 0.04;
+  --scroll-laser-opacity: 0.18;
+  --scroll-laser-end: 4%;
+  --scroll-laser-flare-scale: 0.472;
+  --scroll-laser-sweep-opacity: 0;
+  --scroll-laser-sweep-scale: 0.35;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  height: clamp(104px, 16vw, 190px);
+  overflow: hidden;
+  pointer-events: none;
+  contain: paint;
+}
+
+.scroll-laser-beam__fill {
+  position: absolute;
+  inset: 0;
+  opacity: var(--scroll-laser-opacity);
+  transform: scaleX(var(--scroll-laser-scale));
+  transform-origin: left center;
+  will-change: transform, opacity;
+}
+
+.scroll-laser-beam__aura {
+  position: absolute;
+  inset: 8% -8%;
+  background: radial-gradient(
+    ellipse at 50% 52%,
+    rgba(190, 137, 242, 0.68) 0%,
+    rgba(198, 151, 244, 0.38) 18%,
+    rgba(209, 178, 247, 0.18) 36%,
+    rgba(225, 199, 249, 0.06) 52%,
+    transparent 70%
+  );
+  filter: blur(12px);
+}
+
+.scroll-laser-beam__line {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: 4px;
+  transform: translateY(-50%);
+  background: linear-gradient(
+    90deg,
+    rgba(136, 119, 194, 0) 0%,
+    rgba(136, 119, 194, 0.58) 8%,
+    #e8d5ff 48%,
+    rgba(180, 111, 235, 0.9) 78%,
+    rgba(225, 199, 249, 0.12) 100%
+  );
+  box-shadow:
+    0 0 8px rgba(136, 119, 194, 0.95),
+    0 0 22px rgba(180, 111, 235, 0.68),
+    0 0 48px rgba(225, 199, 249, 0.8);
+}
+
+.scroll-laser-beam__flare {
+  position: absolute;
+  top: 50%;
+  left: var(--scroll-laser-end);
+  width: clamp(54px, 7vw, 104px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  opacity: var(--scroll-laser-opacity);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.96) 0%,
+    rgba(225, 199, 249, 0.82) 12%,
+    rgba(181, 116, 235, 0.42) 34%,
+    transparent 70%
+  );
+  filter: blur(6px);
+  transform: translate(-50%, -50%) scale(var(--scroll-laser-flare-scale));
+  will-change: left, opacity, transform;
+}
+
+.scroll-laser-beam__sweep {
+  display: none;
+}
+
+/* Home experience cards: zero-height divider with a scroll-grown code beam */
+.scroll-laser-beam--experience {
+  position: sticky;
+  inset: auto;
+  top: 108px;
+  z-index: 29;
+  height: 0;
+  overflow: visible;
+  contain: none;
+}
+
+.scroll-laser-beam--experience .scroll-laser-beam__fill {
+  top: 50%;
+  right: 0;
+  bottom: auto;
+  left: 0;
+  height: clamp(100px, 14vw, 190px);
+  transform: translateY(-50%) scaleX(var(--scroll-laser-scale));
+}
+
+/* About hero: a zero-height beam that reaches into the image column */
+.scroll-laser-beam--about-hero {
+  position: absolute;
+  top: auto;
+  right: calc(-10px - min(50vw, 960px));
+  bottom: clamp(105px, 14%, 160px);
+  left: var(--site-gutter);
+  z-index: 5;
+  width: calc(min(50vw, 960px) + 10px);
+  height: 0;
+  margin-left: calc(-1 * var(--site-gutter));
+  overflow: visible;
+  contain: none;
+}
+
+.scroll-laser-beam--about-hero .scroll-laser-beam__fill {
+  top: 50%;
+  right: 0;
+  bottom: auto;
+  left: 0;
+  height: clamp(56px, 8vw, 96px);
+  transform: translateY(-50%) scaleX(var(--scroll-laser-scale));
+}
+
+.about-spaces-laser-divider {
+  z-index: 1;
+  height: clamp(124px, 10vw, 164px);
+  margin-top: 0;
+  overflow: visible;
+}
+
+.about-professionals-section__carousel {
+  cursor: grab;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  overflow-x: auto;
+  overflow-y: hidden;
+  touch-action: pan-y pinch-zoom;
+}
+
+.about-professionals-section__carousel::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.about-professionals-section__carousel.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.about-professionals-section__nav button {
+  width: 42px;
+  height: 42px;
+  border: 0;
+  background: linear-gradient(180deg, #5b2b82 0%, #8a72af 100%);
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(91, 43, 130, 0.28);
+}
+
+.about-professionals-section__nav {
+  pointer-events: none;
+}
+
+.about-professionals-section__nav button {
+  pointer-events: auto;
+}
+
+.about-professionals-section__nav svg {
+  width: 24px;
+  height: 24px;
+}
+
+.technology-hero {
+  background: #000010;
+  padding-bottom: 50px;
+}
+
+@media (min-width: 992px) {
+  .technology-hero {
+    padding-top: 150px;
+  }
+
+  .technology-hero > .site-padding {
+    padding-left: 120px;
+    padding-right: 100px;
+  }
+
+  .technology-hero__copy {
+    grid-template-columns: minmax(0, 596px) 520px;
+    gap: 155px;
+    justify-content: start;
+  }
+
+  .technology-hero__title {
+    width: 596px;
+    max-width: 596px;
+    font-size: 60px;
+    font-weight: 500;
+    line-height: 110%;
+    letter-spacing: 0;
+    color: #ffffff;
+  }
+
+  .technology-hero__description {
+    width: 520px;
+    max-width: 520px;
+    padding-top: 14px;
+    justify-self: start;
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 0;
+    color: #ffffff;
+  }
+
+  .technology-hero__description-desktop span {
+    display: block;
+    white-space: nowrap;
+  }
+
+  .technology-hero__laser {
+    margin-top: 26px;
+    margin-bottom: 64px;
+  }
+
+  .technology-hero__laser > div {
+    height: 1px;
+    overflow: visible;
+  }
+
+  .technology-hero__laser .scroll-laser-beam--technology-gallery {
+    top: 0;
+    height: 84px;
+    overflow: visible;
+    contain: none;
+    transform: translateY(-50%);
+  }
+
+  .technology-hero__laser .scroll-laser-beam__aura {
+    inset: -38px -14%;
+    border-radius: 999px;
+    background: radial-gradient(
+      ellipse at 18% 50%,
+      rgba(255, 255, 255, 0.78) 0%,
+      rgba(225, 199, 249, 0.5) 14%,
+      rgba(180, 111, 235, 0.24) 36%,
+      rgba(91, 43, 130, 0.1) 58%,
+      transparent 74%
+    );
+    filter: blur(10px);
+    -webkit-mask-image: radial-gradient(
+      ellipse at 18% 50%,
+      #000 0%,
+      #000 44%,
+      transparent 72%
+    );
+    mask-image: radial-gradient(
+      ellipse at 18% 50%,
+      #000 0%,
+      #000 44%,
+      transparent 72%
+    );
+  }
+
+  .technology-hero__laser .scroll-laser-beam__line {
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      rgba(136, 119, 194, 0.2) 0%,
+      rgba(225, 199, 249, 0.86) 24%,
+      #ffffff 50%,
+      rgba(180, 111, 235, 0.94) 74%,
+      rgba(91, 43, 130, 0.36) 100%
+    );
+    box-shadow:
+      0 0 5px rgba(255, 255, 255, 0.72),
+      0 0 14px rgba(197, 139, 246, 0.5),
+      0 0 24px rgba(91, 43, 130, 0.46);
+  }
+
+  .technology-hero__laser .scroll-laser-beam__flare {
+    width: 48px;
+    filter: blur(6px);
+  }
+}
+
+.technology-hero.retina-purple-field::before,
+.technology-hero.retina-purple-field::after {
+  display: none;
+}
+
+/* Technology gallery divider: centered inside its existing spacer */
+.scroll-laser-beam--technology-gallery {
+  top: 50%;
+  bottom: auto;
+  height: clamp(104px, 16vw, 190px);
+  transform: translateY(-50%);
+}
+
+@media (min-width: 640px) and (max-width: 991px) {
+  .technology-hero__laser {
+    margin-bottom: 64px;
+  }
+
+  .technology-hero__laser > div {
+    height: 1px;
+    overflow: visible;
+  }
+
+  .technology-hero__laser .scroll-laser-beam--technology-gallery {
+    top: 0;
+    height: 84px;
+    overflow: visible;
+    contain: none;
+    transform: translateY(-50%);
+  }
+
+  .technology-hero__laser .scroll-laser-beam__aura {
+    inset: -38px -14%;
+    border-radius: 999px;
+    background: radial-gradient(
+      ellipse at 18% 50%,
+      rgba(255, 255, 255, 0.78) 0%,
+      rgba(225, 199, 249, 0.5) 14%,
+      rgba(180, 111, 235, 0.24) 36%,
+      rgba(91, 43, 130, 0.1) 58%,
+      transparent 74%
+    );
+    filter: blur(10px);
+    -webkit-mask-image: radial-gradient(
+      ellipse at 18% 50%,
+      #000 0%,
+      #000 44%,
+      transparent 72%
+    );
+    mask-image: radial-gradient(
+      ellipse at 18% 50%,
+      #000 0%,
+      #000 44%,
+      transparent 72%
+    );
+  }
+
+  .technology-hero__laser .scroll-laser-beam__line {
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      rgba(136, 119, 194, 0.2) 0%,
+      rgba(225, 199, 249, 0.86) 24%,
+      #ffffff 50%,
+      rgba(180, 111, 235, 0.94) 74%,
+      rgba(91, 43, 130, 0.36) 100%
+    );
+    box-shadow:
+      0 0 5px rgba(255, 255, 255, 0.72),
+      0 0 14px rgba(197, 139, 246, 0.5),
+      0 0 24px rgba(91, 43, 130, 0.46);
+  }
+
+  .technology-hero__laser .scroll-laser-beam__flare {
+    width: 48px;
+    filter: blur(6px);
+  }
+}
+
+/* Laserderme CTA: beam sits exactly on the gallery/gradient seam */
+.scroll-laser-beam--laserderme-cta {
+  top: 0;
+  bottom: auto;
+  z-index: 0;
+  transform: translateY(-50%);
+}
+
+/* Clinics page: preserve the original beam position in its white spacer */
+.scroll-laser-beam--clinics,
+.scroll-laser-beam--clinics-footer {
+  top: 0;
+  bottom: auto;
+  z-index: 8;
+  height: clamp(160px, 16vw, 230px);
+  transform: translateY(-37%);
+}
+
+.scroll-laser-beam--clinics-footer {
+  z-index: 30;
+  height: clamp(120px, 10vw, 160px);
+  overflow: visible;
+  contain: none;
+  transform: translateY(calc(-50% - 92px));
+}
+
+.scroll-laser-beam--clinics-footer .scroll-laser-beam__fill {
+  inset: 0;
+  height: auto;
+  transform: scaleX(var(--scroll-laser-scale));
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000000 38%, #000000 62%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000000 38%, #000000 62%, transparent 100%);
+}
+
+.clinics-footer-laser-divider {
+  z-index: 1;
+  height: clamp(124px, 10vw, 164px);
+  min-height: clamp(124px, 10vw, 164px);
+  margin-bottom: 0;
+  margin-top: 0;
+  pointer-events: none;
+  background: transparent;
+}
+
+.clinics-detail-footer-flow > .footer-shell {
+  position: relative;
+  z-index: 1;
+  margin-top: 50px;
+}
+
+.scroll-laser-beam--clinics .scroll-laser-beam__aura,
+.scroll-laser-beam--clinics-footer .scroll-laser-beam__aura {
+  inset: 8% -8%;
+  background: radial-gradient(
+    ellipse at 50% 52%,
+    rgba(225, 199, 249, 0.68) 0%,
+    rgba(225, 199, 249, 0.38) 18%,
+    rgba(225, 199, 249, 0.18) 36%,
+    rgba(225, 199, 249, 0.06) 52%,
+    transparent 70%
+  );
+  filter: blur(12px);
+}
+
+.scroll-laser-beam--clinics-footer .scroll-laser-beam__aura {
+  inset: 26% -8%;
+  background: radial-gradient(
+    ellipse at 50% 52%,
+    rgba(225, 199, 249, 0.54) 0%,
+    rgba(225, 199, 249, 0.28) 18%,
+    rgba(225, 199, 249, 0.1) 36%,
+    transparent 68%
+  );
+  filter: blur(12px);
+  opacity: 0.72;
+}
+
+.scroll-laser-beam--clinics .scroll-laser-beam__line,
+.scroll-laser-beam--clinics-footer .scroll-laser-beam__line {
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(91, 43, 130, 0) 0%,
+    rgba(91, 43, 130, 0.58) 8%,
+    #e1c7f9 48%,
+    rgba(91, 43, 130, 0.9) 78%,
+    rgba(225, 199, 249, 0.12) 100%
+  );
+  box-shadow:
+    0 0 8px rgba(91, 43, 130, 0.95),
+    0 0 22px rgba(91, 43, 130, 0.68),
+    0 0 48px rgba(225, 199, 249, 0.8);
+}
+
+.scroll-laser-beam--clinics .scroll-laser-beam__flare,
+.scroll-laser-beam--clinics-footer .scroll-laser-beam__flare {
+  width: clamp(54px, 7vw, 104px);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.96) 0%,
+    rgba(225, 199, 249, 0.82) 12%,
+    rgba(91, 43, 130, 0.42) 34%,
+    transparent 70%
+  );
+}
+
+/* Cream page clinic carousel: code-only beam that grows with page scroll */
+.scroll-laser-beam--spaces {
+  top: 50%;
+  bottom: auto;
+  z-index: 0;
+  height: clamp(150px, 14vw, 210px);
+  --spaces-laser-offset: clamp(78px, 6vw, 96px);
+  transform: translateY(-50%);
+}
+
+.scroll-laser-beam--spaces .scroll-laser-beam__aura {
+  inset: 0 -8%;
+  background: radial-gradient(
+    ellipse at 48% 56%,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(191, 128, 244, 0.62) 10%,
+    rgba(145, 74, 208, 0.34) 28%,
+    rgba(91, 43, 130, 0.12) 48%,
+    transparent 72%
+  );
+  filter: blur(14px);
+}
+
+.scroll-laser-beam--spaces .scroll-laser-beam__line {
+  top: auto;
+  bottom: var(--spaces-laser-offset);
+  height: 3px;
+  transform: none;
+  background: linear-gradient(
+    90deg,
+    rgba(136, 119, 194, 0.18) 0%,
+    rgba(215, 185, 255, 0.88) 16%,
+    #fff 52%,
+    rgba(196, 136, 247, 0.92) 82%,
+    rgba(136, 119, 194, 0.18) 100%
+  );
+  box-shadow:
+    0 0 7px rgba(255, 255, 255, 0.88),
+    0 0 18px rgba(197, 139, 246, 0.92),
+    0 0 42px rgba(126, 62, 180, 0.9);
+}
+
+.scroll-laser-beam--spaces .scroll-laser-beam__sweep {
+  display: none;
+}
+
+.scroll-laser-beam--spaces .scroll-laser-beam__flare {
+  top: auto;
+  bottom: var(--spaces-laser-offset);
+  width: clamp(58px, 7vw, 108px);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(225, 199, 249, 0.82) 14%,
+    rgba(180, 111, 235, 0.44) 38%,
+    transparent 72%
+  );
+  filter: blur(8px);
+  transform: translate(-50%, 50%) scale(var(--scroll-laser-flare-scale));
+}
+
+.scroll-laser-beam--clinics-end {
+  top: calc(50% - 25px);
+  bottom: auto;
+  z-index: 0;
+  height: clamp(190px, 15vw, 250px);
+  overflow: visible;
+  contain: none;
+  --clinics-end-laser-offset: clamp(78px, 6vw, 96px);
+  transform: translateY(-50%);
+}
+
+.scroll-laser-beam--clinics-end::before {
+  position: absolute;
+  top: calc(100% - var(--clinics-end-laser-offset));
+  right: -8%;
+  left: -8%;
+  z-index: 0;
+  height: clamp(78px, 6.5vw, 104px);
+  content: "";
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at 48% 50%,
+    rgba(255, 255, 255, 0.34) 0%,
+    rgba(225, 199, 249, 0.42) 14%,
+    rgba(180, 111, 235, 0.3) 34%,
+    rgba(91, 43, 130, 0.12) 55%,
+    transparent 76%
+  );
+  filter: blur(12px);
+  transform: translateY(-50%);
+}
+
+.scroll-laser-beam--clinics-end .scroll-laser-beam__aura {
+  top: calc(100% - var(--clinics-end-laser-offset));
+  right: -8%;
+  bottom: auto;
+  left: -8%;
+  height: clamp(74px, 6vw, 98px);
+  background: radial-gradient(
+    ellipse at 48% 50%,
+    rgba(255, 255, 255, 0.82) 0%,
+    rgba(191, 128, 244, 0.56) 12%,
+    rgba(145, 74, 208, 0.3) 30%,
+    rgba(91, 43, 130, 0.1) 52%,
+    transparent 74%
+  );
+  filter: blur(10px);
+  transform: translateY(-50%);
+}
+
+.scroll-laser-beam--clinics-end .scroll-laser-beam__line {
+  top: auto;
+  bottom: var(--clinics-end-laser-offset);
+  height: 2px;
+  transform: none;
+  background: linear-gradient(
+    90deg,
+    rgba(136, 119, 194, 0.18) 0%,
+    rgba(215, 185, 255, 0.88) 16%,
+    #ffffff 52%,
+    rgba(196, 136, 247, 0.92) 82%,
+    rgba(136, 119, 194, 0.18) 100%
+  );
+  box-shadow:
+    0 0 5px rgba(255, 255, 255, 0.76),
+    0 0 11px rgba(197, 139, 246, 0.74),
+    0 0 24px rgba(126, 62, 180, 0.64);
+}
+
+.scroll-laser-beam--clinics-end .scroll-laser-beam__sweep {
+  display: none;
+}
+
+.scroll-laser-beam--clinics-end .scroll-laser-beam__flare {
+  top: auto;
+  bottom: var(--clinics-end-laser-offset);
+  width: clamp(42px, 5vw, 76px);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(225, 199, 249, 0.82) 14%,
+    rgba(180, 111, 235, 0.44) 38%,
+    transparent 72%
+  );
+  filter: blur(6px);
+  transform: translate(-50%, 50%) scale(var(--scroll-laser-flare-scale));
+}
+
+@media (min-width: 992px) {
+  .scroll-laser-beam--half {
+    left: 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-laser-beam {
+    --scroll-laser-scale: 1;
+    --scroll-laser-opacity: 1;
+    --scroll-laser-end: 100%;
+    --scroll-laser-flare-scale: 1;
+    --scroll-laser-sweep-opacity: 1;
+    --scroll-laser-sweep-scale: 1;
+  }
+
+  .scroll-laser-beam__fill,
+  .scroll-laser-beam__sweep,
+  .scroll-laser-beam__flare {
+    will-change: auto;
+  }
+}
+
+/* Animated laser beam divider */
+.laser-beam {
+  position: relative;
+  height: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.laser-beam__stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  max-width: none;
+  transform: translate(-50%, -50%);
+  line-height: 0;
+}
+
+.laser-beam__image,
+.laser-beam__video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.laser-beam--blend .laser-beam__video {
+  mix-blend-mode: screen;
+}
+
+.laser-beam__pulse {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: min(22vw, 260px);
+  height: 4px;
+  transform: translate(-100%, -50%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(136, 119, 194, 0.2) 20%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(136, 119, 194, 0.2) 80%,
+    transparent 100%
+  );
+  filter: blur(1px);
+  opacity: 0;
+  mix-blend-mode: screen;
+}
+
+.laser-beam__flare {
+  position: absolute;
+  top: 50%;
+  right: 6%;
+  width: clamp(72px, 10vw, 140px);
+  height: clamp(72px, 10vw, 140px);
+  transform: translate(50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(136, 119, 194, 0.18) 40%,
+    transparent 72%
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.laser-beam--animated .laser-beam__pulse {
+  animation: laser-beam-travel 5.5s ease-in-out infinite;
+}
+
+.laser-beam--animated .laser-beam__flare {
+  animation: laser-beam-flare 3.2s ease-in-out infinite;
+}
+
+@keyframes laser-beam-travel {
+  0% {
+    left: 0;
+    opacity: 0;
+    transform: translate(-100%, -50%) scaleX(0.6);
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  92% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 100%;
+    opacity: 0;
+    transform: translate(-100%, -50%) scaleX(1.1);
+  }
+}
+
+@keyframes laser-beam-flare {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translate(50%, -50%) scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(50%, -50%) scale(1.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .laser-beam--animated .laser-beam__pulse,
+  .laser-beam--animated .laser-beam__flare {
+    animation: none;
+  }
+}
+
+/* Technology FAQ — scroll-scrubbed text reveal */
+.tech-faq-question {
+  --faq-reveal: 0%;
+  --faq-reveal-glow-opacity: 0;
+  position: relative;
+  display: block;
+  color: rgba(225, 199, 249, 0.34);
+}
+
+.tech-faq-question__base,
+.tech-faq-question__active {
+  display: block;
+}
+
+.tech-faq-question__active {
+  position: absolute;
+  inset: 0;
+  color: #fff;
+  clip-path: inset(0 calc(100% - var(--faq-reveal)) 0 0);
+  will-change: clip-path;
+}
+
+.tech-faq-question__glow {
+  position: absolute;
+  top: 50%;
+  left: var(--faq-reveal);
+  width: clamp(48px, 7vw, 88px);
+  height: 1.7em;
+  border-radius: 50%;
+  opacity: var(--faq-reveal-glow-opacity);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(207, 238, 255, 0.7) 14%,
+    rgba(153, 207, 255, 0.32) 36%,
+    transparent 72%
+  );
+  filter: blur(6px);
+  mix-blend-mode: screen;
+  transform: translate(-50%, -50%);
+  will-change: left, opacity;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-faq-question {
+    --faq-reveal: 100%;
+    --faq-reveal-glow-opacity: 0;
+  }
+
+  .tech-faq-question__active,
+  .tech-faq-question__glow {
+    will-change: auto;
+  }
+}
+
+@media (min-width: 640px) {
+  .experience-section__title {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 768px) {
+  .experience-section__title {
+    font-size: 36px;
+  }
+}
+
+@media (min-width: 992px) {
+  .experience-section__title {
+    font-size: 48px;
+  }
+}
+

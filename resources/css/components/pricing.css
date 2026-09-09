@@ -1,0 +1,445 @@
+.pricing-hero {
+  position: relative;
+  isolation: isolate;
+  background:
+    linear-gradient(
+      180deg,
+      #000000 0%,
+      #000000 32%,
+      rgba(0, 0, 0, 0.86) 52%,
+      rgba(0, 0, 0, 0.24) 72%,
+      rgba(0, 0, 0, 0) 88%
+    ),
+    radial-gradient(
+      ellipse 90% 58% at 50% 84%,
+      rgba(225, 199, 249, 0.9) 0%,
+      rgba(91, 43, 130, 0.74) 36%,
+      rgba(91, 43, 130, 0.24) 62%,
+      transparent 78%
+    ),
+    linear-gradient(
+      180deg,
+      #000000 0%,
+      #000000 34%,
+      #5b2b82 76%,
+      #e1c7f9 100%
+    );
+}
+
+.pricing-page .site-header:not([data-scrolled]) {
+  background: linear-gradient(
+    180deg,
+    #000000 0%,
+    rgba(0, 0, 0, 0.94) 72%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.pricing-hero::before {
+  content: "";
+  position: absolute;
+  inset: -24%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 44% 38% at var(--live-gradient-x, 28%) var(--live-gradient-y, 42%),
+      rgba(225, 199, 249, 0.42) 0%,
+      rgba(91, 43, 130, 0.26) 45%,
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 52% 42% at calc(100% - var(--live-gradient-x, 28%)) calc(100% - var(--live-gradient-y, 42%)),
+      rgba(225, 199, 249, 0.48) 0%,
+      rgba(91, 43, 130, 0.3) 48%,
+      transparent 74%
+    );
+  filter: blur(18px) saturate(1.16);
+  mix-blend-mode: screen;
+  opacity: 0.82;
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 16%,
+    #000000 40%,
+    #000000 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 16%,
+    #000000 40%,
+    #000000 100%
+  );
+  transition:
+    filter 0.25s ease,
+    opacity 0.25s ease;
+  will-change: background-position, filter;
+}
+
+.pricing-hero.retina-purple-field {
+  --retina-purple-opacity: 0.42;
+  --retina-purple-blur: 38px;
+}
+
+.pricing-hero.retina-purple-field::after {
+  background:
+    radial-gradient(
+      ellipse 62% 40% at 50% 82%,
+      rgba(225, 199, 249, 0.58) 0%,
+      rgba(91, 43, 130, 0.34) 48%,
+      transparent 78%
+    );
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 30%,
+    #000000 58%,
+    #000000 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 30%,
+    #000000 58%,
+    #000000 100%
+  );
+}
+
+.pricing-hero__orb {
+  --pricing-orb-x: 4px;
+  --pricing-orb-y: -5px;
+  --pricing-orb-pointer-x: 0px;
+  --pricing-orb-pointer-y: 0px;
+  --pricing-orb-rotation: 0.35deg;
+  --pricing-orb-duration: 24s;
+  --pricing-orb-delay: 0s;
+  animation: pricing-hero-orb-float var(--pricing-orb-duration) ease-in-out
+    infinite;
+  animation-delay: var(--pricing-orb-delay);
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
+@keyframes pricing-hero-orb-float {
+  0%,
+  100% {
+    transform: translate3d(
+        var(--pricing-orb-pointer-x),
+        var(--pricing-orb-pointer-y),
+        0
+      )
+      rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: translate3d(
+        calc(var(--pricing-orb-x) + var(--pricing-orb-pointer-x)),
+        calc(var(--pricing-orb-y) + var(--pricing-orb-pointer-y)),
+        0
+      )
+      rotate(var(--pricing-orb-rotation)) scale(1);
+  }
+}
+
+.pricing-hero__orb--legs {
+  --pricing-orb-x: 4px;
+  --pricing-orb-y: -5px;
+  --pricing-orb-rotation: 0.25deg;
+  --pricing-orb-duration: 26s;
+  --pricing-orb-delay: -1.3s;
+  top: 5%;
+  left: max(8px, 1.5vw);
+  width: 265px;
+  height: 265px;
+}
+
+.pricing-hero__orb--face {
+  --pricing-orb-x: -3px;
+  --pricing-orb-y: -4px;
+  --pricing-orb-rotation: -0.25deg;
+  --pricing-orb-duration: 24s;
+  --pricing-orb-delay: -3.4s;
+  top: 40%;
+  left: max(48px, 8vw);
+  z-index: 1;
+  width: 155px;
+  height: 155px;
+}
+
+.pricing-hero__orb--arm {
+  --pricing-orb-x: 4px;
+  --pricing-orb-y: 5px;
+  --pricing-orb-rotation: 0.25deg;
+  --pricing-orb-duration: 27s;
+  --pricing-orb-delay: -0.7s;
+  bottom: 9%;
+  left: max(8px, 1.5vw);
+  width: 200px;
+  height: 200px;
+}
+
+.pricing-hero__orb--front {
+  --pricing-orb-x: -4px;
+  --pricing-orb-y: -5px;
+  --pricing-orb-rotation: -0.22deg;
+  --pricing-orb-duration: 25s;
+  --pricing-orb-delay: -2.1s;
+  top: 5%;
+  right: max(48px, 8vw);
+  width: 160px;
+  height: 160px;
+}
+
+.pricing-hero__orb--neck {
+  --pricing-orb-x: 3px;
+  --pricing-orb-y: 4px;
+  --pricing-orb-rotation: 0.25deg;
+  --pricing-orb-duration: 28s;
+  --pricing-orb-delay: -4.2s;
+  top: 40%;
+  right: max(40px, 7vw);
+  width: 160px;
+  height: 160px;
+}
+
+.pricing-hero__orb--back {
+  --pricing-orb-x: -4px;
+  --pricing-orb-y: -5px;
+  --pricing-orb-rotation: -0.25deg;
+  --pricing-orb-duration: 29s;
+  --pricing-orb-delay: -3s;
+  right: max(8px, 1.5vw);
+  bottom: 7%;
+  width: 230px;
+  height: 230px;
+}
+
+@media (min-width: 992px) {
+  /* Task 21: desktop Pricing frame is 1711 × 1018 in Figma. */
+  .pricing-hero {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .pricing-hero__inner {
+    width: 100%;
+    max-width: 1711px;
+    min-height: min(1018px, 59.4974vw);
+  }
+
+  .pricing-hero__copy {
+    z-index: 20;
+    min-height: min(1018px, 59.4974vw);
+  }
+
+  .pricing-hero__title {
+    width: min(889px, 51.958vw);
+    max-width: min(889px, 51.958vw);
+    font-size: min(80px, 4.6756vw);
+    line-height: min(88px, 5.1432vw);
+    transform: translateY(max(-6px, -0.3507vw));
+  }
+
+  .pricing-hero__orb {
+    right: auto;
+    bottom: auto;
+  }
+
+  .pricing-hero__orb--legs {
+    --pricing-orb-x: -3px;
+    --pricing-orb-y: -4px;
+    top: 22.3969%;
+    left: 6.2537%;
+    width: min(265px, 15.488vw);
+    height: min(265px, 15.488vw);
+  }
+
+  .pricing-hero__orb--face {
+    --pricing-orb-x: -3px;
+    --pricing-orb-y: 4px;
+    top: 57.5639%;
+    left: 25.0146%;
+    width: min(160.79px, 9.3974vw);
+    height: min(160.79px, 9.3974vw);
+  }
+
+  .pricing-hero__orb--arm {
+    --pricing-orb-x: -3px;
+    --pricing-orb-y: 4px;
+    top: 65.4224%;
+    left: 10.2864%;
+    width: min(199.72px, 11.6727vw);
+    height: min(199.72px, 11.6727vw);
+  }
+
+  .pricing-hero__orb--front {
+    --pricing-orb-x: 3px;
+    --pricing-orb-y: -4px;
+    top: 30.845%;
+    left: 80.4793%;
+    width: min(160.79px, 9.3974vw);
+    height: min(160.79px, 9.3974vw);
+  }
+
+  .pricing-hero__orb--neck {
+    --pricing-orb-x: 3px;
+    --pricing-orb-y: 4px;
+    top: 54.7151%;
+    left: 70.7189%;
+    width: min(160.79px, 9.3974vw);
+    height: min(160.79px, 9.3974vw);
+  }
+
+  .pricing-hero__orb--back {
+    --pricing-orb-x: 3px;
+    --pricing-orb-y: 4px;
+    top: 59.1356%;
+    left: 82.9339%;
+    width: min(231px, 13.5009vw);
+    height: min(231px, 13.5009vw);
+  }
+}
+
+@media (max-width: 991px) {
+  .pricing-hero__orb--legs {
+    top: 0;
+    left: -32px;
+    width: 150px;
+    height: 150px;
+  }
+
+  .pricing-hero__orb--face {
+    top: 35%;
+    left: 2%;
+    z-index: 1;
+    width: 96px;
+    height: 96px;
+  }
+
+  .pricing-hero__orb--arm {
+    bottom: 7%;
+    left: -28px;
+    width: 128px;
+    height: 128px;
+  }
+
+  .pricing-hero__orb--front {
+    top: 0;
+    right: -24px;
+    width: 108px;
+    height: 108px;
+  }
+
+  .pricing-hero__orb--neck {
+    top: 39%;
+    right: -16px;
+    width: 96px;
+    height: 96px;
+  }
+
+  .pricing-hero__orb--back {
+    right: -28px;
+    bottom: 5%;
+    width: 140px;
+    height: 140px;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 991px) {
+  .pricing-hero__orb--legs {
+    left: -36px;
+    width: 172px;
+    height: 172px;
+  }
+
+  .pricing-hero__orb--face {
+    top: 36%;
+    left: 4%;
+    width: 108px;
+    height: 108px;
+  }
+
+  .pricing-hero__orb--arm {
+    left: -32px;
+    width: 148px;
+    height: 148px;
+  }
+
+  .pricing-hero__orb--front {
+    right: -28px;
+    width: 120px;
+    height: 120px;
+  }
+
+  .pricing-hero__orb--neck {
+    top: 40%;
+    right: -20px;
+    width: 108px;
+    height: 108px;
+  }
+
+  .pricing-hero__orb--back {
+    right: -32px;
+    width: 160px;
+    height: 160px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pricing-hero::before,
+  .pricing-hero__orb {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+}
+
+.tech-hero-gallery {
+  --tech-gap: 30px;
+  --tech-img-w: calc((100vw - 120px) / 4);
+  overflow-x: auto;
+  overflow-y: visible;
+  overscroll-behavior-x: contain;
+  touch-action: pan-y pinch-zoom;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.tech-hero-gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.tech-hero-gallery.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.tech-hero-gallery[data-carousel-auto="marquee"] {
+  scroll-snap-type: none;
+}
+
+.tech-hero-gallery__track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+}
+
+.tech-hero-gallery__group {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--tech-gap);
+  padding-right: var(--tech-gap);
+}
+
+.tech-hero-gallery__item {
+  width: var(--tech-img-w);
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 20px;
+}
+

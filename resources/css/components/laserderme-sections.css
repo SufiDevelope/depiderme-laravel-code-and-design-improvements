@@ -1,0 +1,1361 @@
+.laserderme-word-rotator {
+  position: relative;
+  display: block;
+  min-height: 1.1em;
+}
+
+.laserderme-word {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate3d(0, 0, 0);
+  transform-origin: left 70%;
+  transition:
+    opacity 0.68s ease,
+    filter 0.68s ease,
+    transform 0.68s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, filter, transform;
+}
+
+.laserderme-word--entering {
+  opacity: 0;
+  filter: blur(5px);
+  transform: translate3d(0, 0.24em, 0);
+}
+
+.laserderme-word--entering.is-active {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate3d(0, 0, 0);
+}
+
+.laserderme-word--leaving {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.laserderme-word--leaving.is-active {
+  opacity: 0;
+  filter: blur(4px);
+  transform: translate3d(0, -0.2em, 0);
+}
+
+.laserderme-cta__headline-line {
+  display: block;
+}
+
+.laserderme-cream-tube {
+  --laserderme-cream-close: 0px;
+  --laserderme-cream-scale: 0.86;
+  transform: translate3d(
+      -50%,
+      calc(-1 * var(--laserderme-cream-close)),
+      0
+    )
+    scale(var(--laserderme-cream-scale));
+  transform-origin: center bottom;
+  will-change: transform;
+}
+
+.laserderme-banner-scene {
+  height: calc(100svh + clamp(360px, 62svh, 720px));
+  margin-inline: calc(var(--site-gutter) * -1);
+}
+
+.laserderme-banner-stage {
+  position: sticky;
+  top: 0;
+  display: grid;
+  width: 100%;
+  height: 100svh;
+  place-items: center;
+  overflow: hidden;
+}
+
+.laserderme-banner-media {
+  --laserderme-banner-progress: 0;
+  --laserderme-banner-start-gap: clamp(48px, 14vw, 200px);
+  --laserderme-banner-start-height: min(68svh, 685px);
+  --laserderme-banner-start-width: min(
+    calc(100vw - var(--laserderme-banner-start-gap)),
+    calc(var(--laserderme-banner-start-height) * 1.759)
+  );
+  --laserderme-banner-start-radius: clamp(24px, 3vw, 40px);
+  width: calc(
+    var(--laserderme-banner-start-width) +
+      (100vw - var(--laserderme-banner-start-width)) *
+      var(--laserderme-banner-progress)
+  );
+  height: calc(
+    var(--laserderme-banner-start-height) +
+      (100svh - var(--laserderme-banner-start-height)) *
+      var(--laserderme-banner-progress)
+  );
+  overflow: hidden;
+  border-radius: calc(
+    var(--laserderme-banner-start-radius) *
+      (1 - var(--laserderme-banner-progress))
+  );
+  transform: translateZ(0);
+  will-change: width, height, border-radius;
+}
+
+.laserderme-intro-section {
+  background: #ffffff;
+}
+
+.laserderme-intro-section__content {
+  display: block;
+}
+
+.laserderme-intro-section__title {
+  max-width: 820px;
+}
+
+.laserderme-intro-section__description {
+  margin-top: 18px;
+}
+
+.laserderme-intro-section .laserderme-banner-scene {
+  height: auto;
+  margin-top: 34px;
+  margin-inline: 0;
+}
+
+.laserderme-intro-section .laserderme-banner-stage {
+  position: relative;
+  top: auto;
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.laserderme-intro-section .laserderme-banner-media {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 384 / 473;
+  border-radius: 10px;
+  transform: none;
+  will-change: auto;
+}
+
+.laserderme-intro-section .laserderme-banner-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 640px) {
+  .laserderme-intro-section {
+    border-top-left-radius: 80px;
+  }
+
+  .laserderme-intro-section__inner {
+    max-width: 920px;
+    margin-inline: auto;
+    padding-top: 96px;
+  }
+
+  .laserderme-intro-section__title {
+    font-size: clamp(68px, 8vw, 110px);
+    line-height: 1.04;
+  }
+
+  .laserderme-intro-section__description {
+    max-width: 760px;
+    font-size: clamp(28px, 3.6vw, 44px);
+    line-height: 1.14;
+  }
+}
+
+@media (min-width: 992px) {
+  .laserderme-intro-section {
+    border-top-left-radius: 120px;
+  }
+
+  .laserderme-intro-section__inner {
+    max-width: 980px;
+    padding-top: 130px;
+    padding-bottom: 90px;
+  }
+
+  .laserderme-intro-section__title {
+    font-size: 128px;
+    line-height: 134px;
+  }
+
+  .laserderme-intro-section__description {
+    max-width: 860px;
+    font-size: 48px;
+    line-height: 54px;
+  }
+
+  .laserderme-intro-section .laserderme-banner-scene {
+    margin-top: 62px;
+  }
+}
+
+@media (max-width: 639px) {
+  html,
+  body {
+    scrollbar-width: none;
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
+    width: 0;
+  }
+
+  .laserderme-banner-media {
+    --laserderme-banner-start-gap: 32px;
+    --laserderme-banner-start-height: min(54svh, 520px);
+    --laserderme-banner-start-radius: 24px;
+  }
+
+  .laserderme-intro-section {
+    border-top-left-radius: 60px;
+  }
+
+  .laserderme-intro-section__inner {
+    padding: 55px 25px 32px;
+  }
+
+  .laserderme-intro-section__title {
+    font-size: 64px;
+    font-weight: 500;
+    line-height: 1.08;
+  }
+
+  .laserderme-intro-section__description {
+    margin-top: 15px;
+    max-width: 100%;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.08;
+  }
+
+  .laserderme-intro-section .laserderme-banner-scene {
+    margin-top: 33px;
+  }
+
+  .laserderme-intro-section .laserderme-banner-media {
+    aspect-ratio: 384 / 473;
+    border-radius: 9px;
+  }
+}
+
+.laserderme-factors-section {
+  position: relative;
+  z-index: 10;
+  overflow-x: clip;
+}
+
+.laserderme-factors__wrap {
+  padding-top: 42px;
+  padding-bottom: 76px;
+}
+
+.laserderme-factors__canvas {
+  position: relative;
+  width: 100%;
+  max-width: 980px;
+  height: 1128px;
+  margin-inline: auto;
+}
+
+.laserderme-factors__title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  max-width: 390px;
+  font-family: var(--font-sans);
+  font-size: 44px;
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: -0.02em;
+  color: #000;
+}
+
+.laserderme-factors__items {
+  display: contents;
+}
+
+.laserderme-factor {
+  position: absolute;
+  z-index: 1;
+}
+
+.laserderme-factor__visual {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  background-image: var(--factor-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.laserderme-factor__image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  opacity: 0;
+}
+
+.laserderme-factor--1 .laserderme-factor__visual {
+  aspect-ratio: 740 / 737;
+}
+
+.laserderme-factor--2 .laserderme-factor__visual {
+  aspect-ratio: 782 / 1024;
+}
+
+.laserderme-factor--3 .laserderme-factor__visual {
+  aspect-ratio: 905 / 1024;
+}
+
+.laserderme-factor--4 .laserderme-factor__visual {
+  aspect-ratio: 455 / 419;
+}
+
+.laserderme-factor--5 .laserderme-factor__visual {
+  aspect-ratio: 1024 / 872;
+}
+
+.laserderme-factor__content {
+  position: relative;
+  z-index: 2;
+}
+
+.laserderme-factor__code {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 100px;
+  font-weight: 600;
+  line-height: 110%;
+  letter-spacing: 0;
+  color: #000;
+}
+
+.laserderme-factor__copy {
+  width: min(var(--laserderme-factor-copy-width, 350px), 100%);
+  max-width: 350px;
+  margin-top: 12px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 130%;
+  letter-spacing: -0.02em;
+  color: #545462;
+  text-wrap: pretty;
+}
+
+.laserderme-factor__copy--mobile {
+  display: none;
+}
+
+.laserderme-factor__copy--desktop {
+  white-space: normal;
+}
+
+.laserderme-factor--1 {
+  top: 118px;
+  right: 92px;
+  width: 440px;
+}
+
+.laserderme-factor--1 .laserderme-factor__visual {
+  top: -74px;
+  right: -4px;
+  width: 192px;
+}
+
+.laserderme-factor--2 {
+  top: 300px;
+  left: 0;
+  width: 456px;
+}
+
+.laserderme-factor--2 .laserderme-factor__visual {
+  top: -84px;
+  right: -10px;
+  width: 286px;
+}
+
+.laserderme-factor--3 {
+  top: 500px;
+  right: 0;
+  width: 496px;
+}
+
+.laserderme-factor--3 .laserderme-factor__visual {
+  top: -122px;
+  left: -112px;
+  width: 340px;
+}
+
+.laserderme-factor--3 .laserderme-factor__content {
+  margin-left: 238px;
+}
+
+.laserderme-factor--4 {
+  top: 748px;
+  left: 0;
+  width: 438px;
+}
+
+.laserderme-factor--4 .laserderme-factor__visual {
+  top: -132px;
+  left: -22px;
+  width: 238px;
+}
+
+.laserderme-factor--4 .laserderme-factor__content {
+  margin-left: 88px;
+}
+
+.laserderme-factor--5 {
+  top: 858px;
+  right: 76px;
+  width: 498px;
+}
+
+.laserderme-factor--5 .laserderme-factor__visual {
+  top: -74px;
+  right: -6px;
+  width: 288px;
+}
+
+@media (min-width: 992px) {
+  .laserderme-factors-section {
+    background: #fbfaff;
+  }
+
+  .laserderme-factors__wrap {
+    --factors-scale: 0.62;
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 86px;
+    padding-bottom: 156px;
+    padding-left: 22px;
+    overflow: visible;
+  }
+
+  .laserderme-factors__canvas {
+    flex: 0 0 1476px;
+    width: 1476px;
+    max-width: none;
+    height: 2250px;
+    margin-inline: 0;
+    margin-bottom: calc((var(--factors-scale) - 1) * 2250px);
+    transform: scale(var(--factors-scale));
+    transform-origin: top left;
+  }
+
+  .laserderme-factors__title {
+    top: 0;
+    left: 86px;
+    width: 915px;
+    max-width: 915px;
+    font-family: var(--font-sans);
+    font-size: 80px;
+    font-weight: 500;
+    line-height: 88px;
+    letter-spacing: -0.02em;
+    white-space: normal;
+    text-wrap: balance;
+  }
+
+  .laserderme-factor__code {
+    font-family: var(--font-sans);
+    font-size: 140px;
+    font-weight: 600;
+    line-height: 154px;
+    letter-spacing: 0;
+  }
+
+  .laserderme-factor__copy {
+    width: min(620px, 100%);
+    max-width: 620px;
+    margin-top: 10px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 130%;
+    letter-spacing: -0.02em;
+  }
+
+  .laserderme-factor--1 .laserderme-factor__copy {
+    width: min(630px, 100%);
+    max-width: 630px;
+  }
+
+  .laserderme-factor--2 .laserderme-factor__copy,
+  .laserderme-factor--4 .laserderme-factor__copy {
+    width: min(590px, 100%);
+    max-width: 590px;
+  }
+
+  .laserderme-factor--3 .laserderme-factor__copy {
+    width: min(650px, 100%);
+    max-width: 650px;
+  }
+
+  .laserderme-factor--5 .laserderme-factor__copy {
+    width: min(590px, 100%);
+    max-width: 590px;
+  }
+
+  .laserderme-factor--1 {
+    top: 340px;
+    left: 620px;
+    width: 720px;
+  }
+
+  .laserderme-factor--1 .laserderme-factor__visual {
+    top: -182px;
+    right: auto;
+    left: 448px;
+    width: 381px;
+    height: 339px;
+  }
+
+  .laserderme-factor--1 .laserderme-factor__content {
+    margin-left: 236px;
+  }
+
+  .laserderme-factor--2 {
+    top: 610px;
+    left: 0;
+    width: 650px;
+  }
+
+  .laserderme-factor--2 .laserderme-factor__visual {
+    top: -264px;
+    right: auto;
+    left: 278px;
+    width: 375px;
+    height: 423px;
+  }
+
+  .laserderme-factor--2 .laserderme-factor__content {
+    margin-left: 86px;
+  }
+
+  .laserderme-factor--3 {
+    top: 1030px;
+    right: auto;
+    left: 826px;
+    width: 650px;
+  }
+
+  .laserderme-factor--3 .laserderme-factor__visual {
+    top: -250px;
+    right: auto;
+    left: -160px;
+    width: 430px;
+    height: 516px;
+    transform: rotate(20.77deg);
+    transform-origin: 50% 50%;
+  }
+
+  .laserderme-factor--3 .laserderme-factor__content {
+    margin-top: -76px;
+    margin-left: 236px;
+  }
+
+  .laserderme-factor--4 {
+    top: 1508px;
+    left: 110px;
+    width: 680px;
+  }
+
+  .laserderme-factor--4 .laserderme-factor__visual {
+    top: -258px;
+    right: auto;
+    left: -44px;
+    width: 381px;
+    height: 339px;
+  }
+
+  .laserderme-factor--4 .laserderme-factor__content {
+    margin-left: 181px;
+  }
+
+  .laserderme-factor--5 .laserderme-factor__content {
+    margin-left: 86px;
+  }
+
+  .laserderme-factor--5 {
+    top: 1820px;
+    right: auto;
+    left: 750px;
+    width: 720px;
+  }
+
+  .laserderme-factor--5 .laserderme-factor__visual {
+    top: -198px;
+    right: auto;
+    left: 284px;
+    width: 381px;
+    height: 339px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .laserderme-factors__wrap {
+    --factors-scale: 0.68;
+  }
+}
+
+@media (min-width: 1200px) {
+  .laserderme-factors__wrap {
+    --factors-scale: 0.76;
+  }
+}
+
+@media (min-width: 1360px) {
+  .laserderme-factors__wrap {
+    --factors-scale: 0.86;
+  }
+}
+
+@media (min-width: 1500px) {
+  .laserderme-factors__wrap {
+    --factors-scale: 0.94;
+  }
+}
+
+@media (min-width: 1600px) {
+  .laserderme-factors__wrap {
+    --factors-scale: 1;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 991px) {
+  .laserderme-factors__wrap {
+    padding-top: 36px;
+    padding-bottom: 70px;
+  }
+
+  .laserderme-factors__canvas {
+    max-width: 720px;
+    height: 860px;
+  }
+
+  .laserderme-factors__title {
+    max-width: 300px;
+    font-size: 34px;
+    line-height: 38px;
+  }
+
+  .laserderme-factor__code {
+    font-size: 72px;
+  }
+
+  .laserderme-factor__copy {
+    max-width: 270px;
+    font-size: 11px;
+  }
+
+  .laserderme-factor--1 {
+    top: 92px;
+    right: 42px;
+    width: 330px;
+  }
+
+  .laserderme-factor--1 .laserderme-factor__visual {
+    top: -52px;
+    right: -6px;
+    width: 142px;
+  }
+
+  .laserderme-factor--2 {
+    top: 232px;
+    left: 0;
+    width: 340px;
+  }
+
+  .laserderme-factor--2 .laserderme-factor__visual {
+    top: -64px;
+    right: -14px;
+    width: 214px;
+  }
+
+  .laserderme-factor--3 {
+    top: 392px;
+    right: 0;
+    width: 374px;
+  }
+
+  .laserderme-factor--3 .laserderme-factor__visual {
+    top: -88px;
+    left: -88px;
+    width: 250px;
+  }
+
+  .laserderme-factor--3 .laserderme-factor__content {
+    margin-left: 176px;
+  }
+
+  .laserderme-factor--4 {
+    top: 570px;
+    left: 0;
+    width: 328px;
+  }
+
+  .laserderme-factor--4 .laserderme-factor__visual {
+    top: -96px;
+    left: -10px;
+    width: 176px;
+  }
+
+  .laserderme-factor--4 .laserderme-factor__content {
+    margin-left: 66px;
+  }
+
+  .laserderme-factor--5 {
+    top: 660px;
+    right: 28px;
+    width: 368px;
+  }
+
+  .laserderme-factor--5 .laserderme-factor__visual {
+    top: -58px;
+    right: -4px;
+    width: 216px;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 991px) {
+  .laserderme-factors-section {
+    background: #fbfaff;
+  }
+
+  .laserderme-factors__wrap {
+    --factors-scale: 0.62;
+    display: flex;
+    justify-content: center;
+    padding-top: 86px;
+    padding-bottom: 156px;
+    overflow: visible;
+  }
+
+  .laserderme-factors__canvas {
+    flex: 0 0 1476px;
+    width: 1476px;
+    max-width: none;
+    height: 2250px;
+    margin-inline: 0;
+    margin-bottom: calc((var(--factors-scale) - 1) * 2250px);
+    transform: scale(var(--factors-scale));
+    transform-origin: top center;
+  }
+
+  .laserderme-factors__title {
+    top: 0;
+    left: 0;
+    width: 915px;
+    max-width: 915px;
+    font-family: var(--font-sans);
+    font-size: 80px;
+    font-weight: 500;
+    line-height: 88px;
+    letter-spacing: -0.02em;
+    white-space: normal;
+    text-wrap: balance;
+  }
+
+  .laserderme-factor__code {
+    font-family: var(--font-sans);
+    font-size: 140px;
+    font-weight: 600;
+    line-height: 154px;
+    letter-spacing: 0;
+  }
+
+  .laserderme-factor__copy {
+    width: min(470px, 100%);
+    max-width: 470px;
+    margin-top: 10px;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 130%;
+    letter-spacing: -0.02em;
+  }
+
+  .laserderme-factor--1 .laserderme-factor__copy {
+    width: min(630px, 100%);
+    max-width: 630px;
+  }
+
+  .laserderme-factor--2 .laserderme-factor__copy,
+  .laserderme-factor--4 .laserderme-factor__copy {
+    width: min(590px, 100%);
+    max-width: 590px;
+  }
+
+  .laserderme-factor--3 .laserderme-factor__copy {
+    width: min(650px, 100%);
+    max-width: 650px;
+  }
+
+  .laserderme-factor--5 .laserderme-factor__copy {
+    width: min(590px, 100%);
+    max-width: 590px;
+  }
+
+  .laserderme-factor--1 {
+    top: 340px;
+    right: auto;
+    left: 620px;
+    width: 720px;
+  }
+
+  .laserderme-factor--1 .laserderme-factor__visual {
+    top: -182px;
+    right: auto;
+    left: 448px;
+    width: 381px;
+    height: 339px;
+  }
+
+  .laserderme-factor--1 .laserderme-factor__content {
+    margin-left: 150px;
+  }
+
+  .laserderme-factor--2 {
+    top: 610px;
+    right: auto;
+    left: 0;
+    width: 650px;
+  }
+
+  .laserderme-factor--2 .laserderme-factor__visual {
+    top: -264px;
+    right: auto;
+    left: 278px;
+    width: 375px;
+    height: 423px;
+  }
+
+  .laserderme-factor--3 {
+    top: 1030px;
+    right: auto;
+    left: 826px;
+    width: 650px;
+  }
+
+  .laserderme-factor--3 .laserderme-factor__visual {
+    top: -250px;
+    right: auto;
+    left: -232px;
+    width: 430px;
+    height: 516px;
+    transform: rotate(20.77deg);
+    transform-origin: 50% 50%;
+  }
+
+  .laserderme-factor--3 .laserderme-factor__content {
+    margin-left: 0;
+  }
+
+  .laserderme-factor--4 {
+    top: 1508px;
+    right: auto;
+    left: 0;
+    width: 680px;
+  }
+
+  .laserderme-factor--4 .laserderme-factor__visual {
+    top: -258px;
+    right: auto;
+    left: -44px;
+    width: 381px;
+    height: 339px;
+  }
+
+  .laserderme-factor--4 .laserderme-factor__content {
+    margin-left: 95px;
+  }
+
+  .laserderme-factor--5 {
+    top: 1820px;
+    right: auto;
+    left: 640px;
+    width: 720px;
+  }
+
+  .laserderme-factor--5 .laserderme-factor__visual {
+    top: -198px;
+    right: auto;
+    left: 284px;
+    width: 381px;
+    height: 339px;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 991px) {
+  .laserderme-factors__wrap {
+    justify-content: flex-start;
+    padding-left: 22px;
+  }
+
+  .laserderme-factors__canvas {
+    transform-origin: top left;
+  }
+
+  .laserderme-factors__title {
+    left: 86px;
+  }
+
+  .laserderme-factor--1 .laserderme-factor__content {
+    margin-left: 236px;
+  }
+
+  .laserderme-factor--2 .laserderme-factor__content {
+    margin-left: 86px;
+  }
+
+  .laserderme-factor--3 .laserderme-factor__visual {
+    left: -160px;
+    transform: rotate(20.77deg);
+  }
+
+  .laserderme-factor--3 .laserderme-factor__content {
+    margin-top: -76px;
+    margin-left: 236px;
+  }
+
+  .laserderme-factor--4 .laserderme-factor__content {
+    margin-left: 181px;
+  }
+
+  .laserderme-factor--5 .laserderme-factor__content {
+    margin-left: 86px;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 900px) {
+  .laserderme-factors__wrap {
+    --factors-scale: clamp(0.4, calc((100vw - 44px) / 1476), 0.58);
+    justify-content: flex-start;
+    padding-bottom: 52px;
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .laserderme-factors__canvas {
+    height: 2110px;
+    margin-bottom: calc((var(--factors-scale) - 1) * 2110px);
+    transform-origin: top left;
+  }
+
+  .laserderme-factors__title {
+    left: 36px;
+  }
+
+  .laserderme-factor--1 .laserderme-factor__content {
+    margin-left: 170px;
+  }
+
+  .laserderme-factor--2 .laserderme-factor__content {
+    margin-left: 36px;
+  }
+
+  .laserderme-factor--3 .laserderme-factor__visual {
+    left: -190px;
+  }
+
+  .laserderme-factor--3 .laserderme-factor__content {
+    margin-left: 168px;
+  }
+
+  .laserderme-factor--4 {
+    left: 70px;
+  }
+
+  .laserderme-factor--4 .laserderme-factor__content {
+    margin-left: 130px;
+  }
+
+  .laserderme-factor--5 {
+    left: 690px;
+  }
+
+  .laserderme-factor--5 .laserderme-factor__content {
+    margin-left: 48px;
+  }
+}
+
+@media (min-width: 901px) {
+  .laserderme-factors__wrap {
+    padding-bottom: 56px;
+  }
+
+  .laserderme-factors__canvas {
+    height: 2110px;
+    margin-bottom: calc((var(--factors-scale) - 1) * 2110px);
+  }
+}
+
+@media (min-width: 640px) {
+  .laserderme-factor__copy--desktop {
+    white-space: normal;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 900px) {
+  .laserderme-factors__wrap {
+    display: block;
+    padding: 72px clamp(28px, 6vw, 54px) 84px;
+  }
+
+  .laserderme-factors__canvas {
+    width: 100%;
+    max-width: 720px;
+    height: auto;
+    margin-inline: auto;
+    margin-bottom: 0;
+    transform: none;
+  }
+
+  .laserderme-factors__title {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: min(349px, 100%);
+    max-width: 349px;
+    margin-inline: auto;
+    font-size: clamp(48px, 8vw, 64px);
+    line-height: 1.08;
+    text-align: left;
+    white-space: normal;
+    text-wrap: balance;
+  }
+
+  .laserderme-factors__items {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 52px;
+  }
+
+  .laserderme-factor {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    width: 100%;
+    min-height: 0;
+    padding-right: 0;
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .laserderme-factor__visual {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    margin-inline: auto;
+  }
+
+  .laserderme-factor__content {
+    z-index: 3;
+    margin-top: 0;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .laserderme-factor__code {
+    font-size: clamp(104px, 16vw, 132px);
+    line-height: 1.05;
+  }
+
+  .laserderme-factor__copy {
+    width: min(350px, 100%);
+    max-width: 350px;
+    margin: 10px auto 0;
+    font-size: 15px;
+    line-height: 1.35;
+  }
+
+  .laserderme-factor--1 .laserderme-factor__copy,
+  .laserderme-factor--2 .laserderme-factor__copy,
+  .laserderme-factor--3 .laserderme-factor__copy,
+  .laserderme-factor--4 .laserderme-factor__copy,
+  .laserderme-factor--5 .laserderme-factor__copy {
+    width: min(350px, 100%);
+    max-width: 350px;
+  }
+
+  .laserderme-factor__copy--desktop {
+    display: none;
+  }
+
+  .laserderme-factor__copy--mobile {
+    display: block;
+  }
+
+  .laserderme-factor--1 .laserderme-factor__visual,
+  .laserderme-factor--4 .laserderme-factor__visual,
+  .laserderme-factor--5 .laserderme-factor__visual {
+    height: auto;
+  }
+
+  .laserderme-factor--2 .laserderme-factor__visual {
+    height: auto;
+  }
+
+  .laserderme-factor--3 .laserderme-factor__visual {
+    height: auto;
+  }
+
+  .laserderme-factor--1 .laserderme-factor__visual,
+  .laserderme-factor--2 .laserderme-factor__visual,
+  .laserderme-factor--3 .laserderme-factor__visual,
+  .laserderme-factor--4 .laserderme-factor__visual,
+  .laserderme-factor--5 .laserderme-factor__visual {
+    margin-inline: auto;
+  }
+
+  .laserderme-factor--1 {
+    padding-top: 0;
+  }
+
+  .laserderme-factor--1 .laserderme-factor__visual {
+    width: min(230px, 34vw);
+    margin-bottom: -112px;
+    transform: translateX(136px);
+  }
+
+  .laserderme-factor--2 {
+    margin-top: 6px;
+  }
+
+  .laserderme-factor--2 .laserderme-factor__visual {
+    width: min(250px, 37vw);
+    height: min(282px, 42vw);
+    margin-bottom: -132px;
+    transform: translateX(-130px);
+  }
+
+  .laserderme-factor--3 {
+    margin-top: 16px;
+  }
+
+  .laserderme-factor--3 .laserderme-factor__visual {
+    width: min(232px, 35vw);
+    height: min(278px, 42vw);
+    margin-bottom: -150px;
+    transform: translateX(92px) rotate(20.77deg);
+    transform-origin: 50% 50%;
+  }
+
+  .laserderme-factor--4 {
+    margin-top: 30px;
+  }
+
+  .laserderme-factor--4 .laserderme-factor__visual {
+    width: min(230px, 34vw);
+    height: min(212px, 31vw);
+    margin-bottom: -108px;
+    transform: translateX(-138px);
+  }
+
+  .laserderme-factor--5 {
+    margin-top: 34px;
+    padding-bottom: 18px;
+  }
+
+  .laserderme-factor--5 .laserderme-factor__visual {
+    width: min(304px, 45vw);
+    height: min(266px, 39vw);
+    margin-bottom: -150px;
+    transform: translateX(126px);
+  }
+}
+
+@media (max-width: 639px) {
+  .laserderme-factors__wrap {
+    padding-top: 38px;
+    padding-bottom: 58px;
+  }
+
+  .laserderme-factors__canvas {
+    max-width: 390px;
+    height: auto;
+    margin-inline: auto;
+  }
+
+  .laserderme-factors__title {
+    position: relative;
+    left: 0;
+    width: 349px;
+    max-width: 100%;
+    font-size: 35px;
+    font-weight: 500;
+    line-height: 110%;
+    letter-spacing: -0.02em;
+    color: #000;
+  }
+
+  .laserderme-factors__items {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 0;
+  }
+
+  .laserderme-factor {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    width: 100%;
+    min-height: 0;
+    text-align: center;
+  }
+
+  .laserderme-factor__visual {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    z-index: 2;
+    margin-inline: auto;
+  }
+
+  .laserderme-factor__content {
+    z-index: 3;
+    margin-left: 0;
+  }
+
+  .laserderme-factor__code {
+    font-size: 100px;
+    line-height: 110%;
+    letter-spacing: 0;
+  }
+
+  .laserderme-factor__copy {
+    width: min(350px, 100%);
+    max-width: 350px;
+    margin: 10px auto 0;
+    font-size: 16px;
+    line-height: 130%;
+    letter-spacing: -0.02em;
+    color: #545462;
+  }
+
+  .laserderme-factor__copy--desktop {
+    display: none;
+  }
+
+  .laserderme-factor__copy--mobile {
+    display: block;
+  }
+
+  .laserderme-factor--1 {
+    padding-top: 2px;
+  }
+
+  .laserderme-factor--1 .laserderme-factor__visual {
+    width: 150px;
+    margin-bottom: -74px;
+    transform: translateX(94px);
+  }
+
+  .laserderme-factor--2 {
+    margin-top: 8px;
+    padding-top: 0;
+  }
+
+  .laserderme-factor--2 .laserderme-factor__visual {
+    width: 167px;
+    height: 188px;
+    margin-bottom: -86px;
+    transform: translateX(-88px);
+  }
+
+  .laserderme-factor--3 {
+    margin-top: 20px;
+    padding-top: 0;
+  }
+
+  .laserderme-factor--3 .laserderme-factor__visual {
+    width: 149.35px;
+    height: 179px;
+    margin-bottom: -98px;
+    transform: translateX(58px) rotate(20.77deg);
+    transform-origin: 50% 50%;
+  }
+
+  .laserderme-factor--4 {
+    margin-top: 34px;
+    padding-top: 0;
+  }
+
+  .laserderme-factor--4 .laserderme-factor__visual {
+    width: 153px;
+    height: 141px;
+    margin-bottom: -72px;
+    transform: translateX(-94px);
+  }
+
+  .laserderme-factor--5 {
+    margin-top: 38px;
+    padding: 0 0 14px;
+  }
+
+  .laserderme-factor--5 .laserderme-factor__visual {
+    width: 205px;
+    height: 182px;
+    margin-bottom: -100px;
+    transform: translateX(82px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .laserderme-word {
+    transition: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .laserderme-cream-tube {
+    transform: translate3d(-50%, 0, 0) scale(0.86);
+    will-change: auto;
+  }
+
+  .laserderme-banner-scene {
+    height: auto;
+    margin-inline: 0;
+  }
+
+  .laserderme-banner-stage {
+    position: relative;
+    height: auto;
+  }
+
+  .laserderme-banner-media {
+    width: 100%;
+    height: clamp(240px, 52vw, 685px);
+    border-radius: clamp(24px, 3vw, 40px);
+    transform: none;
+    will-change: auto;
+  }
+}
+
+.-site-gutter-x {
+  margin-inline: calc(var(--site-gutter) * -1);
+}
+

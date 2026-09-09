@@ -1,0 +1,362 @@
+.clinics-accordion {
+  display: flex;
+  gap: 8px;
+  height: 420px;
+}
+
+@media (min-width: 992px) {
+  .clinics-accordion {
+    width: 100%;
+    height: 579px;
+  }
+}
+
+.clinics-accordion__item {
+  position: relative;
+  flex: 0 0 140px;
+  width: 140px;
+  height: 100%;
+  overflow: hidden;
+  border: 0;
+  border-radius: 16px;
+  padding: 0;
+  cursor: pointer;
+  background: #000;
+  text-align: left;
+  transition:
+    flex-grow 0.45s ease,
+    flex-basis 0.45s ease,
+    width 0.45s ease;
+}
+
+@media (min-width: 992px) {
+  .clinics-accordion__item {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+  }
+
+  .clinics-accordion__item.is-expanded {
+    flex: 3.277 1 0;
+    width: auto;
+  }
+}
+
+@media (max-width: 991px) {
+  .clinics-accordion__item.is-expanded {
+    flex-basis: min(80vw, 560px);
+    width: min(80vw, 560px);
+  }
+}
+
+.clinics-accordion__glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    #8877c2 6.07%,
+    #daa9fa 34.58%,
+    #fff 67.83%
+  );
+  opacity: 0.55;
+}
+
+@media (min-width: 992px) {
+  .clinics-page__title {
+    width: min(901px, 100%);
+    font-size: 60px;
+    line-height: 66px;
+    letter-spacing: -0.03em;
+  }
+
+  [aria-label="As nossas clínicas"] {
+    padding-top: 142px;
+  }
+
+  [aria-label="As nossas clínicas"] > .absolute:first-child {
+    height: 230px;
+    background:
+      radial-gradient(
+        ellipse 86% 90% at 50% 100%,
+        rgba(225, 199, 249, 0.46) 0%,
+        rgba(136, 119, 194, 0.26) 38%,
+        transparent 76%
+      );
+  }
+
+  [aria-label="As nossas clínicas"] .mt-10 {
+    margin-top: 58px;
+  }
+
+  .clinics-accordion {
+    height: clamp(510px, 43vw, 579px);
+    gap: clamp(16px, 1.35vw, 24px);
+    align-items: stretch;
+  }
+
+  .clinics-accordion__item {
+    flex: 0 0 clamp(112px, 10vw, 156px);
+    width: clamp(112px, 10vw, 156px);
+    border-radius: 20px;
+    transition:
+      flex-basis 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+      width 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.28s ease;
+  }
+
+  .clinics-accordion__item.is-expanded {
+    flex: 0 0 clamp(420px, 37vw, 704px);
+    width: clamp(420px, 37vw, 704px);
+  }
+
+  .clinics-accordion__item:not(.is-expanded) {
+    filter: saturate(0.88) brightness(0.98);
+  }
+
+  .clinics-accordion__item > img {
+    transition: transform 0.46s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .clinics-accordion__item:hover > img,
+  .clinics-accordion__item.is-expanded > img {
+    transform: scale(1.015);
+  }
+
+  .clinics-accordion__glow {
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.06) 100%);
+    opacity: 1;
+  }
+
+  .clinics-accordion [data-clinic-panel] > div {
+    bottom: 24px;
+    left: 24px;
+    width: 321px;
+    max-width: 321px;
+    height: 230px;
+    padding: 20px 22px;
+    border-radius: 8px;
+    box-shadow: 0 18px 42px rgba(35, 31, 32, 0.14);
+  }
+
+  .clinics-accordion [data-clinic-panel] > div > div,
+  .clinics-accordion [data-clinic-panel] > div p {
+    width: 268px;
+    max-width: 268px;
+  }
+
+  .clinics-accordion [data-clinic-panel] > div p {
+    white-space: normal;
+  }
+
+  [aria-label="As nossas clínicas"] > .relative.z-0 {
+    height: 92px;
+    min-height: 92px;
+    margin-top: 38px;
+    overflow: visible;
+    background: #ffffff;
+  }
+
+  .clinics-detail-section {
+    border-top-left-radius: 120px;
+    margin-top: 0;
+    background:
+      radial-gradient(
+        ellipse 74% 42% at 0% 0%,
+        rgba(225, 199, 249, 0.88) 0%,
+        rgba(136, 119, 194, 0.72) 22%,
+        rgba(91, 43, 130, 0.64) 42%,
+        rgba(34, 13, 55, 0.42) 58%,
+        transparent 78%
+      ),
+      radial-gradient(
+        ellipse 36% 58% at 0% 18%,
+        rgba(91, 43, 130, 0.82) 0%,
+        rgba(91, 43, 130, 0.46) 38%,
+        rgba(91, 43, 130, 0.14) 62%,
+        transparent 82%
+      ),
+      linear-gradient(180deg, #07020d 0%, #000000 48%, #000000 100%);
+  }
+
+  .clinics-detail-section > .absolute:first-child {
+    background: transparent;
+  }
+
+  .clinics-detail__content-section {
+    padding-top: 150px;
+    padding-bottom: 128px;
+  }
+
+  .clinics-detail__list {
+    gap: 132px;
+  }
+
+  .clinics-detail__article-grid {
+    grid-template-columns: minmax(220px, 330px) minmax(0, 1fr);
+    gap: clamp(72px, 8vw, 112px);
+    align-items: center;
+  }
+
+  .clinics-detail__gallery {
+    height: clamp(520px, 43vw, 700px);
+    border-radius: 20px;
+  }
+
+  .clinics-detail__glow::before,
+  .clinics-detail__glow-ellipse,
+  .clinics-detail__gallery-glow {
+    display: none;
+  }
+}
+
+/* /clinics page — detail section glows + carousel */
+.clinics-detail__glow {
+  contain: paint;
+}
+
+.clinics-detail__glow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: min(48vw, 200px);
+  border-radius: inherit;
+  background: linear-gradient(180deg, #8877c2 0%, #daa9fa 38%, #000 100%);
+  opacity: 0.52;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 38%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(to bottom, #000 0%, #000 38%, transparent 100%);
+}
+
+.clinics-detail__glow-ellipse {
+  position: absolute;
+  top: -22%;
+  right: -12%;
+  width: min(88vw, 680px);
+  height: min(58vw, 460px);
+  border-radius: 50%;
+  background: linear-gradient(
+    180deg,
+    #8877c2 6.07%,
+    #daa9fa 34.58%,
+    #000 67.83%
+  );
+  opacity: 0.52;
+}
+
+@media (min-width: 992px) {
+  .clinics-detail__glow::before {
+    height: 280px;
+    opacity: 0.58;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 42%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(to bottom, #000 0%, #000 42%, transparent 100%);
+  }
+
+  .clinics-detail__glow-ellipse {
+    top: -18%;
+    right: -6%;
+    width: min(52vw, 820px);
+    height: min(34vw, 500px);
+    opacity: 0.58;
+  }
+}
+
+.clinics-detail__gallery-glow {
+  position: absolute;
+  inset: -8% -6%;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    #8877c2 6.07%,
+    #daa9fa 34.58%,
+    #000 67.83%
+  );
+  opacity: 0.55;
+  contain: paint;
+  pointer-events: none;
+}
+
+[data-clinic-carousel] {
+  contain: paint;
+  cursor: grab;
+  touch-action: pan-y pinch-zoom;
+  user-select: none;
+}
+
+[data-clinic-carousel].is-dragging {
+  cursor: grabbing;
+}
+
+.clinics-detail-section article {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
+}
+
+.clinics-detail__slide {
+  position: absolute;
+  inset: 0;
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.clinics-detail__slide.is-active {
+  opacity: 1;
+}
+
+.clinics-detail__dot.is-active {
+  background: #fff;
+  transform: scale(1.15);
+}
+
+@media (max-width: 991px) {
+  [data-clinic-carousel] {
+    touch-action: pan-y pinch-zoom;
+  }
+
+  .clinics-accordion {
+    height: clamp(340px, 92vw, 400px);
+    gap: 6px;
+  }
+
+  .clinics-accordion__item {
+    flex-basis: 116px;
+    width: 116px;
+    scroll-snap-align: start;
+  }
+
+  .clinics-accordion__item.is-expanded {
+    flex-basis: min(80vw, 560px);
+    width: min(80vw, 560px);
+    scroll-snap-align: center;
+  }
+
+  .clinics-detail__glow::before {
+    height: min(52vw, 220px);
+    opacity: 0.5;
+  }
+
+  .clinics-detail__glow-ellipse {
+    top: -14%;
+    right: -22%;
+    width: 92vw;
+    height: 58vw;
+    opacity: 0.48;
+  }
+}
+
+/* Task 21 — 390px mobile Figma alignment. Content and form data stay intact. */

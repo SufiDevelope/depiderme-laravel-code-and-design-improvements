@@ -1,0 +1,195 @@
+.site-header {
+  isolation: isolate;
+}
+
+@media (min-width: 992px) {
+  .site-header__desktop-link {
+    display: inline-flex;
+    align-items: center;
+    height: 18px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: -0.02em;
+  }
+
+  .site-header__desktop-cta {
+    padding: 15px 20px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: -0.02em;
+  }
+}
+
+[data-navbar-scroll][data-scrolled] {
+  background-color: #fff;
+  box-shadow: 0 1px 0 rgba(39, 24, 65, 0.08);
+}
+
+[data-navbar-scroll][data-scrolled] .navbar-scroll-link {
+  color: #231f20;
+}
+
+[data-navbar-scroll][data-scrolled] .navbar-scroll-btn-outline {
+  border-color: #231f20;
+  color: #231f20;
+}
+
+[data-navbar-scroll][data-scrolled] .navbar-scroll-btn-outline:hover {
+  background-color: rgba(35, 31, 32, 0.05);
+}
+
+[data-navbar-scroll][data-scrolled] .navbar-scroll-btn-solid {
+  border-color: #231f20;
+  background-color: #231f20;
+  color: #fff;
+}
+
+[data-navbar-scroll][data-scrolled] .navbar-scroll-menu-bar {
+  background-color: #231f20;
+}
+
+[data-navbar-scroll][data-scrolled] .navbar-scroll-menu {
+  color: #231f20;
+}
+
+[data-navbar-scroll][data-scrolled] .navbar-scroll-phone {
+  border-color: #231f20;
+  color: #231f20;
+}
+
+.site-header__mobile-phone svg path {
+  fill: currentColor;
+}
+
+.site-header__mobile-menu > span {
+  background-color: currentColor;
+}
+
+[data-navbar-scroll][data-scrolled] .navbar-scroll-arrow {
+  filter: brightness(0);
+}
+
+[data-navbar-scroll][data-scrolled] .navbar-scroll-logo-light {
+  display: none;
+}
+
+[data-navbar-scroll][data-scrolled] .navbar-scroll-logo-dark {
+  display: block;
+}
+
+.clinics-page .site-header__desktop-cta:nth-child(2),
+.clinics-page .site-header__mobile-booking {
+  border-color: transparent;
+  background: linear-gradient(90deg, #8877c2 0%, #5b2b82 100%);
+  color: #ffffff;
+}
+
+.clinics-page .site-header__desktop-cta:nth-child(2):hover,
+.clinics-page .site-header__mobile-booking:hover {
+  opacity: 0.9;
+}
+
+.clinics-page [data-navbar-scroll][data-scrolled] .site-header__desktop-cta.navbar-scroll-btn-solid,
+.clinics-page [data-navbar-scroll][data-scrolled] .site-header__mobile-booking.navbar-scroll-btn-outline {
+  border-color: transparent;
+  background: linear-gradient(90deg, #8877c2 0%, #5b2b82 100%);
+  color: #ffffff;
+}
+
+.footer-shell {
+  background: var(--footer-corner-bg);
+}
+
+.footer-gradient {
+  isolation: isolate;
+  background: linear-gradient(
+    270deg,
+    #e1c7f9 0%,
+    #8877c2 36%,
+    #5b2b82 100%
+  );
+}
+
+.site-footer.footer-gradient {
+  background: linear-gradient(
+    270deg,
+    #e1c7f9 0%,
+    #8877c2 36%,
+    #5b2b82 100%
+  );
+}
+
+.site-footer.footer-gradient.live-gradient::before,
+.site-footer.retina-purple-field::after {
+  display: none;
+}
+
+.footer-gradient.live-gradient::before {
+  position: absolute;
+  z-index: 0;
+  inset: -18%;
+  content: "";
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 38% 46% at var(--live-gradient-x, 50%) var(--live-gradient-y, 50%),
+      rgb(225 199 249 / 0.72) 0%,
+      rgb(180 111 235 / 0.42) 42%,
+      transparent 74%
+    ),
+    radial-gradient(
+      ellipse 46% 40% at calc(100% - var(--live-gradient-x, 50%)) calc(100% - var(--live-gradient-y, 50%)),
+      rgb(218 169 250 / 0.5) 0%,
+      rgb(91 43 130 / 0.2) 48%,
+      transparent 76%
+    );
+  opacity: 0.76;
+  filter: blur(54px) saturate(1.18);
+  mix-blend-mode: screen;
+  transform: scale(1.05);
+  transform-origin: center;
+  animation: retina-purple-shine-drift var(--retina-purple-highlight-duration, 18s)
+    ease-in-out infinite alternate;
+  will-change: transform, background-image, filter;
+}
+
+.footer-gradient > * {
+  position: relative;
+  z-index: 1;
+}
+
+  .footer__actions a:nth-child(2) {
+    background: rgb(255 255 255 / 0.2);
+  }
+
+  .footer__actions a:first-child {
+    background: transparent;
+  }
+
+@media (min-width: 992px) {
+  .packs-section {
+    padding-top: 86px;
+  }
+
+  .packs-section__inner {
+    position: relative;
+    border-top: 0;
+    padding-top: 104px;
+  }
+
+  .packs-section__inner::before {
+    display: none;
+    content: none;
+    position: static;
+    width: 0;
+    height: 0;
+    border: 0;
+    background: none;
+    transform: none;
+  }
+}
+
