@@ -43,6 +43,7 @@
         ['city' => 'Viseu', 'image' => 'clinic-2.png', 'object' => 'object-[72%_center]'],
     ];
     $paragraphs = $spacesOnly ? [] : content('about', 'professionals.paragraphs');
+    $curatedProfessionalParagraphs = require config_path('cms/data/about-professionals-curated-paragraphs.php');
 
     $navBtnClass = 'about-spaces-carousel__nav flex shrink-0 cursor-pointer items-center justify-center rounded-full border bg-transparent text-white transition-opacity hover:opacity-80';
     $navBtnSolidClass = 'flex size-[42px] shrink-0 cursor-pointer items-center justify-center rounded-full bg-[linear-gradient(180deg,#5B2B82_0%,#8A72AF_100%)] text-white transition-opacity hover:opacity-90';
@@ -280,20 +281,15 @@
                     @foreach ($paragraphs as $index => $paragraph)
                         @php
                             $paragraphNormalized = preg_replace('/\s+/', ' ', trim($paragraph));
+                            $curatedParagraph = $curatedProfessionalParagraphs[$index] ?? null;
+                            $paragraphMatchesCuratedCopy = $curatedParagraph
+                                && str_starts_with($paragraphNormalized, $curatedParagraph['match']);
                         @endphp
                         <p class="font-body text-base font-normal leading-[130%] tracking-[-0.02em] text-[#FFFFFFB3]">
-                            @if ($index === 0 && str_starts_with($paragraphNormalized, 'As Clínicas Depiderme contam já com mais de 15 anos'))
-                                <span class="about-professionals-section__body-line hidden lg:block">As Clínicas Depiderme contam já com mais de 15 anos de experiência na</span>
-                                <span class="about-professionals-section__body-line hidden lg:block">área da depilação laser.</span>
-                                <span class="lg:hidden">{{ $paragraph }}</span>
-                            @elseif ($index === 1 && str_starts_with($paragraphNormalized, 'Connosco operam profissionais de saúde'))
-                                <span class="about-professionals-section__body-line hidden lg:block">Connosco operam profissionais de saúde e profissionais de estética que,</span>
-                                <span class="about-professionals-section__body-line hidden lg:block">aliados à tecnologia, partilham o seu conhecimento com o objetivo de lhe</span>
-                                <span class="about-professionals-section__body-line hidden lg:block">proporcionar os melhores resultados.</span>
-                                <span class="lg:hidden">{{ $paragraph }}</span>
-                            @elseif ($index === 2 && str_starts_with($paragraphNormalized, 'As Clínicas Depiderme contam também com profissionais certificados'))
-                                <span class="about-professionals-section__body-line hidden lg:block">As Clínicas Depiderme contam também com profissionais certificados</span>
-                                <span class="about-professionals-section__body-line hidden lg:block">pela Candela e certificados pela ALTEC (Fototerapia Laser).</span>
+                            @if ($paragraphMatchesCuratedCopy)
+                                @foreach ($curatedParagraph['lines'] as $line)
+                                    <span class="about-professionals-section__body-line hidden lg:block">{{ $line }}</span>
+                                @endforeach
                                 <span class="lg:hidden">{{ $paragraph }}</span>
                             @else
                                 {{ $paragraph }}

@@ -8,7 +8,9 @@
     $socialLinks = content('global', 'footer.social_links');
     $footerHeadline = content('global', 'footer.headline');
     $footerHeadlineNormalized = preg_replace('/\s+/', ' ', trim($footerHeadline));
-    $footerHeadlineHtml = str_starts_with($footerHeadlineNormalized, 'O futuro da sua pele') && str_ends_with($footerHeadlineNormalized, 'da tecnologia')
+    $footerHeadlineMatchesCuratedCopy = str_starts_with($footerHeadlineNormalized, 'O futuro da sua pele')
+        && str_ends_with($footerHeadlineNormalized, 'da tecnologia');
+    $footerHeadlineHtml = $footerHeadlineMatchesCuratedCopy
         ? 'O futuro da sua pele<span class="hidden lg:inline"> </span><br class="lg:hidden">come&ccedil;a<br class="hidden lg:block"> com a efic&aacute;cia<br class="lg:hidden"> da tecnologia'
         : nl2br(e($footerHeadline));
 

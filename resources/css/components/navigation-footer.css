@@ -81,6 +81,112 @@
   display: block;
 }
 
+/* Navbar theme base colors, driven by navbar--dark / navbar--light
+   (+ navbar--mobile-dark for mobile-only overrides) on <header> in
+   navbar.blade.php. The [data-scrolled] rules above already give the
+   correct "scrolled" color for both themes, so no extra override is
+   needed there. */
+.navbar--dark .navbar-scroll-link {
+  color: #fff;
+}
+
+.navbar--light .navbar-scroll-link {
+  color: #231f20;
+}
+
+.navbar--dark .navbar-scroll-btn-outline {
+  border-color: #fff;
+  background-color: transparent;
+  color: #fff;
+}
+
+.navbar--dark .navbar-scroll-btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar--light .navbar-scroll-btn-outline {
+  border-color: #231f20;
+  background-color: transparent;
+  color: #231f20;
+}
+
+.navbar--light .navbar-scroll-btn-outline:hover {
+  background-color: rgba(35, 31, 32, 0.05);
+}
+
+@media (max-width: 991px) {
+  .navbar--mobile-dark .navbar-scroll-btn-outline {
+    border-color: #fff;
+    background-color: transparent;
+    color: #fff;
+  }
+
+  .navbar--mobile-dark .navbar-scroll-btn-outline:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.navbar--dark .navbar-scroll-btn-solid {
+  border-color: #fff;
+  background-color: #fff;
+  color: #1a0a2e;
+}
+
+.navbar--light .navbar-scroll-btn-solid {
+  border-color: #231f20;
+  background-color: #231f20;
+  color: #fff;
+}
+
+.navbar--dark .navbar-scroll-menu-bar {
+  background-color: #fff;
+}
+
+.navbar--light .navbar-scroll-menu-bar {
+  background-color: #231f20;
+}
+
+.navbar--dark .navbar-scroll-menu {
+  color: #fff;
+}
+
+.navbar--light .navbar-scroll-menu {
+  color: #231f20;
+}
+
+.navbar--dark .navbar-scroll-phone {
+  border-color: #fff;
+  color: #fff;
+}
+
+.navbar--light .navbar-scroll-phone {
+  border-color: #231f20;
+  color: #231f20;
+}
+
+@media (max-width: 991px) {
+  .navbar--mobile-dark .navbar-scroll-menu-bar {
+    background-color: #fff;
+  }
+
+  .navbar--mobile-dark .navbar-scroll-menu {
+    color: #fff;
+  }
+
+  .navbar--mobile-dark .navbar-scroll-phone {
+    border-color: #fff;
+    color: #fff;
+  }
+}
+
+.navbar--dark .navbar-scroll-arrow {
+  filter: none;
+}
+
+.navbar--light .navbar-scroll-arrow {
+  filter: brightness(0);
+}
+
 .clinics-page .site-header__desktop-cta:nth-child(2),
 .clinics-page .site-header__mobile-booking {
   border-color: transparent;

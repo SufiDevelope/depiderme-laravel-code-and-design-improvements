@@ -7,33 +7,9 @@
 
     $isLight = $theme === 'light';
     $scrollEnabled = $fixed || $solidOnScroll;
-    $scrollFromDark = $scrollEnabled && ! $isLight;
-    $mobileFromDark = $scrollEnabled && $isLight && $mobileDark;
-    $linkColor = $scrollFromDark
-        ? 'navbar-scroll-link text-white'
-        : ($isLight ? 'text-[#231f20]' : 'text-white');
-    $btnOutline = $mobileFromDark
-        ? 'navbar-scroll-btn-outline border-white bg-transparent text-white hover:bg-white/10 lg:border-[#231f20] lg:text-[#231f20] lg:hover:bg-[#231f20]/5'
-        : ($scrollFromDark
-            ? 'navbar-scroll-btn-outline border-white bg-transparent text-white hover:bg-white/10'
-            : ($isLight
-                ? 'border-[#231f20] bg-transparent text-[#231f20] hover:bg-[#231f20]/5'
-                : 'border-white bg-transparent text-white hover:bg-white/10'));
-    $btnSolid = $scrollFromDark
-        ? 'navbar-scroll-btn-solid border-white bg-white text-[#1a0a2e] hover:opacity-90'
-        : ($isLight
-            ? 'border-[#231f20] bg-[#231f20] text-white hover:opacity-90'
-            : 'border-white bg-white text-[#1a0a2e] hover:opacity-90');
-    $menuBarColor = $scrollFromDark || $mobileFromDark
-        ? 'navbar-scroll-menu-bar bg-white'
-        : ($isLight ? 'bg-[#231f20]' : 'bg-white');
-    $menuClass = $scrollFromDark || $mobileFromDark
-        ? 'navbar-scroll-menu text-white'
-        : ($isLight ? 'text-[#231f20]' : 'text-white');
-    $arrowClass = $scrollFromDark ? 'navbar-scroll-arrow' : ($isLight ? 'brightness-0' : '');
-    $phoneClass = $scrollFromDark || $mobileFromDark
-        ? 'navbar-scroll-phone border-white text-white'
-        : ($isLight ? 'border-[#231f20] text-[#231f20]' : 'border-white text-white');
+    $themeClass = $isLight ? 'navbar--light' : 'navbar--dark';
+    $mobileDarkOnLight = $isLight && $mobileDark;
+    $showScrollLogoSwap = $scrollEnabled && (! $isLight || $mobileDark);
 
     $logoSrc = $isLight ? 'images/logo-dark.svg' : 'images/logo.svg';
 
@@ -46,15 +22,15 @@
         : 'site-header relative z-[100] bg-transparent';
 @endphp
 
-<header class="{{ $headerClass }}" @if($scrollEnabled) data-navbar-scroll @endif>
+<header class="{{ $headerClass }} {{ $themeClass }} {{ $mobileDark ? 'navbar--mobile-dark' : '' }}" @if($scrollEnabled) data-navbar-scroll @endif>
     <div class="site-shell">
         <div class="site-header__bar flex h-24 items-center justify-between {{ $navPadding }}">
         <a href="{{ url('/') }}" class="site-header__logo block w-[clamp(100px,34vw,157px)] shrink-0 lg:w-[166px]">
-            @if ($scrollFromDark || $mobileFromDark)
+            @if ($showScrollLogoSwap)
                 <img src="{{ asset('images/logo.svg') }}" alt="Depiderme" width="166" height="auto"
-                    class="navbar-scroll-logo-light block h-auto w-full {{ $mobileFromDark ? 'lg:hidden' : '' }} lg:w-[166px]">
+                    class="navbar-scroll-logo-light block h-auto w-full {{ $mobileDarkOnLight ? 'lg:hidden' : '' }} lg:w-[166px]">
                 <img src="{{ asset('images/logo-dark.svg') }}" alt="Depiderme" width="166" height="auto"
-                    class="navbar-scroll-logo-dark hidden h-auto w-full {{ $mobileFromDark ? 'lg:block' : '' }} lg:w-[166px]">
+                    class="navbar-scroll-logo-dark hidden h-auto w-full {{ $mobileDarkOnLight ? 'lg:block' : '' }} lg:w-[166px]">
             @else
                 <img src="{{ asset($logoSrc) }}" alt="Depiderme" width="166" height="auto"
                     class="block h-auto w-full lg:w-[166px]">
@@ -66,25 +42,25 @@
             <nav class="site-header__desktop-nav flex items-center gap-10"
                 aria-label="Navegação principal">
                 @foreach ($desktopLinks as $label => $path)
-                    <a href="{{ cms_url($path) }}" class="site-header__desktop-link {{ $linkClass }} {{ $linkColor }}">{{ $label }}</a>
+                    <a href="{{ cms_url($path) }}" class="site-header__desktop-link navbar-scroll-link {{ $linkClass }}">{{ $label }}</a>
                 @endforeach
             </nav>
 
             <div class="ml-10 flex shrink-0 items-center gap-4">
-                <a href="{{ url('/contact') }}" class="site-header__desktop-cta {{ $btnClass }} {{ $btnOutline }} px-5 py-[15px]">{{ content('global', 'navbar.contact_label') }}</a>
-                <a href="{{ url('/contact') }}" class="site-header__desktop-cta {{ $btnClass }} {{ $btnSolid }} px-5 py-[15px]">{{ content('global', 'navbar.booking_label') }}</a>
+                <a href="{{ url('/contact') }}" class="site-header__desktop-cta navbar-scroll-btn-outline {{ $btnClass }} px-5 py-[15px]">{{ content('global', 'navbar.contact_label') }}</a>
+                <a href="{{ url('/contact') }}" class="site-header__desktop-cta navbar-scroll-btn-solid {{ $btnClass }} px-5 py-[15px]">{{ content('global', 'navbar.booking_label') }}</a>
             </div>
 
             <div class="ml-10 flex shrink-0 items-center gap-2">
                 <button type="button"
-                    class="inline-flex shrink-0 cursor-pointer items-center gap-1.5 border-0 bg-transparent p-0 {{ $linkColor }} transition-opacity hover:opacity-75"
+                    class="inline-flex shrink-0 cursor-pointer items-center gap-1.5 border-0 bg-transparent p-0 navbar-scroll-link transition-opacity hover:opacity-75"
                     aria-label="Alterar idioma">
                     <span class="font-sans text-sm font-medium uppercase leading-[18px] tracking-[-0.02em]">{{ content('global', 'navbar.language_short') }}</span>
-                    <img src="{{ asset('images/arrow-down.png') }}" alt="" width="12" height="6" class="block w-3 shrink-0 {{ $arrowClass }}">
+                    <img src="{{ asset('images/arrow-down.png') }}" alt="" width="12" height="6" class="block w-3 shrink-0 navbar-scroll-arrow">
                 </button>
 
                 <a href="{{ auth()->check() && auth()->user()->is_admin ? route('admin.dashboard') : route('login') }}"
-                    class="inline-flex size-9 shrink-0 items-center justify-center {{ $linkColor }} transition-opacity hover:opacity-75"
+                    class="inline-flex size-9 shrink-0 items-center justify-center navbar-scroll-link transition-opacity hover:opacity-75"
                     aria-label="{{ auth()->check() && auth()->user()->is_admin ? 'Backend' : 'Login' }}">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
                         <circle cx="9" cy="6" r="3" stroke="currentColor" stroke-width="1.25" />
@@ -96,12 +72,12 @@
 
         {{-- Mobile --}}
         <div class="site-header__mobile-actions flex items-center gap-2 sm:gap-3 lg:hidden">
-            <a href="{{ url('/contact') }}" class="site-header__mobile-booking {{ $btnClass }} {{ $btnOutline }} px-3 py-2.5 sm:px-4" aria-label="{{ content('global', 'navbar.booking_label') }}">
+            <a href="{{ url('/contact') }}" class="site-header__mobile-booking navbar-scroll-btn-outline {{ $btnClass }} px-3 py-2.5 sm:px-4" aria-label="{{ content('global', 'navbar.booking_label') }}">
                 <span>{{ content('global', 'navbar.booking_label') }}</span>
             </a>
 
             <a href="tel:{{ preg_replace('/\s+/', '', content('global', 'site.phone', '+351244000000')) }}"
-                class="site-header__mobile-phone inline-flex size-10 shrink-0 items-center justify-center rounded-full border {{ $phoneClass }}"
+                class="site-header__mobile-phone navbar-scroll-phone inline-flex size-10 shrink-0 items-center justify-center rounded-full border"
                 aria-label="Telefonar">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path
@@ -111,10 +87,10 @@
             </a>
 
             <button type="button" id="menu-open"
-                class="site-header__mobile-menu {{ $menuClass }} inline-flex size-10 shrink-0 cursor-pointer flex-col items-center justify-center gap-1.5 border-0 bg-transparent p-0"
+                class="site-header__mobile-menu navbar-scroll-menu inline-flex size-10 shrink-0 cursor-pointer flex-col items-center justify-center gap-1.5 border-0 bg-transparent p-0"
                 aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
-                <span class="block h-0.5 w-5 {{ $menuBarColor }}"></span>
-                <span class="block h-0.5 w-5 {{ $menuBarColor }}"></span>
+                <span class="block h-0.5 w-5 navbar-scroll-menu-bar"></span>
+                <span class="block h-0.5 w-5 navbar-scroll-menu-bar"></span>
             </button>
         </div>
     </div>

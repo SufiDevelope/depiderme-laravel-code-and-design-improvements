@@ -31,7 +31,9 @@
         <div class="clinics-detail__list {{ $sectionPadding }} flex flex-col gap-14 sm:gap-16 lg:gap-20">
             @foreach ($clinics as $index => $clinic)
                 <article id="clinica-{{ strtolower(str_replace(' ', '-', $clinic['city'])) }}"
-                    class="relative z-[2] scroll-mt-24 sm:scroll-mt-28">
+                    class="relative z-[2] scroll-mt-24 sm:scroll-mt-28"
+                    itemscope itemtype="https://schema.org/MedicalBusiness">
+                    <meta itemprop="name" content="Depiderme {{ $clinic['city'] }}">
                     <div
                         class="clinics-detail__article-grid grid grid-cols-1 items-center gap-8 sm:gap-10 lg:grid-cols-[minmax(260px,360px)_minmax(0,1fr)] lg:gap-16 xl:gap-20">
                         <div class="min-w-0">
@@ -50,7 +52,7 @@
                                         </svg>
                                         <span class="{{ $labelClass }}">Address</span>
                                     </div>
-                                    <p class="clinics-detail__value clinics-detail__value--address {{ $valueClass }}">
+                                    <p class="clinics-detail__value clinics-detail__value--address {{ $valueClass }}" itemprop="address">
                                         @foreach (($clinic['detail_address_lines'] ?? [$clinic['address']]) as $lineIndex => $line)
                                             {{ $line }}@if ($lineIndex < count($clinic['detail_address_lines'] ?? [$clinic['address']]) - 1)<br>@endif
                                         @endforeach
@@ -68,7 +70,7 @@
                                         </svg>
                                         <span class="{{ $labelClass }}">Telefone</span>
                                     </div>
-                                    <p class="clinics-detail__value {{ $valueClass }}">{{ $clinic['phone'] }}</p>
+                                    <p class="clinics-detail__value {{ $valueClass }}" itemprop="telephone">{{ $clinic['phone'] }}</p>
                                 </div>
 
                                 <div>
@@ -82,7 +84,7 @@
                                         </svg>
                                         <span class="{{ $labelClass }}">Email</span>
                                     </div>
-                                    <p class="clinics-detail__value {{ $valueClass }}">{{ $clinic['email'] }}</p>
+                                    <p class="clinics-detail__value {{ $valueClass }}" itemprop="email">{{ $clinic['email'] }}</p>
                                 </div>
                             </div>
                         </div>
@@ -95,6 +97,7 @@
                                     <img src="{{ asset('images/' . $image) }}"
                                         alt="Clínica Depiderme {{ $clinic['city'] }} — foto {{ $slideIndex + 1 }}"
                                         class="clinics-detail__slide {{ $slideIndex === 0 ? 'is-active' : '' }}"
+                                        @if ($slideIndex === 0) itemprop="image" @endif
                                         data-clinic-slide loading="{{ $index === 0 && $slideIndex === 0 ? 'eager' : 'lazy' }}">
                                 @endforeach
                             </div>

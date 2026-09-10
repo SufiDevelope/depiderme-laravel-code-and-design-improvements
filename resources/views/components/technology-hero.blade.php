@@ -8,20 +8,27 @@
     $titleHighlight = content('technology', 'hero.title_highlight');
     $titleLine2 = content('technology', 'hero.title_line2');
     $titleLine2Normalized = preg_replace('/\s+/', ' ', trim($titleLine2));
-    $useDesignedDesktopTitle = $titleLine1 === 'Avanço'
+    $titleMatchesCuratedCopy = $titleLine1 === 'Avanço'
         && $titleHighlight === 'tecnológico'
         && $titleLine2Normalized === 'para resultados seguros e eficazes';
     $description = content('technology', 'hero.description');
     $descriptionNormalized = preg_replace('/\s+/', ' ', trim($description));
-    $useDesignedDesktopDescription = str_starts_with($descriptionNormalized, 'Antes de iniciar tratamento')
+    $descriptionMatchesCuratedCopy = str_starts_with($descriptionNormalized, 'Antes de iniciar tratamento')
         && str_ends_with($descriptionNormalized, 'dar início às sessões.');
+    $curatedDescriptionLines = [
+        'Antes de iniciar tratamento é feita uma anamnese',
+        'do paciente e um teste de reação cutânea. Trata-se',
+        'de uma consulta que poderá realizar gratuitamente.',
+        'Caso não se verifique nenhuma contra-indicação',
+        'poderá dar início às sessões.',
+    ];
 @endphp
 
 <section class="technology-hero retina-purple-field relative overflow-hidden bg-[#000010] pb-16 pt-28 sm:pb-20 sm:pt-32 lg:pb-28 lg:pt-24" data-scroll-laser-section data-live-gradient-intensity="strong" aria-label="Avanço tecnológico">
     <div class="{{ $sectionPadding }} relative z-10">
         <div class="technology-hero__copy grid grid-cols-1 items-start gap-8 lg:grid-cols-2 lg:gap-16 xl:gap-24">
             <h1 class="technology-hero__title max-w-[640px] font-sans text-[40px] font-semibold leading-[110%] tracking-[-0.02em] text-white sm:text-[56px] lg:w-[596px] lg:max-w-[596px] lg:text-[60px]">
-                @if ($useDesignedDesktopTitle)
+                @if ($titleMatchesCuratedCopy)
                     <span class="hidden lg:inline">{{ $titleLine1 }} <span class="bg-[linear-gradient(90deg,#8877C2_0%,#E1C7F9_100%)] bg-clip-text text-transparent">{{ $titleHighlight }}</span><br>para resultados<br>seguros e eficazes</span>
                     <span class="lg:hidden">{{ $titleLine1 }} <span class="bg-[linear-gradient(90deg,#8877C2_0%,#E1C7F9_100%)] bg-clip-text text-transparent">{{ $titleHighlight }}</span> {!! nl_to_br($titleLine2) !!}</span>
                 @else
@@ -31,8 +38,8 @@
             </h1>
 
             <p class="technology-hero__description max-w-[520px] font-sans text-base font-medium leading-[140%] tracking-[-0.02em] text-white sm:text-lg lg:max-w-[480px] lg:justify-self-end lg:text-[20px]">
-                @if ($useDesignedDesktopDescription)
-                    <span class="technology-hero__description-desktop hidden lg:inline"><span>Antes de iniciar tratamento é feita uma anamnese</span><span>do paciente e um teste de reação cutânea. Trata-se</span><span>de uma consulta que poderá realizar gratuitamente.</span><span>Caso não se verifique nenhuma contra-indicação</span><span>poderá dar início às sessões.</span></span>
+                @if ($descriptionMatchesCuratedCopy)
+                    <span class="technology-hero__description-desktop hidden lg:inline">@foreach ($curatedDescriptionLines as $line)<span>{{ $line }}</span>@endforeach</span>
                     <span class="lg:hidden">{{ $description }}</span>
                 @else
                     {{ $description }}

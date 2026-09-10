@@ -26,7 +26,11 @@
       "Bash(zsh -lc 'node inspect-footer2.mjs')",
       "Bash(zsh -lc 'node wide-footer4.mjs')",
       "Bash(zsh -lc 'node diag-footer.mjs')",
-      "Bash(zsh -lc 'node wide-footer3.mjs')"
+      "Bash(zsh -lc 'node wide-footer3.mjs')",
+      "Bash(curl -s -o /dev/null -w \"home: %{http_code}\\\\n\" http://127.0.0.1:8000/)",
+      "Bash(curl -s -o /dev/null -w \"about: %{http_code}\\\\n\" http://127.0.0.1:8000/about)",
+      "Bash(curl -s -o /dev/null -w \"contact: %{http_code}\\\\n\" http://127.0.0.1:8000/contact)",
+      "Bash(curl -s -o /dev/null -w \"technology: %{http_code}\\\\n\" http://127.0.0.1:8000/technology)"
     ]
   }
 }

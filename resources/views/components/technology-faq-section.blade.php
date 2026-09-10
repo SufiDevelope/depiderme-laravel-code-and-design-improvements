@@ -13,17 +13,17 @@
                 {!! nl_to_br(content('technology', 'faq.title')) !!}
             </h2>
 
-            <div class="tech-faq-accordion flex flex-col" data-faq-accordion data-faq-scroll-open>
+            <div class="tech-faq-accordion flex flex-col" data-faq-accordion data-faq-scroll-open itemscope itemtype="https://schema.org/FAQPage">
                 @foreach ($faqs as $faq)
                     @php($isOpen = $loop->first)
-                    <div class="border-b border-[#e1c7f9]" data-faq-item>
+                    <div class="border-b border-[#e1c7f9]" data-faq-item itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                         <button
                             type="button"
                             class="flex w-full cursor-pointer items-start justify-between gap-4 py-5 text-left lg:py-6"
                             data-faq-toggle
                             aria-expanded="{{ $isOpen ? 'true' : 'false' }}"
                         >
-                            <span class="tech-faq-question-static min-w-0 flex-1 font-sans text-2xl font-medium leading-[130%] tracking-[-0.02em] text-[#e1c7f9] lg:text-[30px]">
+                            <span class="tech-faq-question-static min-w-0 flex-1 font-sans text-2xl font-medium leading-[130%] tracking-[-0.02em] text-[#e1c7f9] lg:text-[30px]" itemprop="name">
                                 {{ $faq['question'] }}
                             </span>
                             <span class="{{ $faqToggleClass }}" data-faq-icon aria-hidden="true">
@@ -37,8 +37,9 @@
                             class="overflow-hidden {{ $isOpen ? 'max-h-[400px]' : 'max-h-0' }}"
                             data-faq-panel
                             aria-hidden="{{ $isOpen ? 'false' : 'true' }}"
+                            itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"
                         >
-                            <div class="flex flex-col gap-4 pb-5 lg:pb-6">
+                            <div class="flex flex-col gap-4 pb-5 lg:pb-6" itemprop="text">
                                 @foreach ($faq['answer'] as $paragraph)
                                     <p class="max-w-[640px] font-body text-base font-normal leading-[130%] tracking-[-0.02em] text-[#FFFFFFB3]">
                                         {{ $paragraph }}

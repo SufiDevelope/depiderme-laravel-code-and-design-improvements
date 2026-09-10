@@ -2,12 +2,16 @@
     $faces = content('laserderme', 'cta.faces');
     $galleryHeadline = content('laserderme', 'cta.gallery_headline');
     $galleryHeadlineNormalized = preg_replace('/\s+/', ' ', trim($galleryHeadline));
-    $galleryHeadlineHtml = $galleryHeadlineNormalized === 'Criteriosamente pensado para a sua pele'
+    $galleryHeadlineMatchesCuratedCopy = $galleryHeadlineNormalized === 'Criteriosamente pensado para a sua pele';
+    $galleryHeadlineHtml = $galleryHeadlineMatchesCuratedCopy
         ? '<span class="laserderme-cta__headline-line">Criteriosamente</span><span class="laserderme-cta__headline-line">pensado para a sua pele</span>'
         : nl2br(e($galleryHeadline));
+
     $footerText = content('laserderme', 'cta.footer_text');
     $footerTextNormalized = preg_replace('/\s+/', ' ', trim($footerText));
-    $footerTextHtml = str_starts_with($footerTextNormalized, 'Disponível apenas') && str_ends_with($footerTextNormalized, 'Depiderme')
+    $footerTextMatchesCuratedCopy = str_starts_with($footerTextNormalized, 'Disponível apenas')
+        && str_ends_with($footerTextNormalized, 'Depiderme');
+    $footerTextHtml = $footerTextMatchesCuratedCopy
         ? 'Disponível apenas para<br>compra presencialmente<br>nas clínicas Depiderme'
         : nl2br(e($footerText));
 

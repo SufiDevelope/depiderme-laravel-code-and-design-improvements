@@ -20,16 +20,13 @@
     $bookingTitle = $variant === 'contact'
         ? "Faça a sua\nmarcação"
         : content($cmsPage, 'booking.title');
+    $curatedBookingDescription = 'Connosco operam profissionais de saúde e profissionais de estética que, aliados à tecnologia, partilham o seu conhecimento com o objetivo de lhe proporcionar os melhores resultados.';
     $bookingDescription = $variant === 'contact'
-        ? 'Connosco operam profissionais de saúde e profissionais de estética que, aliados à tecnologia, partilham o seu conhecimento com o objetivo de lhe proporcionar os melhores resultados.'
+        ? $curatedBookingDescription
         : content($cmsPage, 'booking.description');
-    $bookingDescriptionNormalized = preg_replace('/\s+/', ' ', trim($bookingDescription));
-    $designedBookingDescription = 'Connosco operam profissionais de saúde e profissionais de estética que, aliados à tecnologia, partilham o seu conhecimento com o objetivo de lhe proporcionar os melhores resultados.';
-    $useDesignedHomeBookingDescription = $variant === 'home'
-        && str_starts_with($bookingDescriptionNormalized, 'Connosco operam profissionais')
-        && str_ends_with($bookingDescriptionNormalized, 'melhores resultados.');
-    $useDesignedMobileBookingDescription = str_starts_with($bookingDescriptionNormalized, 'Connosco operam profissionais')
-        && str_ends_with($bookingDescriptionNormalized, 'melhores resultados.');
+    $normalizedBookingDescription = preg_replace('/\s+/', ' ', trim($bookingDescription));
+    $descriptionMatchesCuratedCopy = str_starts_with($normalizedBookingDescription, 'Connosco operam profissionais')
+        && str_ends_with($normalizedBookingDescription, 'melhores resultados.');
 @endphp
 
 <section
@@ -47,15 +44,12 @@
                     </h2>
 
                     <p class="mt-4 max-w-[480px] font-body text-base font-normal leading-[130%] tracking-[-0.02em] text-white lg:mt-6">
-                        @if ($useDesignedHomeBookingDescription)
-                            <span class="booking-intro__description booking-intro__description-desktop hidden lg:inline">{{ $designedBookingDescription }}</span>
-                            <span class="booking-intro__description booking-intro__description-mobile lg:hidden">{{ $designedBookingDescription }}</span>
-                        @elseif ($variant === 'contact' && $useDesignedMobileBookingDescription)
-                            <span class="booking-intro__description booking-intro__description-desktop hidden lg:inline">{{ $designedBookingDescription }}</span>
-                            <span class="booking-intro__description booking-intro__description-mobile lg:hidden">{{ $designedBookingDescription }}</span>
-                        @elseif ($useDesignedMobileBookingDescription)
+                        @if ($descriptionMatchesCuratedCopy && in_array($variant, ['home', 'contact'], true))
+                            <span class="booking-intro__description booking-intro__description-desktop hidden lg:inline">{{ $curatedBookingDescription }}</span>
+                            <span class="booking-intro__description booking-intro__description-mobile lg:hidden">{{ $curatedBookingDescription }}</span>
+                        @elseif ($descriptionMatchesCuratedCopy)
                             <span class="hidden lg:inline">{{ $bookingDescription }}</span>
-                            <span class="booking-intro__description booking-intro__description-mobile lg:hidden">{{ $designedBookingDescription }}</span>
+                            <span class="booking-intro__description booking-intro__description-mobile lg:hidden">{{ $curatedBookingDescription }}</span>
                         @else
                             {{ $bookingDescription }}
                         @endif
