@@ -14,7 +14,7 @@
     $featureDescClass = 'font-body text-xs font-normal leading-[130%] tracking-[-0.02em] text-[#FFFFFF80] sm:text-sm';
 @endphp
 
-<section class="home-hero-content relative flex min-h-[inherit] flex-1 flex-col {{ $heroPadding }} lg:min-h-[calc(100vh-6rem)]" aria-label="Introdução">
+<section class="home-hero-content relative flex min-h-[inherit] flex-1 flex-col {{ $heroPadding }} lg:min-h-[calc(100vh-6rem)]" data-reveal-skip aria-label="Introdução">
     <div class="home-hero-copy relative z-10 pt-24 lg:max-w-none lg:pt-[140px]">
         <p class="home-hero-tagline font-sans text-base font-medium leading-[130%] tracking-[-0.02em] text-white lg:hidden">
             {{ content('home', 'hero.tagline') }}
