@@ -587,7 +587,7 @@
     max-height: 96px;
     margin-inline: auto;
     padding-left: clamp(64px, 8.182349503vw, 140px); /* 140 / 1711 */
-    padding-right: clamp(24px, 2.27936879vw, 39px); /* 39 / 1711 */
+    padding-right: clamp(64px, 8.182349503vw, 140px); /* Match the left gutter */
   }
 
   .home-hero-shell {

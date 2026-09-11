@@ -38,7 +38,7 @@
         </a>
 
         {{-- Desktop --}}
-        <div class="hidden min-w-0 items-center lg:flex">
+        <div class="site-header__desktop-actions hidden min-w-0 items-center lg:flex">
             <nav class="site-header__desktop-nav flex items-center gap-10"
                 aria-label="Navegação principal">
                 @foreach ($desktopLinks as $label => $path)
