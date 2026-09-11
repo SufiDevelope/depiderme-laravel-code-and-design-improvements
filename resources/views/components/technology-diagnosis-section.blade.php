@@ -35,7 +35,7 @@
 
                 <a
                     href="#"
-                    class="technology-diagnosis__cta mt-8 inline-flex w-fit items-center justify-center rounded-full bg-gradient-to-r from-[#8877C2] to-[#5B2B82] px-5 py-[15px] font-sans text-sm font-semibold capitalize leading-[18px] tracking-[-0.02em] text-white no-underline transition-opacity hover:opacity-90 lg:mt-10"
+                    class="technology-diagnosis__cta mt-8 inline-flex w-fit items-center justify-center rounded-full px-5 py-[15px] font-sans text-sm font-semibold capitalize leading-[18px] tracking-[-0.02em] text-white no-underline lg:mt-10"
                 >
                     {{ content('technology', 'diagnosis.cta') }}
                 </a>

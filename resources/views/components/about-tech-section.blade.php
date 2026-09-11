@@ -19,7 +19,7 @@
 
         <a
             href="#"
-            class="about-tech-section__button mt-[25px] inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-[#8877C2] to-[#5B2B82] px-5 py-[15px] font-sans text-sm font-semibold capitalize leading-[18px] tracking-[-0.02em] text-white no-underline transition-opacity hover:opacity-90"
+            class="about-tech-section__button mt-[25px] inline-flex items-center justify-center gap-2.5 rounded-full px-5 py-[15px] font-sans text-sm font-semibold capitalize leading-[18px] tracking-[-0.02em] text-white no-underline"
         >
             {{ content('about', 'tech.button') }}
         </a>

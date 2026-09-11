@@ -62,6 +62,17 @@
   overflow-x: clip;
 }
 
+/* .home-hero-shell sits inside the page's max-width `.site-shell`, but the
+   hero background/video should always bleed to the true viewport edges
+   (the boxed content re-centers itself via `.home-hero-content`). Without
+   this, screens wider than --site-max-width show plain white margins on
+   both sides of the hero. This is a no-op on any viewport already
+   narrower than --site-max-width. */
+.home-hero-shell {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+}
+
 .hero-bg {
   inset: 0;
 }
@@ -75,9 +86,7 @@
 .hero-bg::after {
   z-index: 1;
   inset: 0;
-  background:
-    linear-gradient(90deg, rgb(12 3 31 / 0.54) 0%, rgb(30 10 61 / 0.16) 38%, rgb(30 10 61 / 0.06) 58%, rgb(18 5 43 / 0.46) 100%),
-    linear-gradient(180deg, rgb(25 8 52 / 0.1) 0%, rgb(32 9 66 / 0.2) 100%);
+  background: transparent;
 }
 
 .hero-bg__video {
@@ -88,8 +97,18 @@
   height: 100%;
   object-fit: cover;
   object-position: right top;
-  filter: brightness(0.84) contrast(1.18) saturate(1.2);
+  filter: none;
 }
+
+/* .hero-bg__tint {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: color;
+  background: #7c56ad;
+  opacity: 0.6;
+} */
 
 @media (max-width: 991px) {
   .hero-bg {
@@ -103,7 +122,7 @@
   .hero-bg__video {
     object-fit: cover;
     object-position: 58% 20%;
-    filter: brightness(0.8) contrast(1.18) saturate(1.22);
+    filter: none;
   }
 }
 
@@ -134,15 +153,10 @@
   }
 
   .home-hero-shell .hero-bg::after {
-    background:
-      radial-gradient(ellipse 34% 28% at 100% 100%, rgb(179 145 207 / 0.96) 0%, rgb(179 145 207 / 0.66) 28%, rgb(145 105 181 / 0.34) 52%, transparent 76%),
-      radial-gradient(ellipse 58% 32% at 58% 100%, rgb(179 145 207 / 0.56) 0%, rgb(151 112 188 / 0.42) 34%, rgb(101 72 137 / 0.18) 62%, transparent 86%),
-      linear-gradient(0deg, rgb(64 45 90 / 0.58) 0%, rgb(128 92 166 / 0.36) 24%, rgb(179 145 207 / 0.18) 42%, transparent 66%),
-      radial-gradient(ellipse 58% 44% at 16% 100%, rgb(64 45 90 / 0.96) 0%, rgb(89 64 119 / 0.62) 34%, rgb(179 145 207 / 0.20) 58%, transparent 82%),
-      linear-gradient(90deg, rgb(64 45 90 / 0.98) 0%, rgb(64 45 90 / 0.92) 18%, rgb(64 45 90 / 0.70) 30%, rgb(82 58 111 / 0.34) 44%, rgb(116 84 151 / 0.12) 58%, transparent 76%);
+    background: transparent;
   }
 
-  .home-hero-shell .hero-bg__video {
+  /* .home-hero-shell .hero-bg__video {
     position: absolute;
     top: -50px;
     right: -36vw;
@@ -154,7 +168,7 @@
     object-fit: cover;
     object-position: center 42%;
     filter: brightness(0.82) contrast(1.18) saturate(1.18);
-  }
+  } */
 
   .home-hero-shell,
   .home-hero-inner,
@@ -280,12 +294,12 @@
     background-size: max(1480px, 118vw) auto;
   }
 
-  .home-hero-shell .hero-bg__video {
+  /* .home-hero-shell .hero-bg__video {
     top: -7svh;
     right: -47vw;
     width: 144vw;
     height: 114svh;
-  }
+  } */
 
   .home-hero-copy {
     position: static;
@@ -334,23 +348,22 @@
     background-size: max(1660px, 116vw) auto;
   }
 
-  .home-hero-shell .hero-bg__video {
+  /* .home-hero-shell .hero-bg__video {
     right: -49vw;
     width: 146vw;
     height: 110svh;
-  }
+  } */
 }
 
 @media (min-width: 1800px) {
-  .home-hero-shell .hero-bg {
-    background-size: 1920px auto;
-  }
-
-  .home-hero-shell .hero-bg__video {
-    right: -43vw;
-    width: 140vw;
-    height: 108svh;
-  }
+  /* Background continues to scale via the min-width:1366px rule above
+     (max(1660px, 116vw)), which already keeps it covering at any width.
+     A fixed 1920px background-size and a video shifted -43vw used to run
+     here, but the shifted video's width was silently clamped back to
+     100% by the browser's default `video { max-width: 100% }`, leaving
+     an uncovered gap on ultra-wide screens. The base .hero-bg__video rule
+     (width/height: 100%, object-fit: cover) already fills the box with
+     no gaps at any viewport size, so no override is needed here. */
 }
 
 :root {
@@ -369,6 +382,17 @@
     calc((var(--design-frame-width) - 1200px) * 0.25 + 20px),
     140px
   );
+}
+
+/* On the homepage, the hero's background/video is meant to bleed to the
+   true viewport edges (via .home-hero-shell's own full-bleed rule above),
+   while every other section stays boxed at --site-max-width as usual.
+   `.site-shell`'s own overflow-x: clip paints over that bleed, cutting it
+   off at the 1711px frame instead of the viewport edge, so it's relaxed
+   only on pages containing the home hero. `body` still clips any actual
+   horizontal overflow, so this can't introduce a scrollbar. */
+html:has(.home-hero-shell) .site-shell {
+  overflow-x: visible;
 }
 
 .design-frame {

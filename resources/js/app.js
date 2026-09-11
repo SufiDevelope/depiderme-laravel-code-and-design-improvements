@@ -5,6 +5,7 @@ import {
 import { initLaserBeamLoop, initScrollLaserBeams } from "./laser-beam.js";
 import { initLiveGradients } from "./live-gradient.js";
 import {
+  initHeroVideoSource,
   initHomeSectionStack,
   initLeaderSection,
   initScrollGradients,
@@ -40,6 +41,7 @@ function loadPageModules() {
 document.addEventListener("DOMContentLoaded", () => {
   initLiveGradients();
   initHomeSectionStack();
+  initHeroVideoSource();
   initSectionRise();
   initLeaderSection();
   initScrollGradients();

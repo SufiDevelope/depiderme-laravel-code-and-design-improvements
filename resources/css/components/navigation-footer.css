@@ -194,11 +194,6 @@
   color: #ffffff;
 }
 
-.clinics-page .site-header__desktop-cta:nth-child(2):hover,
-.clinics-page .site-header__mobile-booking:hover {
-  opacity: 0.9;
-}
-
 .clinics-page [data-navbar-scroll][data-scrolled] .site-header__desktop-cta.navbar-scroll-btn-solid,
 .clinics-page [data-navbar-scroll][data-scrolled] .site-header__mobile-booking.navbar-scroll-btn-outline {
   border-color: transparent;

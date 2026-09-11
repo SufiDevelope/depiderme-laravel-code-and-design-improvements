@@ -13,8 +13,8 @@
     $sectionTitleClass = 'font-sans text-[24px] font-medium leading-[130%] tracking-[-0.02em] text-[#9A9A9A] sm:text-[30px]';
     $cityClass = 'font-sans text-[24px] font-medium leading-[130%] tracking-[-0.02em] text-[#231f20] sm:text-[30px]';
     $addressClass = 'font-body text-base font-normal leading-[130%] tracking-[-0.02em] text-[#545462]';
-    $contactClass = 'font-body text-sm font-normal leading-[130%] tracking-[-0.02em] text-[#9A9A9A] no-underline transition-opacity hover:opacity-70';
-    $navBtnClass = 'inline-flex size-[42px] shrink-0 cursor-pointer items-center justify-center rounded-full border border-black bg-gradient-to-b from-[#5B2B82] to-[#8A72AF] text-white transition-opacity hover:opacity-90';
+    $contactClass = 'clinics-section__contact font-body text-sm font-normal leading-[130%] tracking-[-0.02em] text-[#9A9A9A] no-underline';
+    $navBtnClass = 'inline-flex size-[42px] shrink-0 cursor-pointer items-center justify-center rounded-full border border-black bg-gradient-to-b from-[#5B2B82] to-[#8A72AF] text-white';
 @endphp
 
 <section id="clinics-teaser" class="home-stack-panel relative bg-[#000010] lg:pt-[235px]" data-home-stack-panel data-reveal-threshold="0.01" data-reveal-root-margin="0px 0px 24% 0px" data-reveal-delay-scale="0.35" aria-label="As nossas clínicas">

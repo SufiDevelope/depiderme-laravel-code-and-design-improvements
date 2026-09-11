@@ -299,14 +299,24 @@
     height: 22px;
   }
 
-  .home-hero-shell,
   .home-hero-inner,
   .home-hero-content {
     height: 728px;
     min-height: 728px;
   }
 
-  .home-hero-shell {
+  /* `.home-hero-shell` also matches the generic scroll-stack selector
+     `.home-section-stack [data-home-stack-panel]` (min-height: 100svh),
+     which has higher specificity than a bare `.home-hero-shell` rule and
+     was winning, stretching the shell to full page height on any
+     narrow-but-tall viewport while its content stayed pinned at 728px -
+     leaving a huge blank gradient below the features list. Matching that
+     selector's specificity here (and coming later in the stylesheet)
+     restores the intended fixed 728px hero on mobile. */
+  .home-section-stack > .home-hero-shell {
+    height: 728px;
+    min-height: 728px;
+    max-height: 728px;
     background-color: #3f357a;
   }
 
@@ -323,56 +333,29 @@
     position: absolute;
     z-index: 2;
     inset: 286px 0 0;
-    background: linear-gradient(
-      180deg,
-      rgb(143 121 167 / 0) 0%,
-      rgb(143 121 167 / 0.36) 30px,
-      rgb(143 121 167 / 0.78) 72px,
-      rgb(136 119 194 / 0.96) 124px,
-      #8877c2 100%
-    );
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 72px);
-    mask-image: linear-gradient(to bottom, transparent 0, #000 72px);
+    display: none;
   }
 
   .home-hero-shell .hero-bg::after {
     z-index: 3;
-    background: linear-gradient(
-      180deg,
-      rgb(21 9 55 / 0.06) 0%,
-      rgb(25 13 63 / 0.14) 42%,
-      rgb(143 121 167 / 0.22) 58%,
-      rgb(136 119 194 / 0.24) 100%
-    );
+    background: transparent;
   }
 
   .home-hero-shell .hero-bg__video {
     position: absolute;
     z-index: 1;
-    top: -46.4vw;
+    top: 0;
     left: 50%;
     display: block;
-    width: 217vw;
+    width: 100%;
     max-width: none;
-    height: 186.4vw;
+    height: 100%;
     transform: translateX(-50%);
-    object-fit: fill;
-    object-position: center;
-    filter: brightness(0.68) contrast(1.2) saturate(1.08);
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      #000 0,
-      #000 calc(46.4vw + 340px),
-      transparent calc(46.4vw + 380px)
-    );
-    mask-image: linear-gradient(
-      to bottom,
-      #000 0,
-      #000 calc(46.4vw + 340px),
-      transparent calc(46.4vw + 380px)
-    );
+    object-fit: cover;
+    object-position: center top;
+    filter: none;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 
   .home-hero-content {
@@ -2596,6 +2579,18 @@
   .footer__brand img {
     width: 354px;
     max-width: 100%;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 991px) {
+  .home-hero-content {
+    --site-gutter: 12px;
+    padding-inline: 12px !important;
+  }
+
+  .home-hero-shell .hero-bg__video {
+    object-fit: cover;
+    object-position: center top;
   }
 }
 

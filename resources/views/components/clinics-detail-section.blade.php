@@ -2,7 +2,7 @@
 
 @php
     $sectionPadding = 'site-padding';
-    $navBtnClass = 'clinics-detail__nav-button absolute top-1/2 z-[3] flex -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border bg-white text-[#5B2B82] transition-opacity hover:opacity-90';
+    $navBtnClass = 'clinics-detail__nav-button absolute top-1/2 z-[3] flex -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border bg-white text-[#5B2B82]';
     $labelClass = 'font-body text-sm font-normal leading-[130%] tracking-[-0.02em] text-[#E1C7F9]';
     $cityClass = 'font-sans text-[36px] font-medium leading-[110%] tracking-[-0.02em] text-white lg:text-[48px]';
     $valueClass = 'font-body text-base font-semibold leading-[130%] tracking-[-0.02em] text-white';

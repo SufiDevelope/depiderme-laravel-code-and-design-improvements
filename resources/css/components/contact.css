@@ -591,7 +591,7 @@
   }
 
   .home-hero-shell {
-    --home-hero-frame-width: min(100vw, 1711px);
+    --home-hero-frame-width: min(100vw, 1711px, calc(100svh * 1711 / 997));
     --home-hero-visual-height: clamp(
       680px,
       calc(var(--home-hero-frame-width) * 997 / 1711),
@@ -613,8 +613,8 @@
   .home-hero-content {
     position: relative;
     display: block;
-    width: min(100%, 1711px);
-    max-width: 1711px;
+    width: var(--home-hero-frame-width);
+    max-width: var(--home-hero-frame-width);
     margin-inline: auto;
     padding: 0;
     container-type: inline-size;
@@ -628,7 +628,11 @@
   .home-hero-copy .hero-headline {
     position: absolute;
     top: 10.929281122cqw; /* 187 / 1711 */
-    left: 8.182349503cqw; /* 140 / 1711 */
+    left: calc(
+      clamp(64px, 8.182349503vw, 140px) +
+        max(0px, (100vw - 1711px) / 2) -
+        ((100vw - var(--home-hero-frame-width)) / 2)
+    );
     z-index: 10;
     width: 52.19170076cqw; /* 893 / 1711 */
     max-width: none;
@@ -644,7 +648,11 @@
   .home-hero-social-proof {
     position: absolute;
     top: 8.182349503cqw; /* 140 / 1711 */
-    left: 8.182349503cqw; /* 140 / 1711 */
+    left: calc(
+      clamp(64px, 8.182349503vw, 140px) +
+        max(0px, (100vw - 1711px) / 2) -
+        ((100vw - var(--home-hero-frame-width)) / 2)
+    );
     z-index: 10;
     display: flex;
     align-items: center;
@@ -684,7 +692,11 @@
   .home-hero-features > ul {
     position: absolute;
     top: 39.567504383cqw; /* 677 / 1711 */
-    left: 8.182349503cqw; /* 140 / 1711 */
+    left: calc(
+      clamp(64px, 8.182349503vw, 140px) +
+        max(0px, (100vw - 1711px) / 2) -
+        ((100vw - var(--home-hero-frame-width)) / 2)
+    );
     width: 22.209234366cqw; /* 380 / 1711 */
     max-width: none;
     height: 13.734658094cqw; /* 235 / 1711 */
@@ -750,7 +762,7 @@
     display: none;
   }
 
-  .home-hero-shell .hero-bg__video {
+  /* .home-hero-shell .hero-bg__video {
     top: -50px;
     right: calc(var(--home-hero-frame-width) * -0.36);
     left: auto;
@@ -759,7 +771,7 @@
     height: 100%;
     object-fit: cover;
     object-position: center 42%;
-  }
+  } */
 
   .home-section-stack > .leader-section {
     margin-top: 0;

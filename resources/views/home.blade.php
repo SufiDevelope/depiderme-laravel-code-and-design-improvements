@@ -10,13 +10,15 @@
             <div class="hero-bg pointer-events-none absolute" aria-hidden="true">
                 <video
                     class="hero-bg__video"
-                    src="{{ asset('videos/hero-bg.mp4') }}"
                     autoplay
                     muted
                     loop
                     playsinline
                     preload="auto"
-                ></video>
+                >
+                    <source src="{{ asset('videos/hero-bg-mobile.mp4') }}" media="(max-width: 991px)" type="video/mp4">
+                    <source src="{{ asset('videos/hero-bg.mp4') }}" media="(min-width: 992px)" type="video/mp4">
+                </video>
             </div>
 
             <div class="home-hero-inner relative z-10 flex min-h-[100svh] flex-col lg:min-h-screen">

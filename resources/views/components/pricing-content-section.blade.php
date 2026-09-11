@@ -4,7 +4,7 @@
     $toggleBtnClass = 'pricing-gender-toggle min-w-0 flex-1 basis-0 cursor-pointer border-0 bg-white px-5 py-2.5 font-sans text-base font-medium leading-[130%] tracking-[-0.02em] text-[#5B2B82] transition-[background,color] duration-200 aria-pressed:text-white lg:h-full lg:min-w-0 lg:px-0 lg:py-0';
     $headingClass = 'font-sans text-[35px] font-medium leading-[39px] tracking-[-0.02em] text-[#231f20] sm:text-[40px] sm:leading-[110%] lg:text-[60px]';
     $sectionTitleClass = 'font-sans text-2xl font-medium leading-[120%] tracking-[-0.02em] bg-gradient-to-r from-[#8877C2] to-[#5B2B82] bg-clip-text text-transparent lg:text-[30px]';
-    $rowClass = 'flex items-baseline justify-between gap-6 border-b border-[#e5e5e5] py-3.5 font-body text-base font-normal leading-[130%] tracking-[-0.02em] text-[#231f20] lg:h-[61px] lg:items-center lg:py-0';
+    $rowClass = 'pricing-table__row flex items-baseline justify-between gap-6 border-b border-[#e5e5e5] py-3.5 font-body text-base font-normal leading-[130%] tracking-[-0.02em] text-[#231f20] lg:h-[61px] lg:items-center lg:py-0';
 
     $pricingData = content('pricing', 'table.data');
 @endphp

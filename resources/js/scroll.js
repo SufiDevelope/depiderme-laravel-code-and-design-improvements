@@ -96,6 +96,53 @@ export function initHomeSectionStack() {
   watchLayout(measure, [stack, ...panels]);
 }
 
+// A <video>'s <source media="..."> is only evaluated once, when the browser
+// first picks a source - unlike <picture>, it never re-checks on resize.
+// Without this, resizing the window across the mobile/desktop breakpoint
+// keeps playing whichever video loaded first (wrong crop/framing) until a
+// hard refresh. This listens for the breakpoint to actually cross and
+// swaps the source live.
+export function initHeroVideoSource() {
+  const video = document.querySelector(".hero-bg__video");
+
+  if (!video) {
+    return;
+  }
+
+  const sources = [...video.querySelectorAll("source")];
+  const mobileSource = sources.find((source) =>
+    source.media.includes("max-width"),
+  );
+  const desktopSource = sources.find((source) =>
+    source.media.includes("min-width"),
+  );
+
+  if (!mobileSource || !desktopSource) {
+    return;
+  }
+
+  const mobileQuery = window.matchMedia("(max-width: 991px)");
+  let activeSrc = mobileQuery.matches ? mobileSource.src : desktopSource.src;
+
+  mobileQuery.addEventListener("change", (event) => {
+    const nextSrc = event.matches ? mobileSource.src : desktopSource.src;
+
+    if (nextSrc === activeSrc) {
+      return;
+    }
+
+    activeSrc = nextSrc;
+
+    const wasPlaying = !video.paused;
+    video.src = nextSrc;
+    video.load();
+
+    if (wasPlaying) {
+      video.play().catch(() => {});
+    }
+  });
+}
+
 export function initScrollGradients() {
   const sections = [...document.querySelectorAll("[data-scroll-gradient]")];
   const detailSections = [

@@ -288,7 +288,6 @@
   letter-spacing: -0.02em;
   color: #fff;
   cursor: pointer;
-  transition: opacity 0.2s ease;
 }
 
 @media (min-width: 640px) {
@@ -299,7 +298,4 @@
   }
 }
 
-.booking-form__submit:hover {
-  opacity: 0.9;
-}
 

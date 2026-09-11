@@ -17,7 +17,7 @@
                     {{ content('home', 'packs.description') }}
                 </p>
 
-                <a href="{{ url('/pricing') }}" class="packs-section__link mt-4 inline-flex items-center gap-2 font-body text-[16px] font-bold leading-[130%] tracking-[-0.02em] text-black no-underline transition-opacity hover:opacity-70">
+                <a href="{{ url('/pricing') }}" class="packs-section__link mt-4 inline-flex items-center gap-2 font-body text-[16px] font-bold leading-[130%] tracking-[-0.02em] text-black no-underline">
                     {{ content('home', 'packs.link_text') }}
                     <span aria-hidden="true">→</span>
                 </a>

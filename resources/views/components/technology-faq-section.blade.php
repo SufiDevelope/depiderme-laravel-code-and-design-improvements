@@ -1,7 +1,7 @@
 @php
     $sectionPadding = 'site-padding';
 
-    $faqToggleClass = 'mt-1 flex size-8 shrink-0 items-center justify-center rounded-full border border-[#e1c7f9] bg-transparent text-[#e1c7f9] transition-opacity hover:opacity-80';
+    $faqToggleClass = 'mt-1 flex size-8 shrink-0 items-center justify-center rounded-full border border-[#e1c7f9] bg-transparent text-[#e1c7f9]';
 
     $faqs = content('technology', 'faq.items');
 @endphp

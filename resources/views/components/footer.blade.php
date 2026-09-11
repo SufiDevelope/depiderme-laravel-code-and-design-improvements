@@ -15,8 +15,8 @@
         : nl2br(e($footerHeadline));
 
     $footerTitleClass = 'font-sans text-xl font-bold capitalize leading-[18px] tracking-[-0.02em] text-white';
-    $footerLinkClass = 'block font-sans text-sm font-medium capitalize leading-[18px] tracking-[-0.02em] text-white no-underline transition-opacity hover:opacity-75';
-    $footerBtnClass = 'inline-flex w-full cursor-pointer items-center justify-center rounded-full border border-white bg-transparent px-5 py-[14px] font-sans text-sm font-semibold capitalize leading-[18px] tracking-[-0.02em] text-white no-underline whitespace-nowrap transition hover:bg-[#FFFFFF33] lg:w-auto';
+    $footerLinkClass = 'inline-block font-sans text-sm font-medium capitalize leading-[18px] tracking-[-0.02em] text-white no-underline';
+    $footerBtnClass = 'inline-flex w-full cursor-pointer items-center justify-center rounded-full border border-white bg-transparent px-5 py-[14px] font-sans text-sm font-semibold capitalize leading-[18px] tracking-[-0.02em] text-white no-underline whitespace-nowrap lg:w-auto';
 @endphp
 
 <div
@@ -60,7 +60,7 @@
                     </ul>
                 </div>
 
-                <div class="hidden py-10 pl-[30px] lg:block lg:pb-[29px] lg:pt-[34px]">
+                <div class="footer__column footer__column--socials hidden py-10 pl-[30px] lg:block lg:pb-[29px] lg:pt-[34px]">
                     <p class="{{ $footerTitleClass }}">{{ content('global', 'footer.socials_title') }}</p>
                     <ul class="mt-6 flex flex-col gap-5">
                         @foreach ($socialLinks as $label => $path)

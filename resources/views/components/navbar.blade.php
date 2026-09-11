@@ -13,7 +13,7 @@
 
     $logoSrc = $isLight ? 'images/logo-dark.svg' : 'images/logo.svg';
 
-    $linkClass = 'font-sans text-sm font-medium capitalize leading-[18px] tracking-[-0.02em] no-underline whitespace-nowrap transition-opacity hover:opacity-75';
+    $linkClass = 'font-sans text-sm font-medium capitalize leading-[18px] tracking-[-0.02em] no-underline whitespace-nowrap';
     $btnClass = 'inline-flex cursor-pointer items-center justify-center gap-2.5 rounded-full border font-sans text-sm font-semibold capitalize leading-[18px] tracking-[-0.02em] no-underline whitespace-nowrap transition';
     $navPadding = 'site-padding';
 
@@ -53,14 +53,14 @@
 
             <div class="ml-10 flex shrink-0 items-center gap-2">
                 <button type="button"
-                    class="inline-flex shrink-0 cursor-pointer items-center gap-1.5 border-0 bg-transparent p-0 navbar-scroll-link transition-opacity hover:opacity-75"
+                    class="site-header__language inline-flex shrink-0 cursor-pointer items-center gap-1.5 border-0 bg-transparent p-0 navbar-scroll-link"
                     aria-label="Alterar idioma">
                     <span class="font-sans text-sm font-medium uppercase leading-[18px] tracking-[-0.02em]">{{ content('global', 'navbar.language_short') }}</span>
                     <img src="{{ asset('images/arrow-down.png') }}" alt="" width="12" height="6" class="block w-3 shrink-0 navbar-scroll-arrow">
                 </button>
 
                 <a href="{{ auth()->check() && auth()->user()->is_admin ? route('admin.dashboard') : route('login') }}"
-                    class="inline-flex size-9 shrink-0 items-center justify-center navbar-scroll-link transition-opacity hover:opacity-75"
+                    class="site-header__account inline-flex size-9 shrink-0 items-center justify-center navbar-scroll-link"
                     aria-label="{{ auth()->check() && auth()->user()->is_admin ? 'Backend' : 'Login' }}">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
                         <circle cx="9" cy="6" r="3" stroke="currentColor" stroke-width="1.25" />
@@ -148,7 +148,7 @@
             <div class="relative mt-auto">
                 <div class="site-header__mobile-overlay-actions relative z-10 -mb-14 flex flex-col gap-4 {{ $navPadding }}">
                     <a href="{{ url('/contact') }}"
-                        class="site-header__mobile-overlay-action {{ $btnClass }} w-full border-white bg-white px-5 py-[15px] text-[#1a0a2e] hover:opacity-90">{{ content('global', 'navbar.booking_label') }}</a>
+                        class="site-header__mobile-overlay-action {{ $btnClass }} w-full border-white bg-white px-5 py-[15px] text-[#1a0a2e]">{{ content('global', 'navbar.booking_label') }}</a>
                     <a href="{{ url('/contact') }}"
                         class="site-header__mobile-overlay-action {{ $btnClass }} w-full border-white bg-transparent px-5 py-[15px] text-white hover:bg-white/10">{{ content('global', 'footer.contact_button') }}</a>
                     @auth

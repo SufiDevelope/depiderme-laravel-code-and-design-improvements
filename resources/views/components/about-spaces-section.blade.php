@@ -45,8 +45,8 @@
     $paragraphs = $spacesOnly ? [] : content('about', 'professionals.paragraphs');
     $curatedProfessionalParagraphs = require config_path('cms/data/about-professionals-curated-paragraphs.php');
 
-    $navBtnClass = 'about-spaces-carousel__nav flex shrink-0 cursor-pointer items-center justify-center rounded-full border bg-transparent text-white transition-opacity hover:opacity-80';
-    $navBtnSolidClass = 'flex size-[42px] shrink-0 cursor-pointer items-center justify-center rounded-full bg-[linear-gradient(180deg,#5B2B82_0%,#8A72AF_100%)] text-white transition-opacity hover:opacity-90';
+    $navBtnClass = 'about-spaces-carousel__nav flex shrink-0 cursor-pointer items-center justify-center rounded-full border bg-transparent text-white';
+    $navBtnSolidClass = 'about-professionals-section__nav-button flex size-[42px] shrink-0 cursor-pointer items-center justify-center rounded-full bg-[linear-gradient(180deg,#5B2B82_0%,#8A72AF_100%)] text-white';
 @endphp
 
 <div
@@ -169,7 +169,7 @@
 
                     <a
                         href="{{ url('/clinics') }}"
-                        class="mt-8 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#8877C2] to-[#5B2B82] px-5 py-[15px] font-sans text-sm font-semibold capitalize leading-[18px] tracking-[-0.02em] text-white no-underline transition-opacity hover:opacity-90"
+                        class="about-spaces__cta mt-8 inline-flex items-center justify-center rounded-full px-5 py-[15px] font-sans text-sm font-semibold capitalize leading-[18px] tracking-[-0.02em] text-white no-underline"
                     >
                         {{ content('about', 'spaces.button') }}
                     </a>

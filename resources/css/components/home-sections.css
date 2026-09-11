@@ -405,15 +405,6 @@
     transform 0.2s ease;
 }
 
-.clinics-section__desktop-nav:hover {
-  background: linear-gradient(180deg, #5b2b82 0%, #8a72af 100%);
-  transform: translateY(-1px);
-}
-
-.clinics-section__desktop-nav:active {
-  transform: translateY(0);
-}
-
 .clinics-section__desktop-nav svg {
   width: 24px;
   height: 24px;

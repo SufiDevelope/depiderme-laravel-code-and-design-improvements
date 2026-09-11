@@ -1,0 +1,625 @@
+/* Interaction layer — hover, focus and active feedback for the whole site.
+
+   Loaded last so it settles over the component styles it refines.
+
+   Two conventions keep this file predictable:
+
+   1. Motion uses the standalone `translate` / `scale` properties, never
+      `transform`. The scroll-reveal system in end-and-reveal.css owns
+      `transform`, and the individual transform properties compose with it
+      instead of fighting it for the cascade.
+   2. Every hover-only effect sits behind (hover: hover) so touch devices never
+      latch into a hovered state after a tap. Motion is dropped, colour kept,
+      under prefers-reduced-motion. */
+
+:root {
+  --hover-duration: 0.3s;
+  --hover-duration-slow: 0.55s;
+  --hover-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Also consumed by the reveal transition in end-and-reveal.css, so a revealed
+     element answers a hover in 0.3s instead of inheriting the 0.88s entrance
+     timing. Deliberately excludes opacity / transform / filter — those belong
+     to the reveal, and re-declaring them here would slow the entrance down. */
+  --hover-transition:
+    translate var(--hover-duration) var(--hover-ease),
+    scale var(--hover-duration) var(--hover-ease),
+    color var(--hover-duration) var(--hover-ease),
+    background-color var(--hover-duration) var(--hover-ease),
+    background-size var(--hover-duration) var(--hover-ease),
+    background-position var(--hover-duration-slow) var(--hover-ease),
+    border-color var(--hover-duration) var(--hover-ease),
+    box-shadow var(--hover-duration) var(--hover-ease);
+
+  --hover-shadow-purple: 0 14px 30px -14px rgb(91 43 130 / 0.55);
+  --hover-shadow-light: 0 18px 38px -18px rgb(35 31 32 / 0.3);
+  --hover-shadow-white: 0 14px 32px -16px rgb(255 255 255 / 0.4);
+
+  /* Every distance and scale in this file reads from these, so the
+     reduced-motion block below can flatten the whole system in one place
+     rather than out-specifying each rule. */
+  --hover-lift: -2px;
+  --hover-lift-card: -4px;
+  --hover-nudge: 2px;
+  --hover-nudge-far: 4px;
+  --hover-scale-icon: 1.08;
+  --hover-scale-pill: 1.03;
+  --hover-scale-media: 1.05;
+  --hover-scale-press: 0.95;
+
+  --focus-ring: #5b2b82;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --hover-lift: 0px;
+    --hover-lift-card: 0px;
+    --hover-nudge: 0px;
+    --hover-nudge-far: 0px;
+    --hover-scale-icon: 1;
+    --hover-scale-pill: 1;
+    --hover-scale-media: 1;
+    --hover-scale-press: 1;
+  }
+}
+
+/* Light rings for the dark/purple surfaces. */
+.navbar--dark,
+.site-footer,
+.booking-section,
+.experience-section,
+.technology-faq-section,
+.clinics-detail-section,
+#mobile-menu {
+  --focus-ring: #e1c7f9;
+}
+
+a,
+button,
+summary,
+input,
+select,
+textarea {
+  transition: var(--hover-transition);
+}
+
+:where(a, button, summary, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+/* ===========================================================================
+   Text links — a rule that wipes from the left in and away to the right out.
+   =========================================================================== */
+
+.site-header__desktop-link,
+.site-header__mobile-overlay-links a,
+.footer__column a {
+  position: relative;
+}
+
+.site-header__desktop-link::after,
+.site-header__mobile-overlay-links a::after,
+.footer__column a::after {
+  position: absolute;
+  right: 0;
+  bottom: -3px;
+  left: 0;
+  height: 1px;
+  content: "";
+  background: currentColor;
+  scale: 0 1;
+  transform-origin: right center;
+  transition: scale var(--hover-duration) var(--hover-ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-header__desktop-link:hover::after,
+  .site-header__mobile-overlay-links a:hover::after,
+  .footer__column a:hover::after {
+    scale: 1 1;
+    transform-origin: left center;
+  }
+
+  /* The old opacity fades read as the link dimming rather than responding. */
+  .site-header__desktop-link:hover,
+  .site-header__mobile-overlay-links a:hover,
+  .footer__column a:hover {
+    opacity: 1;
+  }
+
+  .packs-section__link:hover {
+    color: #5b2b82;
+    opacity: 1;
+  }
+
+  /* The arrow leads the way out of the link. */
+  .packs-section__link span[aria-hidden="true"] {
+    transition: translate var(--hover-duration) var(--hover-ease);
+  }
+
+  .packs-section__link:hover span[aria-hidden="true"] {
+    translate: var(--hover-nudge-far) 0;
+  }
+}
+
+/* ===========================================================================
+   Buttons
+   =========================================================================== */
+
+/* Solid dark pill — navbar CTA, experience card, booking submit. */
+@media (hover: hover) and (pointer: fine) {
+  .navbar-scroll-btn-solid:hover,
+  .site-header__mobile-overlay-action:hover {
+    translate: 0 var(--hover-lift);
+    box-shadow: var(--hover-shadow-white);
+    opacity: 1;
+  }
+
+  .navbar--light .navbar-scroll-btn-solid:hover,
+  [data-navbar-scroll][data-scrolled] .navbar-scroll-btn-solid:hover {
+    background-color: #3a3436;
+    border-color: #3a3436;
+    box-shadow: var(--hover-shadow-light);
+  }
+
+  .navbar-scroll-btn-outline:hover {
+    translate: 0 var(--hover-lift);
+  }
+
+  .experience-card__button:hover,
+  .booking-form__submit:hover {
+    translate: 0 var(--hover-lift);
+    background-color: #3a2460;
+    box-shadow: var(--hover-shadow-purple);
+    opacity: 1;
+  }
+
+  .navbar-scroll-btn-solid:active,
+  .site-header__mobile-overlay-action:active,
+  .experience-card__button:active,
+  .booking-form__submit:active {
+    translate: 0 0;
+    box-shadow: none;
+  }
+}
+
+/* Gradient pill — the site's primary call to action. The gradient is widened
+   and parked left so hover can slide the darker half across it. */
+.about-tech-section__button,
+.technology-diagnosis__cta,
+.about-spaces__cta,
+.clinics-page .site-header__desktop-cta:nth-child(2),
+.clinics-page .site-header__mobile-booking,
+.clinics-page [data-navbar-scroll][data-scrolled] .site-header__desktop-cta.navbar-scroll-btn-solid,
+.clinics-page [data-navbar-scroll][data-scrolled] .site-header__mobile-booking.navbar-scroll-btn-outline {
+  background-image: linear-gradient(
+    90deg,
+    #8877c2 0%,
+    #5b2b82 50%,
+    #42205f 100%
+  );
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .about-tech-section__button:hover,
+  .technology-diagnosis__cta:hover,
+  .about-spaces__cta:hover,
+  .clinics-page .site-header__desktop-cta:nth-child(2):hover,
+  .clinics-page .site-header__mobile-booking:hover,
+  .clinics-page [data-navbar-scroll][data-scrolled] .site-header__desktop-cta.navbar-scroll-btn-solid:hover,
+  .clinics-page [data-navbar-scroll][data-scrolled] .site-header__mobile-booking.navbar-scroll-btn-outline:hover {
+    background-position: 100% 50%;
+    translate: 0 var(--hover-lift);
+    box-shadow: var(--hover-shadow-purple);
+    opacity: 1;
+  }
+
+  /* This pill brings its own layered gradient and inset highlight, so it lifts
+     and deepens rather than joining the sweep — overwriting its background
+     would cost it the highlight. */
+  a.about-spaces-mobile-grid-section__pill:hover {
+    translate: 0 var(--hover-lift);
+    border-color: rgb(225 199 249 / 0.6);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.32),
+      0 16px 34px rgb(91 43 130 / 0.42);
+  }
+
+  .about-tech-section__button:active,
+  .technology-diagnosis__cta:active,
+  .about-spaces__cta:active {
+    translate: 0 0;
+    box-shadow: none;
+  }
+}
+
+/* Outlined pill on dark — footer actions, mobile overlay. */
+@media (hover: hover) and (pointer: fine) {
+  .footer__actions a:hover {
+    translate: 0 var(--hover-lift);
+    border-color: #fff;
+    background-color: rgb(255 255 255 / 0.22);
+    box-shadow: var(--hover-shadow-white);
+  }
+
+  .footer__actions a:first-child:hover {
+    background-color: rgb(255 255 255 / 0.16);
+  }
+
+  .footer__actions a:active {
+    translate: 0 0;
+    box-shadow: none;
+  }
+}
+
+/* ===========================================================================
+   Icon buttons — carousel arrows, social links, navbar utilities
+   =========================================================================== */
+
+@media (hover: hover) and (pointer: fine) {
+  .clinics-section__desktop-nav:hover,
+  .clinics-section__mobile-nav:hover,
+  .experience-carousel__nav-button:hover,
+  .about-spaces-carousel__nav:hover,
+  .about-professionals-section__nav-button:hover,
+  .technology-equipment__nav-button:hover,
+  .clinics-detail__nav-button:hover {
+    scale: var(--hover-scale-icon);
+    box-shadow: var(--hover-shadow-purple);
+    opacity: 1;
+  }
+
+  .about-spaces-carousel__nav:hover,
+  .technology-equipment__nav-button:hover {
+    border-color: #8877c2;
+    background-color: rgb(136 119 194 / 0.14);
+  }
+
+  .clinics-section__desktop-nav:active,
+  .clinics-section__mobile-nav:active,
+  .experience-carousel__nav-button:active,
+  .about-spaces-carousel__nav:active,
+  .about-professionals-section__nav-button:active,
+  .technology-equipment__nav-button:active,
+  .clinics-detail__nav-button:active {
+    scale: var(--hover-scale-press);
+    box-shadow: none;
+  }
+
+  /* The arrow itself leans the way it will travel. */
+  [data-carousel-prev] svg,
+  [data-carousel-next] svg,
+  [data-clinic-prev] svg,
+  [data-clinic-next] svg {
+    transition: translate var(--hover-duration) var(--hover-ease);
+  }
+
+  [data-carousel-prev]:hover svg,
+  [data-clinic-prev]:hover svg {
+    translate: calc(-1 * var(--hover-nudge)) 0;
+  }
+
+  [data-carousel-next]:hover svg,
+  [data-clinic-next]:hover svg {
+    translate: var(--hover-nudge) 0;
+  }
+
+  /* Circular social / utility icons. */
+  .site-header__mobile-overlay-social:hover,
+  .footer__social a:hover {
+    scale: var(--hover-scale-icon);
+    border-color: #fff;
+    background-color: rgb(255 255 255 / 0.16);
+  }
+
+  .site-header__language:hover,
+  .site-header__account:hover,
+  .site-header__mobile-overlay-language:hover {
+    scale: var(--hover-scale-icon);
+    opacity: 1;
+  }
+
+  .site-header__mobile-phone:hover,
+  .site-header__mobile-menu:hover {
+    scale: var(--hover-scale-icon);
+  }
+
+  .site-header__logo img,
+  .site-header__mobile-overlay-logo img {
+    transition: scale var(--hover-duration) var(--hover-ease);
+  }
+
+  .site-header__logo:hover img,
+  .site-header__mobile-overlay-logo:hover img {
+    scale: var(--hover-scale-pill);
+  }
+}
+
+/* The language chevron flips down a touch on hover. */
+@media (hover: hover) and (pointer: fine) {
+  .site-header__language img,
+  .site-header__mobile-overlay-language img {
+    transition: translate var(--hover-duration) var(--hover-ease);
+  }
+
+  .site-header__language:hover img,
+  .site-header__mobile-overlay-language:hover img {
+    translate: 0 var(--hover-nudge);
+  }
+}
+
+/* ===========================================================================
+   Cards — lift the card, let the photograph breathe underneath it
+   =========================================================================== */
+
+.about-spaces-mobile-grid-section__card,
+.technology-equipment__mobile-card {
+  transition: var(--hover-transition);
+}
+
+.about-spaces-mobile-grid-section__card img,
+.technology-equipment__mobile-card img,
+.experience-card__media img,
+.laserderme-factor__image {
+  transition: scale var(--hover-duration-slow) var(--hover-ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .about-spaces-mobile-grid-section__card:hover {
+    translate: 0 var(--hover-lift-card);
+    box-shadow: 0 26px 56px rgb(0 0 0 / 0.42);
+  }
+
+  .about-spaces-mobile-grid-section__card:hover img,
+  .technology-equipment__mobile-card:hover img,
+  .laserderme-factor:hover .laserderme-factor__image {
+    scale: var(--hover-scale-media);
+  }
+
+  .about-spaces-mobile-grid-section__card:hover p {
+    background-color: rgb(255 255 255 / 0.86);
+  }
+
+  .technology-equipment__mobile-card:hover {
+    box-shadow: var(--hover-shadow-light);
+  }
+
+  /* An experience card is a sticky panel that fills the viewport, so hovering
+     the card itself is near-permanent and would read as an always-on effect.
+     The photograph is the one part you can deliberately point at. */
+  .experience-card__media:hover img {
+    scale: var(--hover-scale-pill);
+  }
+}
+
+/* Icon columns. These aren't links, so the feedback stays on the icon — a lift
+   or a colour shift would read as an invitation to click something that isn't
+   there. */
+.about-tech-section__item img {
+  transition: scale var(--hover-duration) var(--hover-ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .about-tech-section__item:hover img {
+    scale: var(--hover-scale-icon);
+  }
+}
+
+/* The clinic hero accordion expands the tile under the pointer from its own
+   script, and the tiles are scroll-reveal targets whose `filter: blur(0)`
+   outranks a plain class hover — so nothing is added here. The expansion is
+   the feedback. */
+
+/* ===========================================================================
+   Packs marquee — pause under the pointer so a price can actually be read
+   =========================================================================== */
+
+.packs-pill,
+.packs-image-pill {
+  transition: var(--hover-transition);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .packs-marquee:hover .packs-marquee__track {
+    animation-play-state: paused;
+  }
+
+  .packs-pill:hover {
+    scale: var(--hover-scale-pill);
+    box-shadow:
+      inset 0 0 0 1px #5b2b82,
+      var(--hover-shadow-purple);
+  }
+
+  .packs-image-pill:hover {
+    scale: var(--hover-scale-pill);
+    box-shadow: var(--hover-shadow-light);
+  }
+}
+
+/* ===========================================================================
+   Lists and table rows
+   =========================================================================== */
+
+.clinics-section__item,
+.pricing-table__row {
+  transition: var(--hover-transition);
+}
+
+.clinics-section__city,
+.clinics-section__address,
+.clinics-section__mobile-chevron {
+  transition: var(--hover-transition);
+}
+
+/* The home clinic rows are styled from `#clinics-teaser`, so these carry the
+   same id — a plain class hover would lose to it and quietly do nothing. The
+   list runs dark type on white above 992px and white type on near-black below,
+   so the accent colour flips with it. */
+/* Phone / Email / Map. Above 992px they are plain grey text, below it they are
+   outlined pills on the dark panel — two different shapes, two answers. */
+@media (min-width: 992px) {
+  #clinics-teaser .clinics-section__actions a {
+    position: relative;
+  }
+
+  #clinics-teaser .clinics-section__actions a::after {
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    left: 0;
+    height: 1px;
+    content: "";
+    background: currentColor;
+    scale: 0 1;
+    transform-origin: right center;
+    transition: scale var(--hover-duration) var(--hover-ease);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 992px) {
+  #clinics-teaser .clinics-section__actions a:hover {
+    color: #5b2b82;
+    opacity: 1;
+  }
+
+  #clinics-teaser .clinics-section__actions a:hover::after {
+    scale: 1 1;
+    transform-origin: left center;
+  }
+
+  #clinics-teaser .clinics-section__item:hover {
+    border-color: #5b2b82;
+  }
+
+  #clinics-teaser .clinics-section__item:hover .clinics-section__city {
+    color: #5b2b82;
+  }
+
+  #clinics-teaser .clinics-section__item:hover .clinics-section__address {
+    color: #231f20;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (max-width: 991px) {
+  #clinics-teaser .clinics-section__mobile-summary:hover .clinics-section__city,
+  #clinics-teaser .clinics-section__mobile-summary:hover .clinics-section__mobile-chevron {
+    color: #e1c7f9;
+  }
+
+  #clinics-teaser .clinics-section__mobile-summary:hover .clinics-section__mobile-chevron {
+    scale: var(--hover-scale-icon);
+  }
+
+  #clinics-teaser .clinics-section__actions a:hover {
+    border-color: rgb(225 199 249 / 0.75);
+    background-color: rgb(225 199 249 / 0.12);
+    color: #e1c7f9;
+    opacity: 1;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pricing-table__row:hover {
+    border-color: #8877c2;
+    color: #5b2b82;
+  }
+
+  /* Segmented pill, so the cell fills rather than gaining a rule of its own. */
+  .clinics-detail__mobile-nav a:hover {
+    background-color: rgb(255 255 255 / 0.16);
+  }
+}
+
+/* ===========================================================================
+   Disclosure — FAQ accordion and the mobile clinic list
+   =========================================================================== */
+
+[data-faq-toggle] [data-faq-icon],
+[data-faq-chevron],
+.clinics-section__mobile-chevron {
+  transition: var(--hover-transition);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  [data-faq-toggle]:hover .tech-faq-question-static {
+    color: #e1c7f9;
+  }
+
+  [data-faq-toggle]:hover [data-faq-icon] {
+    border-color: #e1c7f9;
+    background-color: rgb(225 199 249 / 0.16);
+    scale: var(--hover-scale-icon);
+    opacity: 1;
+  }
+
+}
+
+/* ===========================================================================
+   Pricing gender toggle
+   =========================================================================== */
+
+@media (hover: hover) and (pointer: fine) {
+  /* Only the unselected half responds — the selected one is already the
+     gradient and has nowhere to go. */
+  .pricing-gender-toggle:not([aria-pressed="true"]):hover {
+    background-color: rgb(136 119 194 / 0.12);
+    color: #5b2b82;
+  }
+}
+
+/* ===========================================================================
+   Booking form
+   =========================================================================== */
+
+.booking-form__control {
+  transition:
+    border-color var(--hover-duration) var(--hover-ease),
+    box-shadow var(--hover-duration) var(--hover-ease),
+    background-color var(--hover-duration) var(--hover-ease);
+}
+
+.booking-form__control:focus {
+  box-shadow: 0 0 0 3px rgb(91 43 130 / 0.12);
+}
+
+.booking-form__checkbox,
+.booking-form__terms span {
+  transition: var(--hover-transition);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .booking-form__control:hover:not(:focus) {
+    border-color: #8877c2;
+  }
+
+  .booking-form__select:hover:not(:focus) {
+    background-color: #fcfbfe;
+  }
+
+  .booking-form__terms:hover span {
+    color: #545462;
+  }
+
+  .booking-form__terms:hover .booking-form__checkbox {
+    border-color: #5b2b82;
+  }
+}
+
+/* ===========================================================================
+   Reduced motion — the tokens at the top of this file are already flattened to
+   zero, so colour and shadow still respond while nothing moves. Only the
+   underline wipe needs saying, since it animates a scale of its own.
+   =========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header__desktop-link::after,
+  .site-header__mobile-overlay-links a::after,
+  .footer__column a::after,
+  .clinics-section__actions a::after {
+    transition: none;
+  }
+}

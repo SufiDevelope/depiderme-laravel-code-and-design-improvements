@@ -143,14 +143,18 @@
 
 /* Global scroll reveal — triggered per section when it enters view */
 @media (prefers-reduced-motion: no-preference) {
+  /* The entrance delay is inlined per property rather than set with
+     `transition-delay`, so the hover transition appended from interactions.css
+     stays instant — a staggered element would otherwise wait up to 560ms
+     before answering a pointer. */
   .scroll-reveal-section .scroll-reveal:not(.is-visible) {
     opacity: 0;
     filter: blur(var(--scroll-reveal-blur, 5px));
     transition:
-      opacity var(--scroll-reveal-duration, 0.88s) cubic-bezier(0.22, 1, 0.36, 1),
-      transform var(--scroll-reveal-duration, 0.88s) cubic-bezier(0.22, 1, 0.36, 1),
-      filter var(--scroll-reveal-duration, 0.88s) cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: var(--scroll-reveal-delay, 0ms);
+      opacity var(--scroll-reveal-duration, 0.88s) cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-delay, 0ms),
+      transform var(--scroll-reveal-duration, 0.88s) cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-delay, 0ms),
+      filter var(--scroll-reveal-duration, 0.88s) cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-delay, 0ms),
+      var(--hover-transition);
     will-change: opacity, transform, filter;
   }
 
@@ -160,10 +164,10 @@
     filter: blur(0);
     transform: none;
     transition:
-      opacity var(--scroll-reveal-duration, 0.88s) cubic-bezier(0.22, 1, 0.36, 1),
-      transform var(--scroll-reveal-duration, 0.88s) cubic-bezier(0.22, 1, 0.36, 1),
-      filter var(--scroll-reveal-duration, 0.88s) cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: var(--scroll-reveal-delay, 0ms);
+      opacity var(--scroll-reveal-duration, 0.88s) cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-delay, 0ms),
+      transform var(--scroll-reveal-duration, 0.88s) cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-delay, 0ms),
+      filter var(--scroll-reveal-duration, 0.88s) cubic-bezier(0.22, 1, 0.36, 1) var(--scroll-reveal-delay, 0ms),
+      var(--hover-transition);
     will-change: auto;
   }
 

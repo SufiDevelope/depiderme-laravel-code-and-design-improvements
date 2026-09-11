@@ -94,10 +94,6 @@
   stroke: #e1c7f9;
 }
 
-.about-spaces-carousel__nav:hover {
-  opacity: 0.78;
-}
-
 @media (min-width: 640px) {
   .about-spaces-carousel {
     --about-spaces-visible-cards: 2;

@@ -11,7 +11,7 @@
         ->values()
         ->all();
 
-    $navBtnClass = 'technology-equipment__nav-button flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-[#5B2B82] bg-transparent text-[#5B2B82] transition-opacity hover:opacity-80';
+    $navBtnClass = 'technology-equipment__nav-button flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-[#5B2B82] bg-transparent text-[#5B2B82]';
 @endphp
 
 <section class="technology-equipment-section bg-white py-16 lg:py-24" aria-label="Tecnologia">
