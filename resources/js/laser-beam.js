@@ -58,12 +58,18 @@ export function initLaserBeamLoop() {
   });
 }
 
-function setScrollBeamProgress(beam, progress, linear = false) {
+function setScrollBeamProgress(
+  beam,
+  progress,
+  linear = false,
+  minScale = 0,
+  minOpacity = 0.18,
+) {
   const animatedProgress = linear
     ? progress
     : progress * progress * (3 - 2 * progress);
-  const scale = 0.04 + animatedProgress * 0.96;
-  const opacity = 0.18 + animatedProgress * 0.82;
+  const scale = minScale + animatedProgress * (1 - minScale);
+  const opacity = minOpacity + animatedProgress * (1 - minOpacity);
   const flareScale = 0.45 + scale * 0.55;
   const sweepOpacity = clamp(animatedProgress * 1.2, 0, 1);
   const sweepScale = 0.35 + animatedProgress * 0.65;
@@ -121,6 +127,16 @@ export function initScrollLaserBeams() {
       itemSelector: beam.dataset.scrollLaserItems,
       scrollMode: beam.dataset.scrollLaserMode,
       speed: Number.parseFloat(beam.dataset.scrollLaserSpeed) || 1,
+      minScale: clamp(
+        Number.parseFloat(beam.dataset.scrollLaserMinScale) || 0,
+        0,
+        1,
+      ),
+      minOpacity: clamp(
+        Number.parseFloat(beam.dataset.scrollLaserMinOpacity) || 0.18,
+        0,
+        1,
+      ),
     }))
     .filter(({ section }) => section);
 
@@ -129,7 +145,16 @@ export function initScrollLaserBeams() {
     const startLine = viewportHeight * 0.88;
     const endLine = viewportHeight * 0.28;
 
-    beamSections.forEach(({ beam, section, itemSelector, scrollMode, speed }) => {
+    beamSections.forEach(
+      ({
+        beam,
+        section,
+        itemSelector,
+        scrollMode,
+        speed,
+        minScale,
+        minOpacity,
+      }) => {
       if (itemSelector) {
         const items = [...section.querySelectorAll(itemSelector)];
 
@@ -150,7 +175,13 @@ export function initScrollLaserBeams() {
                 return total + itemProgress;
               }, 0) / items.length;
 
-            setScrollBeamProgress(beam, clamp(progress * speed, 0, 1), true);
+            setScrollBeamProgress(
+              beam,
+              clamp(progress * speed, 0, 1),
+              true,
+              minScale,
+              minOpacity,
+            );
             return;
           }
 
@@ -208,7 +239,8 @@ export function initScrollLaserBeams() {
       );
 
       setScrollBeamProgress(beam, clamp(progress * speed, 0, 1));
-    });
+      },
+    );
   };
 
   registerScrollTask(update);

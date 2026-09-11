@@ -17,7 +17,7 @@
     aria-label="Experiência Depiderme"
 >
     <div class="experience-section__inner {{ $sectionPadding }} pb-12 pt-12 sm:pb-16 sm:pt-16 lg:pb-28 lg:pt-[88px]">
-        <h2 class="experience-section__title">
+        <h2 class="experience-section__title title-text">
             {{ content('home', 'experience.title') }}
         </h2>
 
@@ -25,6 +25,8 @@
             class="scroll-laser-beam--experience"
             data-scroll-laser-items=".experience-card"
             data-scroll-laser-mode="cumulative-items"
+            data-scroll-laser-min-scale="0.85"
+            data-scroll-laser-min-opacity="0.9"
         />
 
         <div class="experience-carousel__shell relative mt-10 sm:mt-12 lg:mt-16">

@@ -863,23 +863,27 @@
 
   .experience-section__title {
     position: absolute;
-    top: 5.143191117cqw; /* 88 / 1711 */
+    top: 5.7cqw;
     left: 50%;
-    width: 22.209234366cqw; /* 380 / 1711 */
+    width: clamp(380px, 25cqw, 430px);
     max-width: none;
     margin: 0;
     color: #ffffff;
-    font-size: clamp(21px, 1.753360608cqw, 34px); /* 30 / 1711 */
+    font-size: clamp(34px, 1.753360608cqw, 34px);
     font-weight: 500;
-    line-height: clamp(23.1px, 1.928696668cqw, 37.4px); /* 33 / 1711 */
+    line-height: 1.1;
     letter-spacing: 0;
     text-align: center;
-    transform: translateX(-50%);
+    transform: translateX(-50%) !important;
   }
+/* 
+  .title-text {
+    top: 4.4cqw;
+  } */
 
   .experience-carousel__shell {
     width: 69.374634717cqw; /* 1187 / 1711 */
-    margin: 13.559322034cqw auto 0; /* 232 / 1711 */
+    margin: 14cqw auto 0;
   }
 
   .experience-section__cards {
@@ -940,7 +944,7 @@
   }
 
   .experience-card__copy p {
-    font-size: clamp(9px, 0.701344243cqw, 13px); /* 12 / 1711 */
+    font-size: clamp(12px, 0.935125657cqw, 16px);
     font-weight: 400;
     line-height: 130%;
     letter-spacing: 0;
@@ -949,11 +953,11 @@
 
   .experience-card__button {
     min-width: 0;
-    height: 1.870251315cqw; /* 32 / 1711 */
+    height: 2.337814144cqw;
     margin-top: 1.402688486cqw; /* 24 / 1711 */
     padding: 0 1.168907072cqw; /* 20 / 1711 */
     border-radius: 999px;
-    font-size: clamp(8px, 0.584453536cqw, 11px); /* 10 / 1711 */
+    font-size: clamp(10px, 0.81823495cqw, 14px);
     line-height: 1;
   }
 
@@ -979,13 +983,27 @@
 
   .scroll-laser-beam--experience {
     position: absolute;
-    top: 50.438340152cqw; /* 863 / 1711 */
+    top: 53.2cqw;
     right: 0;
     left: 0;
     z-index: 5;
-    height: 1px;
+    /* height: 1px; */
     margin: 0;
     overflow: visible;
+  }
+
+  .scroll-laser-beam--experience .scroll-laser-beam__aura {
+    inset: 0 -4%;
+    filter: blur(8px);
+    opacity: 0.82;
+  }
+
+  .scroll-laser-beam--experience .scroll-laser-beam__line {
+    height: 2px;
+    box-shadow:
+      0 0 6px rgba(136, 119, 194, 0.9),
+      0 0 18px rgba(180, 111, 235, 0.64),
+      0 0 32px rgba(225, 199, 249, 0.38);
   }
 }
 
