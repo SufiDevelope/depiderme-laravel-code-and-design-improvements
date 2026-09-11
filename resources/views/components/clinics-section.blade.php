@@ -21,6 +21,7 @@
     <div
         class="clinics-section__panel relative overflow-hidden bg-[#02000d] lg:-mt-[235px] lg:rounded-tl-[120px] lg:bg-white"
         data-scroll-gradient
+        data-live-gradient-disabled
         data-live-gradient-intensity="strong"
     >
         <div class="clinics-section__glow" aria-hidden="true">

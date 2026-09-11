@@ -1416,14 +1416,7 @@
     overflow: hidden;
     border-top-left-radius: calc(var(--clinics-frame-width) * 120 / 1711);
     container-type: inline-size;
-    background:
-      radial-gradient(
-        ellipse 38.5% 30% at 0 0,
-        rgb(225 199 249 / 0.76) 0%,
-        rgb(225 199 249 / 0.36) 37%,
-        rgb(255 255 255 / 0) 72%
-      ),
-      #ffffff;
+    background: radial-gradient(97% 50% at 0 0, #e1c7f9 0%, #e1c7f975 70%, #fff0 100%), #fff;
   }
 
   #clinics-teaser .clinics-section__glow,
@@ -1454,8 +1447,8 @@
   #clinics-teaser .clinics-section__media {
     position: absolute;
     top: 7.948568089cqw; /* 136 / 1711 */
-    left: 8.29924021cqw; /* 142 / 1711 */
-    width: 35.885447107cqw; /* 614 / 1711 */
+    left: 8.6cqw;
+    width: 35.4cqw;
     height: 47.925189947cqw; /* 820 / 1711 */
     min-height: 0;
     margin: 0;
@@ -1501,15 +1494,15 @@
   #clinics-teaser .clinics-section__content {
     position: absolute;
     top: 13.50087668cqw; /* 231 / 1711 */
-    left: 47.866744594cqw; /* 819 / 1711 */
-    width: 40.97019287cqw; /* 701 / 1711 */
+    left: 47.6cqw;
+    width: 40.5cqw;
     max-width: none;
     margin: 0;
     padding: 0;
   }
 
   #clinics-teaser .clinics-section__title {
-    width: 39.859731151cqw; /* 682 / 1711 */
+    width: 39.4cqw;
     height: 2.27936879cqw; /* 39 / 1711 */
     margin: 0;
     overflow: hidden;
@@ -1521,21 +1514,21 @@
   }
 
   #clinics-teaser .clinics-section__divider {
-    width: 40.97019287cqw; /* 701 / 1711 */
+    width: 40.5cqw;
     height: 0;
     margin: 1.285797779cqw 0 0; /* line at Y292 */
     border-top: 1px solid #9a9a9a;
   }
 
   #clinics-teaser .clinics-section__list {
-    width: 40.97019287cqw; /* 701 / 1711 */
+    width: 40.5cqw;
     margin: 0;
     padding: 0;
   }
 
   #clinics-teaser .clinics-section__item {
     display: block;
-    width: 40.97019287cqw; /* 701 / 1711 */
+    width: 40.5cqw;
     height: 6.604325073cqw; /* 113 / 1711 */
     padding: 1.344243132cqw 0 0; /* 23 / 1711 */
     border-bottom: 1px solid #9a9a9a;

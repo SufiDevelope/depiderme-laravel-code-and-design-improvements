@@ -59,6 +59,10 @@ function getIntensityScale(element) {
 }
 
 function createState(element, index) {
+  if (element.hasAttribute("data-live-gradient-disabled")) {
+    return null;
+  }
+
   const style = getComputedStyle(element);
   const mode = getGradientMode(element, style);
 
