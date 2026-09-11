@@ -187,6 +187,7 @@ export function initSectionReveal() {
   }
 
   const observers = new Map();
+  const observedTargets = new Map();
   const getObserver = (section) => {
     const options = revealOptions(section);
     const key = `${options.threshold}|${options.rootMargin}`;
@@ -211,6 +212,29 @@ export function initSectionReveal() {
   activeSections.forEach(({ section, targets }) => {
     const observer = getObserver(section);
 
-    targets.forEach(({ element }) => observer.observe(element));
+    targets.forEach(({ element }) => {
+      observer.observe(element);
+      observedTargets.set(element, observer);
+    });
+  });
+
+  // Reveal content already visible after a reload, including pages restored at
+  // a previous scroll position. Other sections remain scroll-triggered.
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const viewportHeight = window.innerHeight;
+
+      observedTargets.forEach((observer, element) => {
+        const rect = element.getBoundingClientRect();
+        const isInViewport = rect.bottom > 0 && rect.top < viewportHeight;
+
+        if (!isInViewport) {
+          return;
+        }
+
+        element.classList.add(VISIBLE_CLASS);
+        observer.unobserve(element);
+      });
+    });
   });
 }

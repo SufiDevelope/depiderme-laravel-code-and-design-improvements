@@ -267,9 +267,29 @@ textarea {
   .about-professionals-section__nav-button:hover,
   .technology-equipment__nav-button:hover,
   .clinics-detail__nav-button:hover {
-    scale: var(--hover-scale-icon);
     box-shadow: var(--hover-shadow-purple);
     opacity: 1;
+  }
+
+  .experience-carousel__nav-button:hover,
+  .about-spaces-carousel__nav:hover,
+  .about-professionals-section__nav-button:hover,
+  .technology-equipment__nav-button:hover,
+  .clinics-detail__nav-button:hover {
+    scale: var(--hover-scale-icon);
+  }
+
+  .clinics-section__desktop-nav,
+  .clinics-section__mobile-nav {
+    transition:
+      background 0.3s var(--hover-ease),
+      box-shadow 0.3s var(--hover-ease),
+      color 0.3s var(--hover-ease);
+  }
+
+  .clinics-section__desktop-nav:hover,
+  .clinics-section__mobile-nav:hover {
+    background: #6f45a0;
   }
 
   .about-spaces-carousel__nav:hover,
@@ -285,8 +305,15 @@ textarea {
   .about-professionals-section__nav-button:active,
   .technology-equipment__nav-button:active,
   .clinics-detail__nav-button:active {
-    scale: var(--hover-scale-press);
     box-shadow: none;
+  }
+
+  .experience-carousel__nav-button:active,
+  .about-spaces-carousel__nav:active,
+  .about-professionals-section__nav-button:active,
+  .technology-equipment__nav-button:active,
+  .clinics-detail__nav-button:active {
+    scale: var(--hover-scale-press);
   }
 
   /* The arrow itself leans the way it will travel. */

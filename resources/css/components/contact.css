@@ -45,27 +45,6 @@
   }
 }
 
-/* The supplied end artwork is already a complete static composition. */
-.end-section {
-  width: 100% !important;
-  height: auto !important;
-  min-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: hidden !important;
-  background: #ffffff !important;
-}
-
-.end-section__image {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-width: none;
-  object-fit: contain;
-  object-position: center top;
-  transform: none !important;
-}
-
 .end-section + .footer-shell {
   margin-top: 0 !important;
   padding-top: 0 !important;
@@ -209,8 +188,8 @@
   :is(.end-section--home, .end-section--technology, .end-section--about) {
     --end-section-frame-width: var(--design-frame-width);
     --end-section-figma-top: calc(var(--end-section-frame-width) * 160 / 1711);
-    --end-section-footer-gap: clamp(120px, 10.169491525cqw, 210px); /* 174 / 1711 */
-    --end-section-scroll-runway: clamp(700px, 80svh, 1100px);
+    --end-section-footer-gap: 0px;
+    --end-section-scroll-runway: clamp(140px, 18svh, 220px);
     position: relative;
     width: var(--end-section-frame-width);
     max-width: var(--design-frame-max);
