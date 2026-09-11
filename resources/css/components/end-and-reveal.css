@@ -1,12 +1,9 @@
 .end-section {
   background-color: #ffffff;
-  background-image: repeating-linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.045) 0,
-    rgba(0, 0, 0, 0.045) 1px,
-    transparent 1px,
-    transparent 11px
-  );
+  background-image: url("/images/image-end.jpeg");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
   padding-top: 32px;
   padding-bottom: 32px;
 }
@@ -15,13 +12,8 @@
   margin-top: -1px;
   padding-top: 1px;
   background-color: #ffffff;
-  background-image: repeating-linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.045) 0,
-    rgba(0, 0, 0, 0.045) 1px,
-    transparent 1px,
-    transparent 11px
-  );
+  background: #ffffff;
+  background-image: none;
 }
 
 .end-section + .footer-shell .site-footer {

@@ -45,6 +45,34 @@
   }
 }
 
+/* The supplied end artwork is already a complete static composition. */
+.end-section {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+}
+
+.end-section__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+  object-position: center top;
+  transform: none !important;
+}
+
+.end-section + .footer-shell {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  background: #ffffff;
+  background-image: none;
+}
+
 @media (max-width: 991px) {
   .end-section + .footer-shell {
     margin-top: 0;
@@ -196,13 +224,10 @@
     overflow: clip;
     container-type: inline-size;
     background-color: #ffffff;
-    background-image: repeating-linear-gradient(
-      90deg,
-      rgba(0, 0, 0, 0.045) 0,
-      rgba(0, 0, 0, 0.045) 1px,
-      transparent 1px,
-      transparent 11px
-    );
+    background-image: url("/images/image-end.jpeg");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   :is(.end-section--home, .end-section--technology, .end-section--about)
