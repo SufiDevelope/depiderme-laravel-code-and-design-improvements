@@ -10,8 +10,6 @@
 @endphp
 
 <section class="about-tech-section relative z-20 bg-white pt-5 pb-[200px]" data-scroll-laser-section aria-label="Tecnologia e equipamentos">
-    <x-scroll-laser-beam class="scroll-laser-beam--about-tech-mobile lg:hidden" data-scroll-laser-speed="1.65" />
-
     <div class="{{ $sectionPadding }}">
         <h2 class="about-tech-section__title max-w-[628px] font-sans text-[40px] font-medium leading-[110%] tracking-[-0.02em] text-[#231f20] sm:text-[48px] lg:text-[60px]">
             {!! nl_to_br($title) !!}
@@ -51,5 +49,13 @@
                 </article>
             @endforeach
         </div>
+
+        <x-scroll-laser-beam
+            class="scroll-laser-beam--about-tech-mobile lg:hidden"
+            data-scroll-laser-mode="section"
+            data-scroll-laser-speed="1.65"
+            data-scroll-laser-min-scale="0.85"
+            data-scroll-laser-min-opacity="0.9"
+        />
     </div>
 </section>

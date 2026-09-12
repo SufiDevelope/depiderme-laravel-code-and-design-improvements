@@ -53,7 +53,7 @@
             <x-scroll-laser-beam
                 class="scroll-laser-beam--technology-gallery"
                 data-scroll-laser-mode="section"
-                data-scroll-laser-speed="8.5"
+                data-scroll-laser-speed="1.65"
             />
         </div>
     </div>

@@ -25,6 +25,7 @@
             class="scroll-laser-beam--experience"
             data-scroll-laser-items=".experience-card"
             data-scroll-laser-mode="cumulative-items"
+            data-scroll-laser-speed="1.65"
             data-scroll-laser-min-scale="0.85"
             data-scroll-laser-min-opacity="0.9"
         />

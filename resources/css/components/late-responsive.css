@@ -431,11 +431,13 @@
   .about-hero-copy {
     order: 2;
     padding: 51px 20px 0;
+    text-align: center;
   }
 
   .about-hero-copy__inner {
     width: min(364px, 100%);
     max-width: 364px;
+    margin-inline: auto;
     gap: 18px;
   }
 
@@ -455,6 +457,7 @@
   .about-hero-copy p {
     width: min(349px, 100%);
     max-width: 349px;
+    margin-inline: auto;
     font-size: 16px;
     font-weight: 400;
     line-height: 130%;
@@ -464,11 +467,14 @@
   .about-hero-copy ul {
     width: min(349px, 100%);
     max-width: 349px;
+    margin-inline: auto;
     gap: 16px;
   }
 
   .about-hero-copy li {
+    justify-content: center;
     gap: 10px;
+    text-align: left;
   }
 
   .about-hero-copy li img {
@@ -555,20 +561,24 @@
   }
 
   .scroll-laser-beam--about-tech-mobile {
-    position: absolute;
-    top: -16px;
-    right: 0;
+    --scroll-laser-scale: 0.85;
+    --scroll-laser-opacity: 0.9;
+    --scroll-laser-end: 85%;
+    position: relative;
+    top: auto;
+    right: auto;
     bottom: auto;
-    left: 0;
+    left: auto;
     z-index: 1;
+    width: 100%;
     height: 74px;
-    margin-top: 0;
+    margin: 24px auto 0;
     overflow: visible;
     contain: none;
   }
 
   .scroll-laser-beam--about-tech-mobile .scroll-laser-beam__fill {
-    top: 34px;
+    top: 50%;
     right: 0;
     bottom: auto;
     left: 0;
@@ -610,15 +620,18 @@
     position: relative;
     z-index: 2;
     padding-inline: 20px;
+    text-align: center;
   }
 
   .about-tech-section__title {
+    width: min(100%, 620px);
+    margin-inline: auto;
     font-size: 30px;
     line-height: 33px;
   }
 
   .about-tech-section__button {
-    width: 100%;
+    width: min(349px, 100%);
     height: 48px;
     margin-top: 18px;
     padding-inline: 20px;
@@ -632,6 +645,7 @@
   .about-tech-section__item-title {
     width: min(268px, 100%);
     max-width: 268px;
+    margin-inline: auto;
     font-family: var(--font-sans);
     font-size: 30px;
     font-weight: 500;
@@ -642,12 +656,23 @@
   .about-tech-section__item p {
     width: min(348px, 100%);
     max-width: 348px;
+    margin-inline: auto;
     font-family: var(--font-body);
     font-size: 16px;
     font-weight: 400;
     line-height: 130%;
     letter-spacing: -0.02em;
     color: #545462;
+  }
+
+  .about-tech-section__item {
+    align-items: center;
+    width: 100%;
+    text-align: center;
+  }
+
+  .about-tech-section__item img {
+    margin-inline: auto;
   }
 
   .booking-section__inner {
@@ -2835,24 +2860,23 @@
     text-decoration: none;
   }
 
-  .about-spaces-mobile-grid-section--about .about-spaces-mobile-grid-section__grid {
-    position: relative;
+  .about-spaces-mobile-grid-section--about .about-spaces-mobile-grid-section__slider {
     width: min(349px, calc(100vw - 28px));
     max-width: 349px;
     margin: 28px auto 0;
-    gap: 14px;
+    gap: 16px;
+    scroll-padding-left: 0;
   }
 
-  .about-spaces-mobile-grid-section--about .about-spaces-mobile-grid-section__card {
-    width: 165px;
-    max-width: 100%;
+  .about-spaces-mobile-grid-section--about .about-spaces-mobile-grid-section__slide {
+    width: min(268px, 76vw);
+    max-width: 268px;
     height: 231px;
-    aspect-ratio: auto;
     border-radius: 5px;
     box-shadow: none;
   }
 
-  .about-spaces-mobile-grid-section--about .about-spaces-mobile-grid-section__card p {
+  .about-spaces-mobile-grid-section--about .about-spaces-mobile-grid-section__slide p {
     bottom: 12px;
     min-width: 55px;
     min-height: 28px;
@@ -2869,20 +2893,45 @@
     backdrop-filter: blur(8px);
   }
 
-  .about-spaces-mobile-grid-section--about .scroll-laser-beam--spaces-mobile-grid {
-    top: 820px;
+  .about-spaces-mobile-grid-section--about .about-spaces-mobile-grid-section__slider-nav {
+    width: min(349px, calc(100vw - 28px));
+    max-width: 349px;
+    margin-inline: auto;
+    justify-content: center;
+  }
+
+  .about-spaces-mobile-grid-section--about .about-spaces-mobile-grid-section__slider-nav .about-spaces-carousel-progress {
+    width: min(180px, 42vw);
+  }
+
+  .about-spaces-mobile-grid-section--about .scroll-laser-beam--spaces-mobile-about {
+    --scroll-laser-scale: 0.85;
+    --scroll-laser-opacity: 0.9;
+    --scroll-laser-end: 85%;
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    z-index: 1;
+    width: min(349px, calc(100vw - 28px));
+    max-width: 349px;
+    height: 74px;
+    margin: 24px auto 0;
+    overflow: visible;
+    contain: none;
+  }
+
+  .about-spaces-mobile-grid-section--about .scroll-laser-beam--spaces-mobile-about .scroll-laser-beam__fill {
+    top: 50%;
     right: 0;
     bottom: auto;
     left: 0;
-    z-index: 1;
-    height: 74px;
-  }
-
-  .about-spaces-mobile-grid-section--about .scroll-laser-beam--spaces-mobile-grid .scroll-laser-beam__fill {
     height: 82px;
+    transform: translateY(-50%) scaleX(var(--scroll-laser-scale));
   }
 
-  .about-spaces-mobile-grid-section--about .scroll-laser-beam--spaces-mobile-grid .scroll-laser-beam__flare {
+  .about-spaces-mobile-grid-section--about .scroll-laser-beam--spaces-mobile-about .scroll-laser-beam__flare {
     width: 74px;
   }
 
@@ -2975,7 +3024,7 @@
   .about-professionals-section__nav button {
     width: 42px;
     height: 42px;
-    border: 0;
+    border: 1px solid #000000;
     background: linear-gradient(180deg, #5b2b82 0%, #8a72af 100%);
     box-shadow: 0 8px 18px rgba(91, 43, 130, 0.28);
     color: #ffffff;
@@ -3482,7 +3531,7 @@
 
   .about-spaces-inner {
     padding-right: 0;
-    padding-bottom: 96px;
+    /* padding-bottom: 96px; */
     padding-left: 120px;
   }
 

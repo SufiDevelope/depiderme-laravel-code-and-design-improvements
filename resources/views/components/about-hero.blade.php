@@ -3,7 +3,7 @@
 
     $cardClass = 'flex items-center rounded-[20px] bg-white shadow-[0_20px_60px_rgba(39,24,65,0.12)] will-change-transform motion-reduce:animate-none';
     $cardMobileClass = $cardClass . ' absolute bottom-5 left-4 z-20 max-w-[calc(100%-2rem)] gap-4 p-4 animate-about-hero-card-float sm:bottom-6 sm:left-6 sm:gap-5 sm:p-5 lg:hidden';
-    $cardDesktopClass = $cardClass . ' absolute left-1/2 top-[78%] w-[380px] max-w-[calc(100vw-2rem)] gap-5 p-5 animate-about-hero-card-float-desktop motion-reduce:-translate-x-1/2 motion-reduce:-translate-y-1/2';
+    $cardDesktopClass = $cardClass . ' absolute left-1/2 top-[78%] w-[440px] max-w-[calc(100vw-2rem)] gap-5 p-5 animate-about-hero-card-float-desktop motion-reduce:-translate-x-1/2 motion-reduce:-translate-y-1/2';
 
     $bullets = content('about', 'hero.bullets');
     $cardText = e(content('about', 'hero.card_text'));
@@ -42,6 +42,9 @@
             <x-scroll-laser-beam
                 class="scroll-laser-beam--about-hero hidden lg:block"
                 data-scroll-laser-mode="section"
+                data-scroll-laser-speed="1.65"
+                data-scroll-laser-min-scale="0.85"
+                data-scroll-laser-min-opacity="0.9"
             />
         </div>
 

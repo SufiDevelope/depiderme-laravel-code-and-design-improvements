@@ -46,7 +46,7 @@
     $curatedProfessionalParagraphs = require config_path('cms/data/about-professionals-curated-paragraphs.php');
 
     $navBtnClass = 'about-spaces-carousel__nav flex shrink-0 cursor-pointer items-center justify-center rounded-full border bg-transparent text-white';
-    $navBtnSolidClass = 'about-professionals-section__nav-button flex size-[42px] shrink-0 cursor-pointer items-center justify-center rounded-full bg-[linear-gradient(180deg,#5B2B82_0%,#8A72AF_100%)] text-white';
+    $navBtnSolidClass = 'about-professionals-section__nav-button flex size-[42px] shrink-0 cursor-pointer items-center justify-center rounded-full border border-black bg-[linear-gradient(180deg,#5B2B82_0%,#8A72AF_100%)] text-white';
 @endphp
 
 <div
@@ -84,9 +84,15 @@
                         Clínicas
                     </a>
 
-                    <div class="about-spaces-mobile-grid-section__grid mt-10 grid grid-cols-2 gap-x-5 gap-y-5">
+                    <div
+                        id="about-spaces-about-mobile-carousel"
+                        class="about-spaces-mobile-grid-section__slider mt-10 flex snap-x snap-mandatory overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                        data-carousel
+                        data-carousel-loop="true"
+                        data-scroll-gap="16"
+                    >
                         @foreach ($mobileClinics as $clinic)
-                            <article class="about-spaces-mobile-grid-section__card relative overflow-hidden rounded-[8px] bg-[#12081f] shadow-[0_16px_44px_rgba(0,0,0,0.32)]">
+                            <article class="about-spaces-mobile-grid-section__slide relative shrink-0 snap-start overflow-hidden rounded-[8px] bg-[#12081f] shadow-[0_16px_44px_rgba(0,0,0,0.32)]">
                                 <img
                                     src="{{ asset('images/' . $clinic['image']) }}"
                                     alt="Clínica Depiderme {{ $clinic['city'] }}"
@@ -100,12 +106,28 @@
                             </article>
                         @endforeach
                     </div>
+
+                    <div class="about-spaces-mobile-grid-section__slider-nav mt-4 flex items-center justify-start gap-3">
+                        <button type="button" class="{{ $navBtnClass }}" data-carousel-prev="about-spaces-about-mobile-carousel" aria-label="Clínica anterior">
+                            <svg class="block" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M14 7L9 12L14 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                        <button type="button" class="{{ $navBtnClass }}" data-carousel-next="about-spaces-about-mobile-carousel" aria-label="Próxima clínica">
+                            <svg class="block" width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M10 7L15 12L10 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                        <span class="about-spaces-carousel-progress ml-2 h-px w-[120px]" data-carousel-progress="about-spaces-about-mobile-carousel" aria-hidden="true"></span>
+                    </div>
                 </div>
 
                 <x-scroll-laser-beam
-                    class="scroll-laser-beam--spaces-mobile-grid"
+                    class="scroll-laser-beam--spaces-mobile-about"
                     data-scroll-laser-mode="section"
-                    data-scroll-laser-speed="1.5"
+                    data-scroll-laser-speed="1.65"
+                    data-scroll-laser-min-scale="0.85"
+                    data-scroll-laser-min-opacity="0.9"
                 />
             </div>
         </section>
@@ -155,6 +177,7 @@
         </section>
     @endif
 
+    <div data-scroll-laser-section>
     <section class="about-spaces-desktop-section relative z-10 hidden pt-16 lg:block lg:pt-[120px]" aria-label="Espaços especializados">
         <div class="about-spaces-inner site-padding lg:pl-[120px]">
             <div class="about-spaces-layout grid grid-cols-1 gap-10">
@@ -206,7 +229,7 @@
                         </div>
 
                         <div @class([
-                            'flex items-center justify-start gap-3 pl-[var(--site-gutter)] lg:pl-0',
+                            'about-spaces-carousel-nav flex items-center justify-start gap-3 pl-[var(--site-gutter)] lg:pl-0',
                             'mt-4 lg:mt-6' => $spacesOnly,
                             'mt-10 lg:mt-12' => ! $spacesOnly,
                         ])>
@@ -232,8 +255,12 @@
     <div class="about-spaces-laser-divider relative hidden lg:block" aria-hidden="true">
         <x-scroll-laser-beam
             class="scroll-laser-beam--spaces"
-            data-scroll-laser-mode="beam"
+            data-scroll-laser-mode="section"
+            data-scroll-laser-speed="1.65"
+            data-scroll-laser-min-scale="0.85"
+            data-scroll-laser-min-opacity="0.9"
         />
+    </div>
     </div>
 
     <section class="about-professionals-section relative z-10 pb-16 pt-0 lg:pb-24" aria-label="Profissionais certificados">
@@ -305,7 +332,11 @@
         <x-scroll-laser-beam
             class="scroll-laser-beam--spaces"
             data-scroll-laser-mode="beam"
+            data-scroll-laser-speed="1.65"
+            data-scroll-laser-min-scale="0.85"
+            data-scroll-laser-min-opacity="0.9"
         />
+    </div>
     </div>
     @endunless
 </div>

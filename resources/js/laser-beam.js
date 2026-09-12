@@ -194,7 +194,13 @@ export function initScrollLaserBeams() {
             1,
           );
 
-          setScrollBeamProgress(beam, clamp(progress * speed, 0, 1));
+          setScrollBeamProgress(
+            beam,
+            clamp(progress * speed, 0, 1),
+            false,
+            minScale,
+            minOpacity,
+          );
           return;
         }
       }
@@ -213,7 +219,13 @@ export function initScrollLaserBeams() {
           1,
         );
 
-        setScrollBeamProgress(beam, clamp(progress * speed, 0, 1));
+        setScrollBeamProgress(
+          beam,
+          clamp(progress * speed, 0, 1),
+          false,
+          minScale,
+          minOpacity,
+        );
         return;
       }
 
@@ -224,7 +236,13 @@ export function initScrollLaserBeams() {
         );
         const progress = clamp(-rect.top / scrollDistance, 0, 1);
 
-        setScrollBeamProgress(beam, clamp(progress * speed, 0, 1));
+        setScrollBeamProgress(
+          beam,
+          clamp(progress * speed, 0, 1),
+          false,
+          minScale,
+          minOpacity,
+        );
         return;
       }
 
@@ -238,7 +256,13 @@ export function initScrollLaserBeams() {
         1,
       );
 
-      setScrollBeamProgress(beam, clamp(progress * speed, 0, 1));
+      setScrollBeamProgress(
+        beam,
+        clamp(progress * speed, 0, 1),
+        false,
+        minScale,
+        minOpacity,
+      );
       },
     );
   };

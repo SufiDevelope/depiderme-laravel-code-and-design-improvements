@@ -1,19 +1,37 @@
 .about-hero-card-mobile,
 .about-hero-card-desktop {
-  --about-card-float-y: -11px;
-  animation-duration: var(--about-card-float-duration, 5s);
+  --about-card-float-y: -19px;
+  --about-card-float-duration: 2.2s;
+  animation-duration: var(--about-card-float-duration);
+  filter: saturate(1.08);
   transition:
     box-shadow 0.25s ease,
     filter 0.25s ease;
+  box-shadow: 0 26px 72px rgb(39 24 65 / 0.18);
+}
+
+@media (max-width: 991px) {
+  .scroll-laser-beam--about-hero {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+    height: 0;
+    margin: 24px 0 0;
+  }
+
+  .scroll-laser-beam--about-hero .scroll-laser-beam__fill {
+    height: clamp(56px, 8vw, 96px);
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
   .about-hero-card-mobile:hover,
   .about-hero-card-desktop:hover {
-    --about-card-float-duration: 2.2s;
-    --about-card-float-y: -19px;
-    filter: saturate(1.08);
-    box-shadow: 0 26px 72px rgb(39 24 65 / 0.18);
+    filter: saturate(1.12);
+    box-shadow: 0 28px 76px rgb(39 24 65 / 0.2);
   }
 }
 

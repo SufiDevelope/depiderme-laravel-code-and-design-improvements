@@ -131,6 +131,9 @@
                 <x-scroll-laser-beam
                     class="scroll-laser-beam--clinics-home-mobile"
                     data-scroll-laser-mode="section"
+                    data-scroll-laser-speed="1.65"
+                    data-scroll-laser-min-scale="0.85"
+                    data-scroll-laser-min-opacity="0.9"
                 />
             </div>
         </div>

@@ -280,7 +280,10 @@ textarea {
   }
 
   .clinics-section__desktop-nav,
-  .clinics-section__mobile-nav {
+  .clinics-section__mobile-nav,
+  .experience-carousel__nav-button,
+  .about-professionals-section__nav-button,
+  .clinics-detail__nav-button {
     transition:
       background 0.3s var(--hover-ease),
       box-shadow 0.3s var(--hover-ease),
@@ -288,7 +291,10 @@ textarea {
   }
 
   .clinics-section__desktop-nav:hover,
-  .clinics-section__mobile-nav:hover {
+  .clinics-section__mobile-nav:hover,
+  .experience-carousel__nav-button:hover,
+  .about-professionals-section__nav-button:hover,
+  .clinics-detail__nav-button:hover {
     background: #6f45a0;
   }
 

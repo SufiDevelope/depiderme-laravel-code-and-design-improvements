@@ -144,6 +144,12 @@
   }
 }
 
+@media (min-width: 992px) and (max-width: 1279px) {
+  .about-spaces-carousel-nav {
+    justify-content: center;
+  }
+}
+
 @media (min-width: 1440px) {
   .about-spaces-layout {
     grid-template-columns: minmax(0, 384px) minmax(0, 1fr);
