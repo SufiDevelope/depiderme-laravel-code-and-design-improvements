@@ -114,11 +114,36 @@
   --pricing-orb-rotation: 0.35deg;
   --pricing-orb-duration: 24s;
   --pricing-orb-delay: 0s;
-  animation: pricing-hero-orb-float var(--pricing-orb-duration) ease-in-out
-    infinite;
-  animation-delay: var(--pricing-orb-delay);
+  --pricing-orb-enter-delay: 0s;
+  opacity: 0;
+  scale: 0.4;
+  animation:
+    pricing-hero-orb-enter 750ms cubic-bezier(0.22, 1, 0.36, 1)
+      var(--pricing-orb-enter-delay) both,
+    pricing-hero-orb-float var(--pricing-orb-duration) ease-in-out
+      var(--pricing-orb-delay) infinite;
   transform-origin: 50% 50%;
   will-change: transform;
+}
+
+@keyframes pricing-hero-orb-enter {
+  from {
+    opacity: 0;
+    scale: 0.4;
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pricing-hero__orb {
+    opacity: 1;
+    scale: 1;
+    animation: none;
+  }
 }
 
 @keyframes pricing-hero-orb-float {
@@ -148,6 +173,7 @@
   --pricing-orb-rotation: 0.25deg;
   --pricing-orb-duration: 26s;
   --pricing-orb-delay: -1.3s;
+  --pricing-orb-enter-delay: 0ms;
   top: 5%;
   left: max(8px, 1.5vw);
   width: 265px;
@@ -160,6 +186,7 @@
   --pricing-orb-rotation: -0.25deg;
   --pricing-orb-duration: 24s;
   --pricing-orb-delay: -3.4s;
+  --pricing-orb-enter-delay: 90ms;
   top: 40%;
   left: max(48px, 8vw);
   z-index: 1;
@@ -173,6 +200,7 @@
   --pricing-orb-rotation: 0.25deg;
   --pricing-orb-duration: 27s;
   --pricing-orb-delay: -0.7s;
+  --pricing-orb-enter-delay: 180ms;
   bottom: 9%;
   left: max(8px, 1.5vw);
   width: 200px;
@@ -185,6 +213,7 @@
   --pricing-orb-rotation: -0.22deg;
   --pricing-orb-duration: 25s;
   --pricing-orb-delay: -2.1s;
+  --pricing-orb-enter-delay: 270ms;
   top: 5%;
   right: max(48px, 8vw);
   width: 160px;
@@ -197,6 +226,7 @@
   --pricing-orb-rotation: 0.25deg;
   --pricing-orb-duration: 28s;
   --pricing-orb-delay: -4.2s;
+  --pricing-orb-enter-delay: 360ms;
   top: 40%;
   right: max(40px, 7vw);
   width: 160px;
@@ -209,10 +239,19 @@
   --pricing-orb-rotation: -0.25deg;
   --pricing-orb-duration: 29s;
   --pricing-orb-delay: -3s;
+  --pricing-orb-enter-delay: 450ms;
   right: max(8px, 1.5vw);
   bottom: 7%;
   width: 230px;
   height: 230px;
+}
+
+/* Headline settles in once the orbs have mostly finished cascading. */
+@media (prefers-reduced-motion: no-preference) {
+  .pricing-hero__copy--enter {
+    animation: home-hero-content-rise 900ms cubic-bezier(0.22, 1, 0.36, 1)
+      600ms both;
+  }
 }
 
 @media (min-width: 992px) {
