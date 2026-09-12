@@ -10,7 +10,7 @@
     $cardText = str_replace('Candela Medical', '<strong>Candela Medical</strong>', $cardText);
 @endphp
 
-<section class="relative bg-white" data-scroll-laser-section aria-label="Ciência e tecnologia">
+<section class="relative bg-white" data-scroll-laser-section data-reveal-skip aria-label="Ciência e tecnologia">
     <div class="about-hero-grid grid grid-cols-1 lg:grid-cols-2 lg:-mt-24 lg:min-h-[1000px]">
         {{-- Coluna esquerda: texto centrado verticalmente face à imagem --}}
         <div class="about-hero-copy {{ $sectionPadding }} relative z-10 flex min-h-0 flex-col justify-center overflow-visible pb-12 pt-28 sm:pt-32 lg:min-h-[1000px] lg:pb-0 lg:pt-24">

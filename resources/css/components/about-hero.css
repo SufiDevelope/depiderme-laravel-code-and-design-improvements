@@ -10,6 +10,14 @@
   box-shadow: 0 26px 72px rgb(39 24 65 / 0.18);
 }
 
+/* Matches the home hero's load-in slide-up, kept consistent across banners. */
+@media (prefers-reduced-motion: no-preference) {
+  .about-hero-copy__inner {
+    animation: home-hero-content-rise 900ms cubic-bezier(0.22, 1, 0.36, 1)
+      both;
+  }
+}
+
 @media (max-width: 991px) {
   .scroll-laser-beam--about-hero {
     position: relative;
